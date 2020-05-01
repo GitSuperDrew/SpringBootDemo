@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.module.mybatis.dao.TSalaryDao">
+
+    <resultMap type="com.study.module.mybatis.entity.TSalary" id="TSalaryMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="position" column="position" jdbcType="VARCHAR"/>
+        <result property="office" column="office" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="startDate" column="start_date" jdbcType="TIMESTAMP"/>
+        <result property="salary" column="salary" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TSalaryMap">
+        select
+          ID, name, position, office, age, start_date, salary
+        from zero.t_salary
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TSalaryMap">
+        select
+          ID, name, position, office, age, start_date, salary
+        from zero.t_salary
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TSalaryMap">
+        select
+          ID, name, position, office, age, start_date, salary
+        from zero.t_salary
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="position != null and position != ''">
+                and position = #{position}
+            </if>
+            <if test="office != null and office != ''">
+                and office = #{office}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="startDate != null">
+                and start_date = #{startDate}
+            </if>
+            <if test="salary != null">
+                and salary = #{salary}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into zero.t_salary(name, position, office, age, start_date, salary)
+        values (#{name}, #{position}, #{office}, #{age}, #{startDate}, #{salary})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update zero.t_salary
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="position != null and position != ''">
+                position = #{position},
+            </if>
+            <if test="office != null and office != ''">
+                office = #{office},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="startDate != null">
+                start_date = #{startDate},
+            </if>
+            <if test="salary != null">
+                salary = #{salary},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from zero.t_salary where ID = #{id}
+    </delete>
+
+</mapper>
