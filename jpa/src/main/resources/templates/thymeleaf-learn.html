@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--注意：引入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf语法学习</title>
+    <!--引用文件的路径处理-->
+    <!--技巧：【快速跳转键：Ctrl+Alt+单击】-->
+    <link rel="stylesheet" th:href="@{/static/plugin/other/students.css}"/>
+    <script type="text/javascript" th:src="@{/static/plugin/other/students.js}"></script>
+</head>
+<body>
+<a target="_blank" href="https://www.jianshu.com/p/a842e5b5012e">学习网址1</a>
+<a target="_blank" href="https://www.cnblogs.com/msi-chen/p/10974009.html">学习网址2</a>
+<hr>
+<!--值提取-->
+<span th:text="${text}"></span>
+<span th:utext="${utext}"></span>
+<br>
+<!--数值计算-->
+<span th:utext="'计算：1+2=' + (1+2)"></span>
+<br>
+<!--提取对象对应的属性值 th:object 和 ${} 以及 *{}  -->
+<div th:object="${student}">
+    <li th:text="'学生ID：' + *{stuId}"></li>
+    <li th:text="'学生Name：' + *{stuName}"></li>
+    <li th:text="'学生Age：' + *{stuAge}"></li>
+</div>
+<!--thymeleaf的注释文档-->
+<!--/* This code will be removed at thymeleaf parsing time! */-->
+<!--/*/
+<div th:text="${true}">...</div>
+/*/-->
+<br>
+<!--list便利输出：th:each-->
+<div th:each="item : ${stringList}">
+    <li th:text="${item}"></li>
+</div>
+<br>
+<!-- switch-case -->
+<div th:each="num : ${numList}">
+    <div th:switch="${num}">
+        <li th:case="1">the num is 1</li>
+        <li th:case="20">the num is 2</li>
+        <li th:case="3">the num is 3</li>
+        <li th:case="4">the num is 4</li>
+        <li th:case="2">the num is 2</li>
+        <li th:case="*">the num is others</li>
+    </div>
+</div>
+<br>
+<!--th:if 以及 运算符：【and、or、关系比较（>、<、>=、<=、==、!=、lt、gt、le、ge、eq、ne）】-->
+<div th:each="num : ${numList}">
+    <span th:if="${num} == 3"> <i th:text="${num}"></i>&nbsp;这个数字是 3</span>
+    <span th:if="${num} < 3"> <i th:text="${num}"></i>&nbsp;这个数字大于 3</span>
+    <span th:if="${num} > 3"> <i th:text="${num}"></i>&nbsp;这个数字小于 3</span>
+</div>
+<!-- th:if (满足条件) 和 th:unless (不满足条件)-->
+<div th:each="num : ${numList}">
+    <li th:if="${num} == 3"> 这个值是 3</li>
+    <li th:unless="${num} == 3"> 这个值不是 3</li>
+</div>
+<br>
+<!--两种：字符拼接方式-->
+<h5 th:text="|welcome,${student.stuName}|"></h5>
+<h5 th:text="'welcome,' + ${student.stuName} + '!'"></h5>
+<br>
+<!--布尔字面值 true/false -->
+<span th:if="true">你填写的是true</span>
+<!--日期处理-->
+<p th:text="${#dates.format(mydate,'yyyy-MM-dd')}"/>
+<p th:text="${#dates.format(mydate,'yyyy-MM-dd HH:mm:ss.SSS')}"/>
+<hr/>
+<p th:text="${#strings.replace('www.baidu.cn','.','$')}"/>
+<p th:text="${#strings.toUpperCase('www.baidu.cn')}"/>
+<p th:text="${#strings.trim('www.baidu.cn')}"/>
+<hr/>
+<p th:text="${#sets.contains(names,'boot-0')}"/>
+<p th:text="${#sets.contains(names,'boot-9')}"/>
+<p th:text="${#sets.size(names)}"/>
+<hr/>
+<!--页面引入 th:replace 和 th:include -->
+<div th:include="@{/commons/footer} :: companyInfo" th:with="projectName=百度"/>
+</body>
+</html>

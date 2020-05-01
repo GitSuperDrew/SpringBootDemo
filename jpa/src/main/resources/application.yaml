@@ -1,0 +1,28 @@
+server:
+  port: 8888
+spring:
+  mvc:
+    static-path-pattern: /static/**  #静态资源请求路径(记住一定是两个 **)
+  resources:
+    static-locations: classpath:/static,classpath:/resources,classpath:/META-INF/resources
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/zero?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root123456
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  thymeleaf:
+    # 开发阶段建议关闭thymeleaf的缓存(如果缓存不关闭的话，则在调试页面样式等元素的时候刷新不及时，建议cache: false)
+    cache: false
+    # 使用遗留的html5以去掉对HTML标签的校验
+    mode: HTML
+    check-template: true
+    servlet:
+      content-type: text/html
+    encoding: UTF-8
+    suffix: .html

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--注意：引入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>所有学生</title>
+    <link rel="stylesheet" th:href="@{/static/plugin/other/students.css}"/>
+    <script type="text/javascript" th:src="@{/static/plugin/other/students.js}"></script>
+</head>
+<body>
+<button id="btn_demo" onclick="sayHi()">你好</button>
+<div id="div_students">
+    <table id="tb_students">
+        <caption>学生信息</caption>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+        </tr>
+        <!--第一种method-->
+        <!-- 通过th命令使用一些操作 -->
+        <!-- 通过${} 使用变量 -->
+        <tr th:each="item: ${students}">
+            <td th:text="${{item.stuId}}">学生ID</td>
+            <td th:text="${{item.stuName}}">学生姓名</td>
+            <td th:text="${{item.stuAge}}">学生年龄</td>
+        </tr>
+    </table>
+    <hr>
+    <!--第二种：method-->
+    <table id="tb_students2">
+        <caption>学生信息</caption>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+        </tr>
+        <!--第一种method-->
+        <!-- 通过th命令使用一些操作 -->
+        <!-- 通过${} 使用变量 -->
+        <tr th:each="item : ${students}">
+            <td th:text="*{item.stuId}">学生ID</td>
+            <td th:text="*{item.stuName}">学生姓名</td>
+            <td th:text="*{item.stuAge}">学生年龄</td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--注意：引入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <base th:href="${#request.getContextPath()}+'/'">
+</head>
+<body>
+<h3>登录</h3>
+<span style="color: red" th:text="${msg}">登录信息</span>
+<div style="margin: auto">
+    <form action="/student/login" method="post">
+        用户名：<input type="text" name="username" placeholder="请输入你的姓名"><br>
+        密码：<input type="password" name="password" placeholder="请仔细输入密码"><br>
+        <button type="submit">登录</button><br>
+        <button type="reset">取消</button>
+    </form>
+</div>
+</body>
+</html>

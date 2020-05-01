@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--注意：引入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery DataTable JS插件使用</title>
+    <base th:href="${#request.getContextPath()}+'/'">
+    <script type="text/javascript" th:src="@{/static/jquery-3.4.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/plugin/other/layUI.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/plugin/layui-v2.5.6/layui/css/layui.css}">
+    <script type="text/javascript" th:src="@{/static/plugin/layui-v2.5.6/layui/layui.all.js}"></script>
+    <style>
+        body {
+            /*margin: auto 3%;*/
+            /*margin-top: 3%;*/
+            /*background-color: #e8e8e8   */
+        }
+    </style>
+</head>
+<body>
+
+
+<!--layUI-table 表格演示-->
+<div id="table2div">
+    <button class="layui-btn layui-btn-sm" id="search_name">
+        <i class="layui-icon layui-icon-search"></i>名字匹配查询：
+    </button>
+    <input type="text" id="stu_name_like" placeholder="请输入学生姓名">
+    <table id="table2" lay-filter="table2">
+        <thead>
+        <tr>
+            <th lay-data="{field:'stu_id', width:80, sort:true}">ID</th>
+            <th lay-data="{field:'stu_name', width:100, sort:true}">学生姓名</th>
+            <th lay-data="{field:'stu_age', width: 100, sort:true}">学生年龄</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<!--layUI基础演示-->
+<div id="test_layUI">
+
+    <button onclick="showNameDemo()">按钮</button>
+    <button type="button" class="layui-btn">一个标准的按钮</button>
+    <a href="http://www.layui.com" class="layui-btn">一个可跳转的按钮</a>
+    <hr/>
+    <button onclick="showLayerAlert()">弹出layUI的提示框</button>
+    <hr/>
+    <!--小圆点，通过 layui-badge-dot 来定义，里面不能加文字-->
+    <span class="layui-badge-dot"></span>
+    <span class="layui-badge-dot layui-bg-orange"></span>
+    <span class="layui-badge-dot layui-bg-green"></span>
+    <span class="layui-badge-dot layui-bg-cyan"></span>
+    <span class="layui-badge-dot layui-bg-blue"></span>
+    <span class="layui-badge-dot layui-bg-black"></span>
+    <span class="layui-badge-dot layui-bg-gray"></span>
+
+    <!--椭圆体，通过 layui-badge 来定义。事实上我们把这个视作为主要使用方式-->
+    <span class="layui-badge">6</span>
+    <span class="layui-badge">99</span>
+    <span class="layui-badge">61728</span>
+
+    <span class="layui-badge">赤</span>
+    <span class="layui-badge layui-bg-orange">橙</span>
+    <span class="layui-badge layui-bg-green">绿</span>
+    <span class="layui-badge layui-bg-cyan">青</span>
+    <span class="layui-badge layui-bg-blue">蓝</span>
+    <span class="layui-badge layui-bg-black">黑</span>
+    <span class="layui-badge layui-bg-gray">灰</span>
+
+    <!--边框体，通过 layui-badge-rim 来定义-->
+    <span class="layui-badge-rim">6</span>
+    <span class="layui-badge-rim">Hot</span>
+
+    <hr/>
+    选择时间：<input type="text" id="test1" placeholder="请选择时间"><br/>
+    选择范围时间：<input type="text" id="test2" placeholder="请选择一段时间"><br/>
+    <button id="btnTest" title="自定义事件：弹出时间组件,button上的内容需要符合laydate的value值的合法格式">2020-03-26</button>
+
+    <hr class="layui-bg-blue">
+    rate组件：评分
+    <div id="testRate"></div>
+    <hr class="layui-bg-blue">
+</div>
+</body>
+<script>
+    $(function () {
+
+    });
+
+    // table异步提取数据DOC： https://www.layui.com/doc/modules/table.html#async
+    $("#search_name").click(function () {
+        let table = layui.table;
+        table.reload("table2", {
+            url: '/student/findAllToLayUI'
+            , where: {search_name: $("#stu_name_like").val()}
+        })
+    });
+    layui.use('table', function () {
+        let table = layui.table;
+        //转换静态表格
+        table.init('table2', {
+            //  接口地址。默认会自动传递两个参数：?page=1&limit=30（该参数可通过 request 自定义）  page 代表当前页码、limit 代表每页数据量
+            method: 'get' // 默认为 GET 类型
+            , page: true
+            , autoSort: true // 默认为true,自动前端排序，如果为false需要后端设计排序好之后返回给前端（注意：前端排序只是针对当前页的数据进行排序）
+            , initSort: {
+                field: 'stu_age' // 排序字段，对应于 cols 的field值
+                , type: 'desc' // 排序方式， asc 升序， desc 降序
+            }
+            , url: '/student/findAllToLayUI' // 此处不需要些，layUI框架自动请求后端是加了这些参数【 ?currentPage=1&pageCount=10】
+            // , where:  {token: 'sasasas', id: 123} // 接口的其他参数
+            // , contentType: '' // 发送到服务端的内容编码类型。如果你要发送 json 内容，可以设置：contentType: 'application/json'
+            // , headers: {token: 'sasasas'}	//接口的请求头。如：headers: {token: 'sasasas'}
+            , request: {
+                pageName: 'currentPage' //页码的参数名称，默认：page
+                , limitName: 'pageCount' //每页数据量的参数名，默认：limit
+            }
+            // , height: 315 //设置高度
+            , skin: 'row' //行边框风格  [line （行边框风格）  row （列边框风格） nob （无边框风格）]
+            , even: true //开启隔行背景
+            , size: 'lg' //sm 小尺寸的表格  lg 大尺寸
+        });
+    });
+
+    // 评分控件 rate
+    layui.use('rate', function () {
+        let rate = layui.rate;
+        //渲染
+        let ins1 = rate.render({
+            elem: '#testRate'  //绑定元素(即指定容器选择器)
+            , length: 5 // 评价星星的个数（整数，如果设置的是小数，则默认向下取整；另外整数值不必太大，影响页面性能加载）
+            , value: 3 // 默认值为0个星星填充满
+            , theme: 'red' // 默认是橘黄色#FFB8OO
+            , half: true // 默认值false，不可选择半星
+            , text: true // 默认值false，不显示评分的内容（例如：3星，3.5星）
+            , readonly: false // 默认值false即可以编辑可以读，如果设置为true，则不能选择评价几个星星（用来显示使用的）
+            , setText: function (value) { // 替换显示文本，5星替换成"很好"
+                let arrs = {
+                    '1': '极差'
+                    , '1.5': '偏极差'
+                    , '2': '差'
+                    , '2.5': '偏差'
+                    , '3': '中等'
+                    , '3.5': '偏中等'
+                    , '4': '好'
+                    , '4.5': '比较好'
+                    , '5': '很好'
+                };
+                this.span.text(arrs[value] || (value + "星"));
+            }
+            , choose: function (value) {
+                if (value > 4) alert('么么哒')
+            }
+        });
+    });
+
+    // 自定义事件
+    layui.use('laydate', function () {
+        let laydate = layui.laydate;
+        //自定义事件
+        laydate.render({
+            elem: '#btnTest'
+            , trigger: 'click' //采用click弹出
+        });
+    });
+
+    // 单个时间控件
+    layui.use('laydate', function () {
+        let laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1' //指定元素
+            , isInitValue: false  // 禁止初始值填充（如果为false,表示初始值的填充无效，如下面有初始值，却没有填充到表格中）
+            // 第一种方式
+            // ,value: '2018-08-18' // 设置默认值为‘2018-08-18’，必须遵循format参数设定的格式（此方式点击后会记录当前的时间）
+            // 第二种方式
+            , value: new Date(1534766888000) //参数即为：2018-08-20 20:08:08 的时间戳
+            , type: 'datetime' // 默认为 date,还有 time, datetime, year,month,
+            // 时间组件显示的可选日期只有2018-03-03 ~ 2020-03-10的日期
+            , min: '2018-03-03'
+            , max: '2020-03-10'
+            , showBottom: true // 默认值true,显示底部的清空/确认/取消框
+            , lang: 'cn'  // en 国际版，cn 中文版（默认值）
+            , theme: 'grid' // theme的可选值有：default（默认简约）、molv（墨绿背景）、#颜色值（自定义颜色背景）、grid（格子主题）
+            , calendar: true // 我们内置了一些我国通用的公历重要节日，通过设置 true 来开启。国际版不会显示。
+            , mark: {
+                '0-07-13': '生日'
+                , '0-12-31': '跨年' //每年12月31日
+                , '0-0-10': '工资' //每个月10号
+                , '2017-8-15': '' //具体日期
+                , '2020-02-20': '预发' //如果为空字符，则默认显示数字+徽章
+                , '2020-05-21': '发布'
+            }
+            , done: function (value, date) {
+                if (date.year === 2017 && date.month === 8 && date.date === 15) { //点击2017年8月15日，弹出提示语
+                    laydate.hint('中国人民抗日战争胜利72周年');
+
+                }
+            }
+            , ready: function (date) {
+                console.log("2030年2月的最后一天：", laydate.getEndDate(2, 2030));
+                console.log("指定日期的十月份最后一天日期:", laydate.getEndDate(10)); // 指定日期的十月份最后一天日期
+                console.log("当前日期为:", date); //得到初始的日期时间对象：{year: 2018, month: 8, date: 20, hours: 20, minutes: 8, …}
+            }
+            , change: function (value, date) {
+                console.log("当前改变值：" + value); // 是一个符合format后的日期字符串
+                console.log("date为：", date); // 是一个对象，有年，月，日，时，分，秒
+            }
+        });
+    });
+
+    // 时间范围 选择器控件
+    layui.use('laydate', function () {
+        let laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test2' //指定元素
+            , isInitValue: false  // 禁止初始值填充
+            , type: 'datetime' // 默认为 date,还有 time, datetime, year,month,
+            , range: true // 开启范围
+            , format: 'yyyy年MM月dd日 HH时mm分ss秒' // 'yyyy-MM-dd HH:mm:ss' , '北京时间：HH点mm分' ,'dd/MM/yyyy'等
+        });
+    });
+
+    function showLayerAlert() {
+        layer.open({
+            title: '在线调试'  // 弹出框标题
+            // , content: '可以填写任意的layer代码' // 任意代码（HTML和TEXT都可以）
+            , content: '<Strong>加粗标题</Strong>'
+        });
+    }
+
+    function btn() {
+        layer.confirm('纳尼？', {
+            btn: ['按钮一', '按钮二', '按钮三'] //可以无限个按钮
+            , btn3: function (index, layero) {
+                //按钮【按钮三】的回调
+            }
+        }, function (index, layero) {
+            //按钮【按钮一】的回调
+        }, function (index) {
+            //按钮【按钮二】的回调
+        });
+    }
+</script>
+</html>
+<!-- http://localhost:8888/student/studentsOfDataTable -->
