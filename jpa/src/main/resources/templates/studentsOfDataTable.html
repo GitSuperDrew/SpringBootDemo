@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- http://localhost:8888/student/studentsOfDataTable -->
 <!--注意：引入thymeleaf的名称空间-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -20,7 +22,10 @@
 <body>
 
 
-<!--layUI-table 表格演示-->
+<!--
+    layUI-table 表格演示
+    * 此前端的排序为经过后端的全量数据的排序，所以当前的排序只是当前页的数据排序的结果。
+-->
 <div id="table2div">
     <button class="layui-btn layui-btn-sm" id="search_name">
         <i class="layui-icon layui-icon-search"></i>名字匹配查询：
@@ -37,6 +42,8 @@
         <tbody></tbody>
     </table>
 </div>
+
+
 <!--layUI基础演示-->
 <div id="test_layUI">
 
@@ -83,6 +90,8 @@
     <hr class="layui-bg-blue">
 </div>
 </body>
+
+
 <script>
     $(function () {
 
@@ -245,4 +254,3 @@
     }
 </script>
 </html>
-<!-- http://localhost:8888/student/studentsOfDataTable -->

@@ -5,7 +5,6 @@ import com.google.common.collect.Maps;
 import com.study.module.jpa.entity.Student;
 import com.study.module.jpa.service.StudentService;
 import com.study.module.jpa.utils.PageBean;
-import org.apache.catalina.security.SecurityUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
-import java.security.Security;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -77,20 +75,31 @@ public class StudentController {
     @Resource
     JdbcTemplate jdbcTemplate;
 
+    /**
+     * Spring Data JDBC 的数据查询
+     * 示例： http://localhost:8888/student/findAllStus
+     *
+     * @return 全部学生信息
+     */
     @RequestMapping(value = "/findAllStus", method = RequestMethod.GET)
     public List<Map<String, Object>> findAllStus() {
         List<Map<String, Object>> students = jdbcTemplate.queryForList("select * from student;");
         return students;
     }
 
+    /**
+     * 示例：http://localhost:8888/student/studentsOfDataTable
+     *
+     * @return
+     */
     @RequestMapping(value = "/studentsOfDataTable", method = RequestMethod.GET)
     public ModelAndView studentsOfDataTable() {
         ModelAndView modelAndView = new ModelAndView("studentsOfDataTable");
         return modelAndView;
     }
 
-    // ==============================================
-    // ==============================================
+    // ====================== Shiro ========================
+    // ====================== 👇👇👇 ========================
 
     /**
      * 登录限制（Shiro）
@@ -104,7 +113,7 @@ public class StudentController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(String username, String password) {
-        ModelAndView modelAndView  = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView();
         // 使用shiro写验证操作
         // 1.获取 Subject
         Subject subject = SecurityUtils.getSubject();
@@ -114,7 +123,7 @@ public class StudentController {
         try {
             subject.login(token);
             // 登录成功，跳转到指定页面
-            modelAndView = new ModelAndView("/student/findAllToLayUI");
+            modelAndView = new ModelAndView("/student/students");
         } catch (UnknownAccountException e) {
             // 登入失败
             modelAndView.addObject("msg", "登陆失败");
@@ -123,7 +132,7 @@ public class StudentController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/stu-module-list", method = RequestMethod.GET)
+    @RequestMapping(value = "/stu_module-list", method = RequestMethod.GET)
     public ModelAndView stuList() {
         ModelAndView modelAndView = new ModelAndView("student/list");
         return modelAndView;
@@ -140,9 +149,15 @@ public class StudentController {
         ModelAndView modelAndView = new ModelAndView("student/update");
         return modelAndView;
     }
-    // ==============================================
-    // ==============================================
+    // ==================== Shiro ==========================
+    // ==================== 👆👆👆 ==========================
 
+    /**
+     * 请求的地址：http://localhost:8888/student/layui-form
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/layui-form", method = RequestMethod.GET)
     public ModelAndView layUI_table(ServletRequest request) {
         // 这里的 layui-form-add指的是页面名
@@ -150,6 +165,12 @@ public class StudentController {
         return modelAndView;
     }
 
+    /**
+     * 示例：http://localhost:8888/student/findAllToLayUI
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/findAllToLayUI", method = RequestMethod.GET)
     public Map<String, Object> findAllToLayUI(ServletRequest request) {
         Map<String, Object> params = getRequestParams(request);
@@ -180,6 +201,11 @@ public class StudentController {
         return result;
     }
 
+    /**
+     * 示例：http://localhost:8888/student/pageFindAll
+     *
+     * @return
+     */
     @RequestMapping(value = "/pageFindAll", method = RequestMethod.GET)
     public List<Student> pageFindAll() {
         PageBean pageBean = new PageBean(1, 3, "stuId", "desc");

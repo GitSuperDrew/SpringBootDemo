@@ -2,7 +2,6 @@ package com.study.module.jpa.config;
 
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,15 +34,20 @@ public class ShiroConfig {
          *  role: 该资源必须得到角色权限才可以访问
          */
         Map<String, String> filterMap = new LinkedHashMap<>();
-        // 被拦截了，需要登录才能访问 http://localhost:8888/login.jsp;jsessionid=A9206F23311853E83AE9F1EC7DAE5157
         // 第一种写法：具体验证授权访问的定义
-//        filterMap.put("/student/stu_module-add", "authc");
-//        filterMap.put("/student/stu_module-update", "authc");
-//        filterMap.put("/student/stu_module-list", "anon");
-        // 第二种方法：通配符（指定模块下都可以访问）
-        filterMap.put("/student/*", "authc"); // 学生模块下的所有功能都可以在无登录下登录。
-//        filterMap.put("/login", "anon");
+        /* http://localhost:8888/student/stu_module-add
+         * http://localhost:8888/student/stu_module-update
+         * 被拦截到登录页面中，
+         * http://localhost:8888/student/stu_module-list
+         * 不被拦截。
+         * */
+        filterMap.put("/student/stu_module-add", "authc");
+        filterMap.put("/student/stu_module-update", "authc");
+        filterMap.put("/student/stu_module-list", "anon");
+        // 第二种方法：通配符（指定模块下都可以访问）  如下：学生模块下的所有功能都可以在无登录下登录。
+        // filterMap.put("/student/*", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
+        // 【被拦截后】的页面指定跳转到的页面：
         // 修改登录页面(访问的controller，此处我写在了 StudentController中，得到登录访问连接为 http://localhost:8888/student/login)
         shiroFilterFactoryBean.setLoginUrl("/student/toLogin");
         return shiroFilterFactoryBean;
