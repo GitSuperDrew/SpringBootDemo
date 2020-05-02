@@ -27,6 +27,17 @@
             <artifactId>hutool-all</artifactId>
             <version>5.2.5</version>
         </dependency>
+        <!--POI 用于导出Excel数据-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.17</version>
+        </dependency>
         <!--Joda-Time-->
         <dependency>
             <groupId>joda-time</groupId>
