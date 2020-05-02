@@ -7,7 +7,8 @@
 [`MySQL`](https://www.mysql.com/)、
 [`Thymeleaf`](https://www.thymeleaf.org/)、
 [`LayUI`](https://www.layui.com/)、
-[`JQuery DataTable`](https://datatables.net/);
+[`JQuery DataTable`](https://datatables.net/)、
+[`Shiro`](http://shiro.apache.org/);
     
 ## ⚠ 注意事项：
 1. 项目只供学习交流使用
