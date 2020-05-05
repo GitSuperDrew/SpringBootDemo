@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+</head>
+<body>
+<table id="userTable" style="width: 100%; text-align: center">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>密码</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <div th:each="user:${users}">
+        <tr th:id="tr+${user.id}">
+            <td th:text="${user.id}"/>
+            <!--<td th:text="${user.name}"/>-->
+            <td>
+            <span th:switch="${user.name}">
+                <span th:case="Drew">嘟噜</span>
+                <span th:case="King">国王</span>
+                <span th:case="*">
+                    <span th:text="${user.name}"></span>
+                </span>  <!--没有处理的数据-->
+            </span>
+            </td>
+            <td th:text="${user.password}"/>
+            <td>
+                <button th:id="edit+${user.id}" onclick="toEdit(this)" th:value="${user.id}">编辑</button>
+                <button th:id="del+${user.id}" onclick="toDel(this)" th:value="${user.id}">删除</button>
+            </td>
+        </tr>
+    </div>
+    </tbody>
+</table>
+</body>
+<script th:inline="javascript" type="text/javascript">
+    function toEdit(element) {
+        // ES6的写法
+        var value = element.value;
+        console.log(value);
+        // 第一种方式:
+        var ctxPath = [[${#httpServletRequest.getContextPath()}]];
+        console.log(ctxPath);
+        window.open(ctxPath + "/test/getOne/" + value, "_self")
+
+        // 第二种方式:(直接写死)
+        // window.open("http://localhost:8787/test/getOne/" + value, "_self")
+    }
+
+    function toDel(element) {
+        var flag = confirm("确定删除吗？");
+        if (flag) {
+            var currId = element.value;
+            console.log("删除：" + currId);
+            var id = document.querySelector("#tr" + currId);
+            id.style.display = "none";
+        }
+    }
+</script>
+</html>

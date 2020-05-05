@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更新用户信息</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>ID：<input id="userId" type="text" disabled th:value="${user.id}"></td>
+    </tr>
+    <tr>
+        <td>姓名：<input id="userName" type="text" th:value="${user.name}"></td>
+    </tr>
+    <tr>
+        <td>密码：<input id="userPwd" type="password" th:value="${user.password}"></td>
+    </tr>
+</table>
+<button onclick="showUserInfo()">显示学生信息</button>
+<button onclick="javascript:history.go(-1);">返回上一个页面</button>
+</body>
+<script>
+    function showUserInfo() {
+        // ES6的写法
+        var userId = document.querySelector("#userId").value;
+        var userName = document.querySelector("#userName").value;
+        var userPwd = document.querySelector("#userPwd").value;
+        // alert(userId + "===" + userName + "===" + userPwd);
+        console.log(userId + "===" + userName + "===" + userPwd);
+    }
+</script>
+</html>

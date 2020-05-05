@@ -1,0 +1,43 @@
+server:
+  port: 8787
+spring:
+  # Spring Boot 热部署  ========== ↓↓↓↓
+  devtools:
+    restart:
+      enabled: true #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+  # Spring Boot 热部署 ============ ↑↑↑↑
+  datasource:
+    password: root123456
+    username: root
+    url: jdbc:mysql://127.0.0.1:3306/zero?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # thymeleaf start ========= ↓↓↓↓
+  thymeleaf:
+    #视图解析器的前缀放在这个文件夹
+    prefix: classpath:/templates/
+    #页面模板的后缀名
+    suffix: .html
+    # 模式
+    mode: HTML
+    servlet:
+      content-type: text/html
+    encoding: UTF-8
+    # 不用缓存
+    cache: false
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+  # thymeleaf end ============ ↑↑↑↑
+
+beetlsql:
+  dbStyle: org.beetl.sql.core.db.MySqlStyle
+  daoSuffix: Dao
+  sqlPath: /sql
+  nameConversion: org.beetl.sql.core.UnderlinedNameConversion
+  basePackage: com.study.module.ibeetlsql.dao
