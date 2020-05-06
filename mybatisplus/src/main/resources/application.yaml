@@ -2,22 +2,26 @@ server:
   port: 8989
   servlet:
     session:
-      timeout: 60
+      timeout: 3600 # 3600秒即一小时的session有效期
 spring:
-  ## 配置文件的优先级低于Java类的配置。（见SecurityConfig.java配置类）
-  security:
-    user:
-      password: drew
-      name: drew
   # Spring Boot 热部署  ========== ↓↓↓↓
   devtools:
     restart:
       enabled: true #设置开启热部署
       additional-paths: src/main/java #重启目录
       exclude: WEB-INF/**
+  ## 配置文件的优先级低于Java类的配置。（见SecurityConfig.java配置类）
+  security:
+    user:
+      password: drew
+      name: drew
   # Spring Boot 热部署 ============ ↑↑↑↑
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/zero?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
     username: root
     password: root123456
+# 配置 Mybatis Plus 日志打印
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

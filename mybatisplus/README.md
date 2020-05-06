@@ -26,6 +26,8 @@ private Integer id; // 如果没有，则出现 有关于 @TableId 相关的错�
 ## ⛏ 注意事项：
 ### 备注
 1. 文章参考[来源](https://www.toutiao.com/i6691534609064133132/)。
+2. `Spring Boot 热部署：[讲解](https://blog.csdn.net/chachapaofan/article/details/88697452)
+3. [`Mybatis Plus`学习辅助](https://www.jianshu.com/p/1bbddc36b63b)。
 
 ### Spring Security 部分
 1. 学习网址：[来源微信文章](https://mp.weixin.qq.com/s?__biz=MzIxNjA5MTM2MA==&mid=2652437103&idx=1&sn=6b23ebf9f026dd087060ed49febc3d60&chksm=8c6205e0bb158cf6051858c5b6c8de6b049c1b2dc8099e02fcc71849b605ce74255363249b7b&scene=126&sessionid=1588736498&key=1fb1a3c108c4a26c9b39d05af79bfee5b3aab9c0897d4e327a48e943c72fa8b0f3948d956b8da80c8db2d8a7a7eb9019a44fee8b1232381a4bb6f7adca89997cecf0b424663e0f7cfa0d934d87d4e38a&ascene=1&uin=MjEyNzQ5NDYzNw%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=A5HTPc3MKfCWoFZcTcsNyQE%3D&pass_ticket=64zAAlv%2FhSW%2BbF9r1X7BWLvqZmYwkDa9yUJ33rXZNYBvnif%2Fi2NWSjeXHX0WNPNs)
