@@ -1,6 +1,14 @@
 server:
   port: 8989
+  servlet:
+    session:
+      timeout: 60
 spring:
+  ## 配置文件的优先级低于Java类的配置。（见SecurityConfig.java配置类）
+  security:
+    user:
+      password: drew
+      name: drew
   # Spring Boot 热部署  ========== ↓↓↓↓
   devtools:
     restart:
