@@ -70,7 +70,7 @@ public class UserController {
      * URL: http://localhost:8989/mybatisplus/user/findByNameEq?name=Drew
      *
      * @param username 用户姓名
-     * @return
+     * @return 精确匹配到用户名称的用户信息
      */
     @RequestMapping(value = "/findByNameEq", method = RequestMethod.GET)
     public Collection<User> findByNameEq(@RequestParam(value = "name") String username) {
@@ -81,16 +81,29 @@ public class UserController {
     }
 
     /**
+     * 名字模糊查询
+     * URL：http://localhost:8989/mybatisplus/user/findByNameLike?name=Dr
+     *
+     * @param namePart 模糊名称
+     * @return 匹配到名称的用户集合
+     */
+    @RequestMapping(value = "/findByNameLike", method = RequestMethod.GET)
+    public List findByNameLike(@RequestParam(value = "name") String namePart) {
+        QueryWrapper queryWrapper = new QueryWrapper<>().like("name", namePart);
+        return iUserService.list(queryWrapper);
+    }
+
+    /**
      * 范围查询
      * URL：http://localhost:8989/mybatisplus/user/findByRangeId?min=3&max=10
      *
      * @param min 最小值
      * @param max 最大值
-     * @return
+     * @return ID在min和max之间的用户信息
      */
     @RequestMapping(value = "/findByRangeId", method = RequestMethod.GET)
-    public List<User> findByRangeId(@RequestParam(value = "min") int min,
-                                    @RequestParam(value = "max") int max) {
+    public List findByRangeId(@RequestParam(value = "min") int min,
+                              @RequestParam(value = "max") int max) {
         QueryWrapper queryWrapper = new QueryWrapper<>().between("id", min, max);
         return iUserService.list(queryWrapper);
     }
