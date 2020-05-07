@@ -2,6 +2,7 @@ package com.study.module.mybatisplus.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.study.module.mybatisplus.entity.User;
 import com.study.module.mybatisplus.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,19 @@ public class UserController {
     }
 
     /**
+     * URL：http://localhost:8989/mybatisplus/user/findAllOnlyNameAndEmail
+     * 过滤 用户信息，只得到指定的几个字段的信息
+     * 学习网址：https://mp.baomidou.com/guide/wrapper.html#select
+     *
+     * @return 所有用户信息指定的几个字段（此处固定的为：name ， email）
+     */
+    @RequestMapping(value = "/findAllOnlyNameAndEmail", method = RequestMethod.GET)
+    public List findAllOnlyNameAndEmail() {
+        QueryWrapper queryWrapper = new QueryWrapper().select("name", "email");
+        return iUserService.list(queryWrapper);
+    }
+
+    /**
      * 名字模糊查询
      * URL：http://localhost:8989/mybatisplus/user/findByNameLike?name=Dr
      *
@@ -106,6 +120,21 @@ public class UserController {
                               @RequestParam(value = "max") int max) {
         QueryWrapper queryWrapper = new QueryWrapper<>().between("id", min, max);
         return iUserService.list(queryWrapper);
+    }
+
+    /**
+     * 简单分页
+     * URL：http://localhost:8989/mybatisplus/user/page?curPage=1&pageCount=4
+     *
+     * @param curPage   当前页码
+     * @param pageCount 当前页码显示数量
+     * @return 分页用户集合
+     */
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public List page(@RequestParam(value = "curPage") int curPage,
+                     @RequestParam(value = "pageCount") int pageCount) {
+        // new Page<>(【第一个参数为当前页码】,【当前页码显示的数量】)
+        return iUserService.selectUserPage(new Page<>(curPage, pageCount)).getRecords();
     }
 
 
