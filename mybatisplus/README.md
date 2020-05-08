@@ -5,7 +5,7 @@
 1. 编程环境：[`Java8`](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)，`Windows10`，
 [`maven`](https://mvnrepository.com/)，
 [`InterlliJ IDEA`](https://www.jetbrains.com/)，
-2. 数据库：`MySQL5.7+`  【后期准备加入 [`Redis`](https://redis.io/) 】
+2. 数据库：`MySQL5.7+` , [`Redis`](https://redis.io/)
 3. ORM框架：[`Mybatis Plus`](https://mp.baomidou.com/)
 4. 模板引擎：[`Velocity`](http://velocity.apache.org/)
 5. 安全框架：[`Security`](https://spring.io/projects/spring-security)
