@@ -12,6 +12,7 @@ import java.util.Map;
  */
 public interface StudentService {
     Long count();
+
     /**
      * 查询所有学生信息
      *

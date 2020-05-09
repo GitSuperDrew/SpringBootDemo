@@ -11,12 +11,12 @@ class StudentRepositoryTest {
     private StudentRepository studentRepository;
 
     @Test
-    public void findAll(){
+    public void findAll() {
         System.out.println(studentRepository.findAll());
     }
 
     @Test
-    public void findById(){
+    public void findById() {
         System.out.println(studentRepository.findById(3));
     }
 

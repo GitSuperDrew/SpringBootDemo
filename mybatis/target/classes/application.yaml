@@ -1,0 +1,22 @@
+server:
+  port: 8089
+spring:
+  freemarker:
+    charset: UTF-8
+    suffix: .ftl
+    content-type: text/html; charset=utf-8
+    template-loader-path: classpath:/templates
+  mvc:
+    servlet:
+      path: /
+    static-path-pattern: /**
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/zero?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:/mapper/*Dao.xml
+  typeAliasesPackage: com.study.module.mybatis.entity

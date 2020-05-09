@@ -15,7 +15,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="TSalaryMap">
         select
-          ID, name, position, office, age, start_date, salary
+        ID, name, position, office, age, start_date, salary
         from zero.t_salary
         where ID = #{id}
     </select>
@@ -23,7 +23,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="TSalaryMap">
         select
-          ID, name, position, office, age, start_date, salary
+        ID, name, position, office, age, start_date, salary
         from zero.t_salary
         limit #{offset}, #{limit}
     </select>
@@ -31,7 +31,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="TSalaryMap">
         select
-          ID, name, position, office, age, start_date, salary
+        ID, name, position, office, age, start_date, salary
         from zero.t_salary
         <where>
             <if test="id != null">

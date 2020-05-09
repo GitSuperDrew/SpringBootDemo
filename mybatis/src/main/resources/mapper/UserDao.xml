@@ -11,7 +11,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select
-          id, name, password
+        id, name, password
         from zero.user
         where id = #{id}
     </select>
@@ -19,7 +19,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select
-          id, name, password
+        id, name, password
         from zero.user
         limit #{offset}, #{limit}
     </select>
@@ -27,7 +27,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select
-          id, name, password
+        id, name, password
         from zero.user
         <where>
             <if test="id != null">

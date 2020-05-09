@@ -11,32 +11,31 @@ import java.io.Serializable;
  */
 public class TSalary implements Serializable {
     private static final long serialVersionUID = 170350254676844836L;
-    
+
     private Integer id;
     /**
-    * 员工姓名
-    */
+     * 员工姓名
+     */
     private String name;
     /**
-    * 职位
-    */
+     * 职位
+     */
     private String position;
     /**
-    * 办公地点
-    */
+     * 办公地点
+     */
     private String office;
     /**
-    * 年龄
-    */
+     * 年龄
+     */
     private Integer age;
     /**
-    * 入职日期
-
-    */
+     * 入职日期
+     */
     private Date startDate;
     /**
-    * 薪水
-    */
+     * 薪水
+     */
     private Integer salary;
 
 

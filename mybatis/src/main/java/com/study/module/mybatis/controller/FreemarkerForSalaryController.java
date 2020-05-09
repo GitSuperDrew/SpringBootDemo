@@ -53,8 +53,8 @@ public class FreemarkerForSalaryController {
 
     @ResponseBody
     @RequestMapping(value = "/allSalary", method = RequestMethod.GET)
-    public Map<String, Object> allSalary(){
-        List<TSalary> lists = tSalaryService.queryAllByLimit(0,100);
+    public Map<String, Object> allSalary() {
+        List<TSalary> lists = tSalaryService.queryAllByLimit(0, 100);
         return ImmutableMap.of("data", lists);
     }
 

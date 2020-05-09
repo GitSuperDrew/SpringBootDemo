@@ -39,11 +39,11 @@ public class ThymeleafLearnController {
         // 5.日期处理
         modelAndView.addObject("mydate", new Date());
         // 6. set集合
-        Set<String> allNames = new HashSet<String>() ;
-        List<Integer> allIds = new ArrayList<Integer>() ;
-        for (int x = 0 ; x < 5 ; x ++) {
-            allNames.add("boot-" + x) ;
-            allIds.add(x) ;
+        Set<String> allNames = new HashSet<String>();
+        List<Integer> allIds = new ArrayList<Integer>();
+        for (int x = 0; x < 5; x++) {
+            allNames.add("boot-" + x);
+            allIds.add(x);
         }
         modelAndView.addObject("names", allNames);
         modelAndView.addObject("ids", allIds);

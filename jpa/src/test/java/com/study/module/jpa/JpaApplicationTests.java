@@ -25,7 +25,7 @@ class JpaApplicationTests {
      * ② https://how2j.cn/k/hutool/
      */
     @Test
-    void hutoolTest(){
+    void hutoolTest() {
         // 学习 Hutool 地址：https://how2j.cn/k/hutool/hutool-date/1946.html
 
         System.out.println("Hutool工具类的使用：");

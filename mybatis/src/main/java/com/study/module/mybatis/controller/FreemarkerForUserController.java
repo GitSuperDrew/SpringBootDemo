@@ -58,7 +58,7 @@ public class FreemarkerForUserController {
 
     @ResponseBody
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    public Map<String,Object> findAll() {
+    public Map<String, Object> findAll() {
         List<User> users = userService.queryAllByLimit(0, 13);
         return ImmutableMap.of("data", users);
     }
