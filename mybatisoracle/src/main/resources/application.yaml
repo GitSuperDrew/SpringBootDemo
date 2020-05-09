@@ -1,2 +1,31 @@
 server:
   port: 8088
+spring:
+  # Spring Boot 热部署  ========== ↓↓↓↓
+  devtools:
+    restart:
+      enabled: true #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+  ## 配置文件的优先级低于Java类的配置。（见SecurityConfig.java配置类）
+  security:
+    user:
+      password: drew
+      name: drew
+  # Spring Boot 热部署 ============ ↑↑↑↑
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    username: ZHONGZERO
+    password: 123456
+    initialSize: 1
+    minIdle: 3
+    maxActive: 20
+mybatis:
+  mapper-locations: classpath:/mapper/*Dao.xml
+  typeAliasesPackage: com.study.module.mybatisoracle.entity
+#开启logging myabtis语句打印
+logging:
+  level:
+    com.study.module.mybatisoracle.dao: debug # 注意：是根据@Mapper的注解定这个文件路径的。

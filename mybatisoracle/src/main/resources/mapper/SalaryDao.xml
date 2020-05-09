@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.module.mybatisoracle.dao.SalaryDao">
+
+    <resultMap type="com.study.module.mybatisoracle.entity.Salary" id="SalaryMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="procInsId" column="PROC_INS_ID" jdbcType="VARCHAR"/>
+        <result property="userId" column="USER_ID" jdbcType="VARCHAR"/>
+        <result property="officeId" column="OFFICE_ID" jdbcType="VARCHAR"/>
+        <result property="post" column="POST" jdbcType="VARCHAR"/>
+        <result property="age" column="AGE" jdbcType="VARCHAR"/>
+        <result property="edu" column="EDU" jdbcType="VARCHAR"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="olda" column="OLDA" jdbcType="VARCHAR"/>
+        <result property="oldb" column="OLDB" jdbcType="VARCHAR"/>
+        <result property="oldc" column="OLDC" jdbcType="VARCHAR"/>
+        <result property="newa" column="NEWA" jdbcType="VARCHAR"/>
+        <result property="newb" column="NEWB" jdbcType="VARCHAR"/>
+        <result property="newc" column="NEWC" jdbcType="VARCHAR"/>
+        <result property="addNum" column="ADD_NUM" jdbcType="VARCHAR"/>
+        <result property="exeDate" column="EXE_DATE" jdbcType="VARCHAR"/>
+        <result property="hrText" column="HR_TEXT" jdbcType="VARCHAR"/>
+        <result property="leadText" column="LEAD_TEXT" jdbcType="VARCHAR"/>
+        <result property="mainLeadText" column="MAIN_LEAD_TEXT" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATE_BY" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATE_DATE" jdbcType="OTHER"/>
+        <result property="updateBy" column="UPDATE_BY" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATE_DATE" jdbcType="OTHER"/>
+        <result property="remarks" column="REMARKS" jdbcType="VARCHAR"/>
+        <result property="delFlag" column="DEL_FLAG" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SalaryMap">
+        select
+          ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
+        from ZHONGZERO.SALARY
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SalaryMap">
+        select
+          ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
+        from ZHONGZERO.SALARY
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SalaryMap">
+        select
+          ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
+        from ZHONGZERO.SALARY
+        <where>
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="procInsId != null and procInsId != ''">
+                and PROC_INS_ID = #{procInsId}
+            </if>
+            <if test="userId != null and userId != ''">
+                and USER_ID = #{userId}
+            </if>
+            <if test="officeId != null and officeId != ''">
+                and OFFICE_ID = #{officeId}
+            </if>
+            <if test="post != null and post != ''">
+                and POST = #{post}
+            </if>
+            <if test="age != null and age != ''">
+                and AGE = #{age}
+            </if>
+            <if test="edu != null and edu != ''">
+                and EDU = #{edu}
+            </if>
+            <if test="content != null and content != ''">
+                and CONTENT = #{content}
+            </if>
+            <if test="olda != null and olda != ''">
+                and OLDA = #{olda}
+            </if>
+            <if test="oldb != null and oldb != ''">
+                and OLDB = #{oldb}
+            </if>
+            <if test="oldc != null and oldc != ''">
+                and OLDC = #{oldc}
+            </if>
+            <if test="newa != null and newa != ''">
+                and NEWA = #{newa}
+            </if>
+            <if test="newb != null and newb != ''">
+                and NEWB = #{newb}
+            </if>
+            <if test="newc != null and newc != ''">
+                and NEWC = #{newc}
+            </if>
+            <if test="addNum != null and addNum != ''">
+                and ADD_NUM = #{addNum}
+            </if>
+            <if test="exeDate != null and exeDate != ''">
+                and EXE_DATE = #{exeDate}
+            </if>
+            <if test="hrText != null and hrText != ''">
+                and HR_TEXT = #{hrText}
+            </if>
+            <if test="leadText != null and leadText != ''">
+                and LEAD_TEXT = #{leadText}
+            </if>
+            <if test="mainLeadText != null and mainLeadText != ''">
+                and MAIN_LEAD_TEXT = #{mainLeadText}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and CREATE_BY = #{createBy}
+            </if>
+            <if test="createDate != null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                and UPDATE_BY = #{updateBy}
+            </if>
+            <if test="updateDate != null">
+                and UPDATE_DATE = #{updateDate}
+            </if>
+            <if test="remarks != null and remarks != ''">
+                and REMARKS = #{remarks}
+            </if>
+            <if test="delFlag != null and delFlag != ''">
+                and DEL_FLAG = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ZHONGZERO.SALARY(PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG)
+        values (#{procInsId}, #{userId}, #{officeId}, #{post}, #{age}, #{edu}, #{content}, #{olda}, #{oldb}, #{oldc}, #{newa}, #{newb}, #{newc}, #{addNum}, #{exeDate}, #{hrText}, #{leadText}, #{mainLeadText}, #{createBy}, #{createDate}, #{updateBy}, #{updateDate}, #{remarks}, #{delFlag})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ZHONGZERO.SALARY
+        <set>
+            <if test="procInsId != null and procInsId != ''">
+                PROC_INS_ID = #{procInsId},
+            </if>
+            <if test="userId != null and userId != ''">
+                USER_ID = #{userId},
+            </if>
+            <if test="officeId != null and officeId != ''">
+                OFFICE_ID = #{officeId},
+            </if>
+            <if test="post != null and post != ''">
+                POST = #{post},
+            </if>
+            <if test="age != null and age != ''">
+                AGE = #{age},
+            </if>
+            <if test="edu != null and edu != ''">
+                EDU = #{edu},
+            </if>
+            <if test="content != null and content != ''">
+                CONTENT = #{content},
+            </if>
+            <if test="olda != null and olda != ''">
+                OLDA = #{olda},
+            </if>
+            <if test="oldb != null and oldb != ''">
+                OLDB = #{oldb},
+            </if>
+            <if test="oldc != null and oldc != ''">
+                OLDC = #{oldc},
+            </if>
+            <if test="newa != null and newa != ''">
+                NEWA = #{newa},
+            </if>
+            <if test="newb != null and newb != ''">
+                NEWB = #{newb},
+            </if>
+            <if test="newc != null and newc != ''">
+                NEWC = #{newc},
+            </if>
+            <if test="addNum != null and addNum != ''">
+                ADD_NUM = #{addNum},
+            </if>
+            <if test="exeDate != null and exeDate != ''">
+                EXE_DATE = #{exeDate},
+            </if>
+            <if test="hrText != null and hrText != ''">
+                HR_TEXT = #{hrText},
+            </if>
+            <if test="leadText != null and leadText != ''">
+                LEAD_TEXT = #{leadText},
+            </if>
+            <if test="mainLeadText != null and mainLeadText != ''">
+                MAIN_LEAD_TEXT = #{mainLeadText},
+            </if>
+            <if test="createBy != null and createBy != ''">
+                CREATE_BY = #{createBy},
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                UPDATE_BY = #{updateBy},
+            </if>
+            <if test="updateDate != null">
+                UPDATE_DATE = #{updateDate},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                REMARKS = #{remarks},
+            </if>
+            <if test="delFlag != null and delFlag != ''">
+                DEL_FLAG = #{delFlag},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ZHONGZERO.SALARY where ID = #{id}
+    </delete>
+
+</mapper>
