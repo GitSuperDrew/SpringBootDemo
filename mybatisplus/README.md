@@ -41,3 +41,23 @@
    否认，将出现错误：**~~“`Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [188] milliseconds
    .`”~~** 这个错误出现的有些奇怪！！
 6. 设置 `session` 的超时时间，当达到超时时间后，自动将用户退出登录。`Session` 超时的配置是 `SpringBoot` 原生支持的，我们只需要在 `application.properties` 配置文件中
+
+
+### 附件
+#### `Git` 提交规范
+1. 格式：`type(scope) : subject`
+2. 说明：
+    * [`type`]()(必须)： commit 的类别，只允许使用下面几个标识
+        - `feat` : 新功能
+        - `fix` : 修复bug
+        - `docs` : 文档改变
+        - `style` : 代码格式改变
+        - `refactor` : 某个已有功能重构
+        - `perf` : 性能优化
+        - `test` : 增加测试
+        - `build` : 改变了build工具 如 grunt换成了 npm
+        - `revert` : 撤销上一次的 commit
+        - `chore` : 构建过程或辅助工具的变动
+    * [`scope`]()(可选)：用户说明 commit 的影响范围，比如数据库层/控制层/视图层等等，是项目不同而不同。
+    * [`subject`]()(必须)：commit简短描述，不可超过50个字符。
+3. 工具推荐：`commitizen` 是一个撰写合格 Commit message 的工具(依照 AngularJS 提交的规范)
