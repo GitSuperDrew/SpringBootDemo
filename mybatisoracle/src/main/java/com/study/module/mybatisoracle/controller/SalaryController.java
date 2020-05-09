@@ -22,6 +22,7 @@ public class SalaryController {
     private SalaryService salaryService;
 
     /**
+     * URL：http://localhost:8088/salary/selectOne?id=825693cd6c1c4f6b86699fc3f1a54887
      * 通过主键查询单条数据
      *
      * @param id 主键
