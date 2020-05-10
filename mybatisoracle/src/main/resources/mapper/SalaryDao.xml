@@ -23,9 +23,9 @@
         <result property="leadText" column="LEAD_TEXT" jdbcType="VARCHAR"/>
         <result property="mainLeadText" column="MAIN_LEAD_TEXT" jdbcType="VARCHAR"/>
         <result property="createBy" column="CREATE_BY" jdbcType="VARCHAR"/>
-        <result property="createDate" column="CREATE_DATE" jdbcType="OTHER"/>
+        <result property="createDate" column="CREATE_DATE" jdbcType="TIMESTAMP"/>
         <result property="updateBy" column="UPDATE_BY" jdbcType="VARCHAR"/>
-        <result property="updateDate" column="UPDATE_DATE" jdbcType="OTHER"/>
+        <result property="updateDate" column="UPDATE_DATE" jdbcType="TIMESTAMP"/>
         <result property="remarks" column="REMARKS" jdbcType="VARCHAR"/>
         <result property="delFlag" column="DEL_FLAG" jdbcType="VARCHAR"/>
     </resultMap>
@@ -34,7 +34,7 @@
     <select id="queryById" resultMap="SalaryMap">
         select
           ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
-        from ZHONGZERO.SALARY
+        from SALARY
         where ID = #{id}
     </select>
 
@@ -42,7 +42,7 @@
     <select id="queryAllByLimit" resultMap="SalaryMap">
         select
           ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
-        from ZHONGZERO.SALARY
+        from SALARY
         limit #{offset}, #{limit}
     </select>
 
@@ -50,7 +50,7 @@
     <select id="queryAll" resultMap="SalaryMap">
         select
           ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
-        from ZHONGZERO.SALARY
+        from SALARY
         <where>
             <if test="id != null and id != ''">
                 and ID = #{id}
@@ -132,13 +132,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into ZHONGZERO.SALARY(PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG)
+        insert into SALARY(PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG)
         values (#{procInsId}, #{userId}, #{officeId}, #{post}, #{age}, #{edu}, #{content}, #{olda}, #{oldb}, #{oldc}, #{newa}, #{newb}, #{newc}, #{addNum}, #{exeDate}, #{hrText}, #{leadText}, #{mainLeadText}, #{createBy}, #{createDate}, #{updateBy}, #{updateDate}, #{remarks}, #{delFlag})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update ZHONGZERO.SALARY
+        update SALARY
         <set>
             <if test="procInsId != null and procInsId != ''">
                 PROC_INS_ID = #{procInsId},
@@ -218,7 +218,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from ZHONGZERO.SALARY where ID = #{id}
+        delete from SALARY where ID = #{id}
     </delete>
 
 </mapper>

@@ -7,7 +7,7 @@ import java.util.List;
  * 审批流程测试表(Salary)表服务接口
  *
  * @author makejava
- * @since 2020-05-09 23:22:47
+ * @since 2020-05-10 10:12:22
  */
 public interface SalaryService {
 

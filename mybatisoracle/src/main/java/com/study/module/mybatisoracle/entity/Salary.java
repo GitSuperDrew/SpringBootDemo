@@ -1,15 +1,18 @@
 package com.study.module.mybatisoracle.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 import java.io.Serializable;
 
 /**
  * 审批流程测试表(Salary)实体类
  *
  * @author makejava
- * @since 2020-05-09 23:22:38
+ * @since 2020-05-10 10:12:22
  */
 public class Salary implements Serializable {
-    private static final long serialVersionUID = -15950396041064446L;
+    private static final long serialVersionUID = -11008172794921765L;
     /**
     * 编号
     */
@@ -93,7 +96,8 @@ public class Salary implements Serializable {
     /**
     * 创建时间
     */
-    private Object createDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createDate;
     /**
     * 更新者
     */
@@ -101,7 +105,8 @@ public class Salary implements Serializable {
     /**
     * 更新时间
     */
-    private Object updateDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date updateDate;
     /**
     * 备注信息
     */
@@ -272,11 +277,11 @@ public class Salary implements Serializable {
         this.createBy = createBy;
     }
 
-    public Object getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Object createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -288,11 +293,11 @@ public class Salary implements Serializable {
         this.updateBy = updateBy;
     }
 
-    public Object getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Object updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 

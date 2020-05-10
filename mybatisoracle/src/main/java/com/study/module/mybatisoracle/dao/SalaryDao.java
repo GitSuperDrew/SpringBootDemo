@@ -9,7 +9,7 @@ import java.util.List;
  * 审批流程测试表(Salary)表数据库访问层
  *
  * @author makejava
- * @since 2020-05-09 23:22:38
+ * @since 2020-05-10 10:12:22
  */
 @Mapper
 public interface SalaryDao {
