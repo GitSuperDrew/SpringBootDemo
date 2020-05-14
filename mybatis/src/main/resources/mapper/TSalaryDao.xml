@@ -16,7 +16,7 @@
     <select id="queryById" resultMap="TSalaryMap">
         select
         ID, name, position, office, age, start_date, salary
-        from zero.t_salary
+        from t_salary
         where ID = #{id}
     </select>
 
@@ -24,7 +24,7 @@
     <select id="queryAllByLimit" resultMap="TSalaryMap">
         select
         ID, name, position, office, age, start_date, salary
-        from zero.t_salary
+        from t_salary
         limit #{offset}, #{limit}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAll" resultMap="TSalaryMap">
         select
         ID, name, position, office, age, start_date, salary
-        from zero.t_salary
+        from t_salary
         <where>
             <if test="id != null">
                 and ID = #{id}
@@ -60,13 +60,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into zero.t_salary(name, position, office, age, start_date, salary)
+        insert into t_salary(name, position, office, age, start_date, salary)
         values (#{name}, #{position}, #{office}, #{age}, #{startDate}, #{salary})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update zero.t_salary
+        update t_salary
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -92,7 +92,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from zero.t_salary where ID = #{id}
+        delete from t_salary where ID = #{id}
     </delete>
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.study.module.mybatis.service;
 
+import com.github.pagehelper.Page;
 import com.study.module.mybatis.entity.TSalary;
 
 import java.util.List;
@@ -53,4 +54,20 @@ public interface TSalaryService {
      */
     boolean deleteById(Integer id);
 
+
+    // ======================== 分页插件 pageHelper 的使用：
+
+    /**
+     * 分页查询薪资信息
+     *
+     * @return 分页后的薪资信息
+     */
+    Page<TSalary> tSalaryPage();
+
+    /**
+     * 查询所有的薪资信息
+     *
+     * @return 所有薪资信息
+     */
+    List<TSalary> queryAll();
 }

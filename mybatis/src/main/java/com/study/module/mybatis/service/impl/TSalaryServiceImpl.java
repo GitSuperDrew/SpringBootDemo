@@ -1,5 +1,6 @@
 package com.study.module.mybatis.service.impl;
 
+import com.github.pagehelper.Page;
 import com.study.module.mybatis.entity.TSalary;
 import com.study.module.mybatis.dao.TSalaryDao;
 import com.study.module.mybatis.service.TSalaryService;
@@ -76,4 +77,21 @@ public class TSalaryServiceImpl implements TSalaryService {
     public boolean deleteById(Integer id) {
         return this.tSalaryDao.deleteById(id) > 0;
     }
+
+
+    @Override
+    public Page<TSalary> tSalaryPage() {
+        return (Page<TSalary>) this.tSalaryDao.queryAll(null);
+    }
+
+    /**
+     * 查询所有的薪资信息
+     *
+     * @return 所有薪资信息
+     */
+    @Override
+    public List<TSalary> queryAll() {
+        return this.tSalaryDao.queryAll(null);
+    }
+
 }
