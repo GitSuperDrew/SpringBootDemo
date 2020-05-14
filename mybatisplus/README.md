@@ -10,6 +10,8 @@
 4. 模板引擎：[`Velocity`](http://velocity.apache.org/)
 5. 安全框架：[`Security`](https://spring.io/projects/spring-security)
 6. 其他工具：[`Lombok`](https://projectlombok.org/)，`SpringBoot热部署`
+7. 分页插件：[sqlhelper](https://fangjinuo.gitee.io/docs/sqlhelper-pagination.html#sqlhelper_mybatisplus_springboot
+) （支持多种数据库，并且可以从PageHelper迁移到sqlhelper）,此处使用 mybatisplus-springboot作为示例。
 
 ## 🦁 详细说明
 1. 新建 `config/CodeGenerator.java` 自动代码生成工具：注意修改数据的相关连接信息
