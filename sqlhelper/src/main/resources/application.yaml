@@ -22,14 +22,19 @@ spring:
       initial-size: 5 # 初始化提供的连接数
       max-total: 5 # 最大的连接数
       max-wait-millis: 200 # 等待连接获取的最大超时时间
-sqlhelper:
-  mybatis:
-    mapper-locations: classpath:/mapper/*Dao.xml
-    count: true
-    countSuffix: _COUNT
-    defaultPageSize: 10
-    instrumentor:
-      cacheInstrumentedSql: true
-      dialect: mysql
-      subqueryPagingEndFlag: '[PAGING_END]'
-      subqueryPagingStartFlag: '[PAGING_START]'
+#sqlhelper:
+#  mybatis:
+#    mapper-locations: classpath:/mapper/*Dao.xml
+#    count: true
+#    countSuffix: _COUNT
+#    defaultPageSize: 10
+#    instrumentor:
+#      cacheInstrumentedSql: true
+#      dialect: mysql
+#      subqueryPagingEndFlag: '[PAGING_END]'
+#      subqueryPagingStartFlag: '[PAGING_START]'
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.example.demo.dao
+  mapper-locations:  classpath:/mapper/*Dao.xml
