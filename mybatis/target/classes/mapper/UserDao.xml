@@ -11,24 +11,24 @@
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select
-          id, name, password
-        from zero.user
+        id, name, password
+        from user
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select
-          id, name, password
-        from zero.user
+        id, name, password
+        from user
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select
-          id, name, password
-        from zero.user
+        id, name, password
+        from user
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -44,13 +44,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into zero.user(name, password)
+        insert into user(name, password)
         values (#{name}, #{password})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update zero.user
+        update user
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -64,7 +64,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from zero.user where id = #{id}
+        delete from user where id = #{id}
     </delete>
 
 </mapper>

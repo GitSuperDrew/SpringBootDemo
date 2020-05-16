@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../DataTablesNoVersionSimpleDemo/css/dataTableIndex.css">
     <style>
         td.highlight {
-            background-color: wheat !important;/* whitesmoke */
+            background-color: wheat !important; /* whitesmoke */
         }
     </style>
 </head>
@@ -64,8 +64,8 @@
             // "scrollY": "400px", // 固定表格的大小
             "paging": true, // 默认有分页效果
             searching: false, // 搜索失效
-            ordering:  true, // false 不排序
-            "order": [[ 1, 'desc' ]],
+            ordering: true, // false 不排序
+            "order": [[1, 'desc']],
             "ajax": "${springMacroRequestContext.contextPath}/freemarkerForSalary/allSalary",
             language: {
                 url: '../DataTablesNoVersionSimpleDemo/locales/Chinese-simple.json'  // 中国简体字（默认为 英文）
