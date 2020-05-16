@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.User;
+
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public interface UserService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<User> queryAllByLimit(int offset, int limit);
@@ -51,5 +52,13 @@ public interface UserService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    /**
+     * 查询全部的用户
+     *
+     * @param user
+     * @return
+     */
+    List<User> selectAll(User user);
 
 }

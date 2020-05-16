@@ -76,4 +76,9 @@ public class UserServiceImpl implements UserService {
     public boolean deleteById(Long id) {
         return this.userDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<User> selectAll(User user) {
+        return userDao.queryAll(user);
+    }
 }
