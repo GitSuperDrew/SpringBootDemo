@@ -146,6 +146,49 @@ management:
 4. 结果展示：`{"status":"UP","components":{"db":{"status":"UP","details":{"database":"MySQL","result":1,"validationQuery":"/* ping */ SELECT 1"}},"diskSpace":{"status":"UP","details":{"total":53696524288,"free":33000722432,"threshold":10485760}},"ping":{"status":"UP"}}}`
 5. **拓展**：还有许多和`Actuator`相关的端口：例如 /autoconfig 是获取一份自动配置报告，记录那些自动配置条件通过了，哪些没有通过。
 
-
+## 整合 Swagger2 文档
+1. 引入依赖
+```xml
+<!--swagger2-->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.9.2</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.9.2</version>
+</dependency>
+```
+2. 编写配置类：`Swagger2Config.java`
+```java
+@Configuration
+@EnableSwagger2
+public class Swagger2Config {
+    @Bean
+    public Docket createRestApi(){
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+    private ApiInfo apiInfo(){
+        return new ApiInfoBuilder()
+                .title("Spring Boot 利用 Swagger 构建 api 文档")
+                .description("简单优雅的 RESTful 风格")
+                .termsOfServiceUrl("http://www.baidu.com")
+                .version("1.0")
+                .build();
+    }
+}
+```
+3. 为 controller 目录下的controller添加swagger注解
+4. 测试：浏览器访问 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+5. 注意：在配置 swagger 的时候，`@RequestMapping(value="/getOne")` 如果没有指定请求的方式，则在 swagger 中自动会生成所有类型请求方式的这个接口。
+所以，最好写成:`@RequestMapping(value="/getOne", method = RequestMethod.GET)`；当然，如果是 GET 请求，我们可以简化些：
+` @GetMapping("getOne")`
 
 
