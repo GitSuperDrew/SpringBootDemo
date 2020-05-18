@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/demo")
 public class DemoController {
 
+    /**
+     * URL: http://localhost:8080/demo/index
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("name","Drew");
