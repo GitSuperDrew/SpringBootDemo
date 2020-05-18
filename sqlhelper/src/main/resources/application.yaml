@@ -1,3 +1,17 @@
+# ======= Spring Boot Actuator 监控的端口是需要根据server.port的端口进行访问的 ===================
+# === 例如：现在使用的是 application-test.yaml 文件，则访问的URL为： http://localhost:8080/actuator/health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    shutdown:
+      enabled: true
+# ========= end =============
+
 spring:
   profiles:
     active: test
@@ -9,3 +23,4 @@ spring:
     servlet:
       content-type: text/html
     suffix: .html
+
