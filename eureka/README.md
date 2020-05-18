@@ -63,3 +63,6 @@
     * 第三步：浏览器访问 [http://localhost:8761/](http://localhost:8761/)
     * 第四步：验证是否在 栏目：`Instances currently registered with Eureka` 下存在 `eureka-client` 名称的服务。如果存在，即注册成功；否则，失败。
     * 第五步：在 `eureka-client` 模块中新建一个controller类 `HiController.java` ,测试。
+
+5. 提高：
+    * 构建高可用的 `Eureka Server` 集群，**该如何实现?**
