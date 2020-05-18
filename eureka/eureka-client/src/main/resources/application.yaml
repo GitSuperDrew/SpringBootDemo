@@ -1,0 +1,9 @@
+server:
+  port: 8762  # eureka-client 客户端内容
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # 将eureka的客户端服务提交到服务中心注册
+spring:
+  application:
+    name: eureka-client # 给服务注册中心提交自己服务的名字

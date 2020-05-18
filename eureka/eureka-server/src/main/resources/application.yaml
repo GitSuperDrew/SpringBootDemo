@@ -1,12 +1,12 @@
 server:
-  port: 8761
+  port: 8761 # 配置 eureka server 的端口为 8761
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: true # 提交IP信息
     hostname: localhost
   client:
     registerWithEureka: false
-    fetchRegistry: false
+    fetchRegistry: false  # 防止自己注册自己
     serverUrl:
       defaultZone:
         http:/${eureka.instance.hostname}:${server.port}/eureka/
