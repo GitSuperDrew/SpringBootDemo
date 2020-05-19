@@ -163,3 +163,35 @@
         2. 关闭 `eureka-client` 服务，即此时 `eureka-feign-client` 无法调用 `eureka-client` 的 “/hi/hi” 接口，
         此时，浏览器上访问 [`http://localhost:8765/feign/hi`](http://localhost:8765/feign/hi) ,会被熔断器接收响应，
         浏览器返回：`hi, " + name + ", sorry, error! =====> eureka-feign-client > Hystrix。` 。
+        
+
+## 使用 Hystrix Dashboardd 监控熔断器的状态
+> 熔断器的状况反映了一个程序的可用性和健壮性，是一个重要的指标。
+> Hystrix Dashboard 是监控 Hystrix 的熔断器状况的一个组件，提供了数据监控和友好的图形化展示界面。
+1. 在 Feign 中使用 Hystrix Dashboard
+2. 引入依赖文件：
+    ```xml
+    <!--Hystrix Dashboard 依赖-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+    </dependency>
+    ```
+3. 在启动类 `EurekaFeignClientApplication.java` 上添加注解 `@EnableHystrixDashboard` 开启 `HystrixDashboard` 功能。
+4. 浏览器访问：
+    * 先访问：[http://localhost:8765/feign/hi](http://localhost:8765/feign/hi)
+    * 再访问：[http://localhost:8765/hystrix](http://localhost:8765/hystrix
+    * 得到一个页面后，有三个输入框：以此自上从下输入：
+        ① http://localhost:8765/hystrix.stream
+        ② 【Delay】2000
+        ③ 【Title】 任意内容
+
+
