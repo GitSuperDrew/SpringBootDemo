@@ -2,8 +2,14 @@ spring:
   application:
     name: eureka-ribbon-client
 server:
-  port: 8764
+  port: 8769
 eureka:
   client:
     service-url:
       defualtZone: http://localhost:8761/eureka/
+stores:
+  ribbon:
+      listOfServers: example.com,google.com
+ribbon:
+  eureka:
+    enabled: false
