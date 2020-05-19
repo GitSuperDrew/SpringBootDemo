@@ -194,4 +194,116 @@
         ② 【Delay】2000
         ③ 【Title】 任意内容
 
+## 路由网关 Spring Cloud Zuul
+1. 为什么需要Zuul？
+    1. Zuul 、Ribbon 和 Eureka 相结合，可以实现智能路由和负载均衡的功能，Zuul能够将请求榴莲干某种策略分发到集群状态的多个服务。
+    2. 网关将所有服务的API接口统一聚合，并统一对外暴露。
+    3. 网关服务可以做用户身份认证和权限认证。
+    4. 网关可以实现监控功能，实时日志输出，对请求进行记录。
+    5. 网关可以用来实现流量监控，在高流量的情况下，对服务进行降级。
+    6. API 接口从内部服务分离出来，方便做测试。
 
+2. Zuul 的工作原理？
+    1. Zuul 是通过 Servlet 来实现的，Zuul 通过自定义的 ZuulServlet （类似于 Spring MVC 的DispathServlet）来对请求进行控制。
+    2. Zuul 的核心是一系列过滤器，可以再 Http 请求的发起和响应返回期间执行一系列的过滤器。
+    3. Zuul 的四种过滤器：
+        * PRE 过滤器： 它是在请求路由到具体的服务之前执行的，这种类型的过滤器可以做安全验证，例如身份验证、参数验证等。
+        * ROUTING 过滤器：它用于将请求路由到具体的微服务实例。在默认情况下，它使用 Http Client 进行网络请求。
+        * POST 过滤器：它是在请求以被路由到微服务后执行的。一般情况下，用作收集统计信息、指标，以及将响应传输到客户端。
+        * ERROR 过滤器：它是在其他过滤器发生错误时执行的。
+    4. Zuul 采取了动态读取、编译和运行这些过滤器。过滤器之间不能直接相互通信，而是通过 RequestContext 对象来共享数据，每个请求都会创建一个 RequestContext 对象。Zuul过滤器具有以下几个关键特性：
+        * Type（类型）：Zuul过滤器的类型，这个类型决定了过滤器在请求的那个阶段起作用，例如  Pre\Post阶段等。
+        * Execution Order(执行顺序)：规定了过滤器的执行顺序，Order 的值越小，越先执行。
+        * Criteria(标准)：过滤器执行所需的条件。
+        * Action（行动）：如果如何执行条件，则执行Action （即逻辑代码）。
+3. 实践：
+    * 新建一个 spring boot 工程的子工程 `eureka-zuul-client`;
+    * 引入依赖：
+    ```xml
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+            </dependency>
+    ```
+    * 启动类 `EurekaZuulClientApplication.java` 添加注解 `@EnableEurekaClient` 注解，开启 `EurekaClient`的功能；
+    * 启动类 ~ 添加 zuul 注解 `@EnableZuulProxy` ； 
+    * 编写配置文件：`application.yaml`
+        ```yaml
+        server:
+          port: 5000
+        spring:
+          application:
+            name: service-zuul
+        eureka:
+          client:
+            service-url: 
+              defaultZone: http://localhost:8761/eureka/  # 像服务注册中心注册服务
+        zuul:
+          routes: 
+            hiapi:
+              path: /hiapi/**
+              serviceId: eureka-client
+            ribbonapi:
+              path: /ribbonapi/**
+              serviceId: eureka-ribbon-client
+            feignapi:
+              path: /feignapi/**
+              serviceId: eureka-feign-client
+        ```
+    * 以此开启相关服务： eureka-server, eureka-client, eureka-ribbon-client, eureka-feign-client, eureka-zuul-client.
+    * 测试：
+        + 浏览器访问：[http://localhost:5000/hiapi/hi/hi?name=zuul-drew](http://localhost:5000/hiapi/hi/hi?name=zuul-drew)
+        + 浏览器访问：[http://localhost:5000/feignapi/feign/hi?name=zuul-drew-feign](http://localhost:5000/feignapi/feign/hi?name=zuul-drew-feign)
+        + 浏览器访问：[http://localhost:5000/ribbonapi/ribbon2/testRibbon?name=zuul-drew-feign](http://localhost:5000/ribbonapi/ribbon2/testRibbon?name=zuul-drew-feign)
+4. Zuul 默认情况下在路由转发时做了负载均衡。
+    1. 如果不需要用 Ribbon 做负载均衡，可以指定服务的实例的URL：
+        * 可以修改配置如下：
+        ```yaml
+        zuul:
+          routes:
+            hiapi:
+              path: /hiapi/**
+              url: http://localhost:8762
+        ```
+       * 重启服务 `eureka-zuul-client` 服务，此时请求 [http://localhost:5000/hiapi/hi/hi?name=zuul-drew](http://localhost:5000/hiapi/hi/hi?name=zuul-drew)
+       , 浏览器只会显示指定URL的响应内容。
+    2. 如果你既想指定 URL， 并且想做负载均衡：
+       * 修改配置文件：
+       ```yaml
+       zuul:
+         routes:
+           hiapi:
+             path: /hiapi/**
+             serviceId: hiapi-v1
+       ribbon:
+         eureka:
+           enabled: flase
+       hiapi-v1:
+         ribbon:
+           listOfServers: http://localhost:8762, http://localhost:8763 
+       ```
+       * 重启服务 `eureka-zuul-client`，浏览器访问：[http://localhost:5000/hiapi/hi/hi?name=zuul-drew](http://localhost:5000/hiapi/hi/hi?name=zuul-drew)
+       * 结果：此时的浏览器会显示给定URL服务返回来的信息。
+5. 在 Zuul 上配置 API 接口的版本号
+> 原来的访问：[http://localhost:5000/hiapi/hi/hi?name=zuul-drew](http://localhost:5000/hiapi/hi/hi?name=zuul-drew) <br/>
+> 最终的访问：[http://localhost:5000/v1/hiapi/hi/hi?name=zuul-drew](http://localhost:5000/v1/hiapi/hi/hi?name=zuul-drew)<br/>
+
+    1. 很简单：需要用到 zuul.prefix 这个配置
+    2. 修改 application.yaml 配置文件，成为：
+    zuul:
+      routes:
+        hiapi:
+          path: /hiapi/**
+          serviceId: eureka-client
+        ribbonapi:
+          path: /ribbonapi/**
+          serviceId: eureka-ribbon-client
+        feignapi:
+          path: /feignapi/**
+          serviceId: eureka-feign-client
+      prefix: /v1   # 👉👉👉添加此配置信息
+    3. 浏览器访问【最终的访问↑】 http://localhost:5000/v1/ribbonapi/ribbon2/testRibbon?name=zuul-drew-feign  ；>>> 得到成功响应。
