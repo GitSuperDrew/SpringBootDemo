@@ -66,3 +66,16 @@
 
 5. 提高：
     * 构建高可用的 `Eureka Server` 集群，**该如何实现?**
+    
+## 负载均衡 Ribbon
+1. RestTemplate 使用来REST服务的，所以 RestTemplate 的主要方法都与REST的 HTTP协议的一些方法紧密相连，例如 HEAD、GET、POST、PUT、DELETE和OPTIONS等方法，
+其对应的方法为：headForHeaders()、getForObject()、postForObject()、put() 和 delete() 等。
+
+2. Ribbon介绍
+    * Ribbon 由很多子模块，但很多模块没有用于生产环境，目前 Netflix 公司用于生产环境的 Ribbon 子模块如下：
+        * ribbon-loadbalancer：可以独立使用或与其他模块一起使用的负载均衡器 API。
+        * ribbon-eureka: Ribbon 结合 Eureka 客户端的 API，为负载均衡器提供动态服务注册列表信息。
+        * ribbon-core：Ribbon 的核心 API。
+3. 使用 RestTemplate 和 Ribbon 来消费服务
+    * 创建一个子工程`eureka-ribbon-client`服务
+    * 引入依赖：
