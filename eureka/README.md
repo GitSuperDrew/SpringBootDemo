@@ -67,6 +67,8 @@
 5. 提高：
     * 构建高可用的 `Eureka Server` 集群，**该如何实现?**
     
+
+
 ## 负载均衡 Ribbon
 1. RestTemplate 使用来REST服务的，所以 RestTemplate 的主要方法都与REST的 HTTP协议的一些方法紧密相连，例如 HEAD、GET、POST、PUT、DELETE和OPTIONS等方法，
 其对应的方法为：headForHeaders()、getForObject()、postForObject()、put() 和 delete() 等。
@@ -78,4 +80,86 @@
         * ribbon-core：Ribbon 的核心 API。
 3. 使用 RestTemplate 和 Ribbon 来消费服务
     * 创建一个子工程`eureka-ribbon-client`服务
-    * 引入依赖：
+
+
+## 声明式调用 Feign
+1. 作用： 远程调用其他的服务
+2. 模块：FeignClient的各项详细配置信息
+    Feign 受到 Retrofit、JAXRS-2.0 和 websocket的影响，采用了声明式 API 接口的风格，将 Java Http 客户端绑定到它的内部。
+3. [Feign](https://github.com/OpenFeign/feign) 的目标：
+    将 Java Http 客户端的书写过程变得简单。
+4. 编写一个 Feign 客户端：
+    * 新建一个工程 `eureka-feign-client` 子工程；
+    * 引入相关的依赖包；
+    * 书写 `FeignConfig.java` 和 `HiService.java` 以及 `HiController.java` 类
+5. 总结：
+    * Feign 源码实现过程：
+        1. 首先通过 @EnableFeignClients 注解开启 FeignClient 的功能。只有这个注解存在会在程序启动对 @FeignClient 注解的包扫描。
+        2. 根据 Feign 的规则实现接口，并在接口上面加上 @FeignClient 的注解。
+        3. 程序启动后，会进行包扫描，扫描所有的 @FeignClient 的注解的类，并将这些信息注入 IoC 容器中。
+        4. 当接口的方法被调用时，通过 JDK 的代理来生成具体的 RequestTemplate 模板对象。
+        5. 根据 RestTemplate 在生成 Http 请求的 Request 对象。
+        6. Request 对象交给 Client 去处理，其中 Client 的网络请求框架可以是 HttpURLConnection、HttpClient 和 OkHttp。
+        7. 最后， Client 被封装到 LoadBalanceClient 类，这个类结合类 Ribbon 做到了负载均衡。
+        
+
+## 熔断器 Hystrix
+1. 什么是 Hystrix？
+    * 避免服务和服务之间出现远程调度时的线程阻塞。阻止分布式系统中出现联动故障。
+    * Hystrix 通过隔离服务服务的访问点阻止联动故障的，并提供了故障的解决方案，从而提高整个分布式系统的弹性。
+2. Hystrix 的涉及原则？
+    * 防止单个服务的故障耗尽整个服务的 Servlet 容器（例如 Tomcat）的线程资源。
+    * 快速失败机制，如果某个服务出现了故障，则调用该服务的请求快速失败，而不是线程等待。
+    * 提供回退（fallback）方案，在请求发生故障时，提供设定好的回退方案。
+    * 使用熔断机制，防止故障扩散到其他服务。
+    * 提供熔断器的监控组件 Hystrix Dashboard， 可以实时监控熔断器的状态。
+3. 在 RestTemplate 和 Ribbon 上使用熔断器
+    * 在 `eureka-ribbon-client` 工程中，引入相关依赖：
+    ```xml
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+    </dependency>
+    ```
+   * 在启动类 `EurekaRibbonClientApplication.java` 上 添加 `@EnableHystrix` 注解开启熔断器功能。
+   * 修改 RibbonService 的代码：
+   ```java
+    @HystrixCommand(fallbackMethod = "hiError")
+    public String hi(String name) {
+        return restTemplate.getForObject("http://eureka-client/hi/hi?name=" + name, String.class);
+    }
+    public String hiError(String name) {
+        return "hi, " + name + ", sorry,error!";
+    }
+   ```
+   * 测试:
+        * 关闭：`eureka-client` 服务；
+        * 浏览器访问：[http://localhost:8764/ribbon/hi?name=drew](http://localhost:8764/ribbon/hi?name=drew)
+
+4. 在 Feign 上使用熔断器
+    * 在 `eureka-feign-client` 的 `application.yaml` 添加：
+    ```yaml
+    feign:
+      hystrix:
+        enabled: true
+    ```
+   * 修改 `eureka-feign-client` 工程中的 `EurekaClientFeign` 代码：
+   ```java
+    @FeignClient(value = "eureka-client", configuration = FeignConfig.class, fallback = HiHystrix.class)
+    ```
+   * 新建一个类：`HiHystrix.java`
+   ```java
+    @Component
+    public class HiHystrix implements EurekaClientFeign{
+    
+        @Override
+        public String sayHiFormClientEureka(String name) {
+            return "hi, " + name + ", sorry, error! =====> eureka-feign-client > Hystrix。";
+        }
+    }
+    ```
+   * 测试：
+        1. 浏览器访问：[http://localhost:8765/feign/hi](http://localhost:8765/feign/hi) 是正常的。
+        2. 关闭 `eureka-client` 服务，即此时 `eureka-feign-client` 无法调用 `eureka-client` 的 “/hi/hi” 接口，
+        此时，浏览器上访问 [`http://localhost:8765/feign/hi`](http://localhost:8765/feign/hi) ,会被熔断器接收响应，
+        浏览器返回：`hi, " + name + ", sorry, error! =====> eureka-feign-client > Hystrix。` 。
