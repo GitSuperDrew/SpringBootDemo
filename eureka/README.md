@@ -335,13 +335,27 @@
 > 扩展：
 >   1. 如果需要所有的路由服务都加**熔断功能**，只需要修改 `getRoute()` 为如下所示即可：
    ```java
-    
+    @Override
+    public String getRoute() {
+        // 如果需要将所有的路由服务都加 熔断功能，只需要 写成 `return  "*";` 即可。
+        return "eureka-client";
+    }
    ```
 
 2. 在 Zuul 中使用过滤器
+    1. 编写过滤器 `MyFilter.java` ；
+    2. 重新服务 `eureka-zuul-client` ，打开浏览器访问：[http://localhost:5000/hiapi/hi/hi?name=Zuul-MyFilter](http://localhost:5000/hiapi/hi/hi?name=Zuul-MyFilter)
+    3. 返回的结果为：`token is empty`;
+    4. 修改URL，令 URL携带token参数，浏览器访问URL: [http://localhost:5000/hiapi/hi/hi?name=Zuul-MyFilter&token=1122122](http://localhost:5000/hiapi/hi/hi?name=Zuul-MyFilter&token=1122122)
+    5. 启示：可以用来做安全验证，参数检验等。
 
 3. Zuul的常用使用方式
     * 对不同的渠道使用不同的 Zuul 来进行路由；
     > 例如，移动端共用一个 Zuul 网关实例，Web 端用另外一个 Zuul 网关实例，其他的客户端用另一个 Zuul 实例进行路由。
     * （集群）通过 Nginx 和 Zuul 相互结合来做负载均衡。
     > 暴露在最外面的时 Nginx 主从双热备进行 Keepalive，Nginx 经过某种路由策略，将请求路由转发到 Zuul 集群上，Zuul最终将请求分发到具体服务上。
+                                                                                                                                                              >
+  
+<hr/>                                                                                                                                    >
+
+## 服务网关：新一代网关 `Gateway`
