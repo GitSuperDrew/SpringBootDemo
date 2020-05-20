@@ -379,4 +379,33 @@
 5. 浏览器访问：[http://localhost:8762/foo](http://localhost:8762/foo)
 6. 结果展示：`foo version 1`
 
+### Config Server 从远程 Git 仓库读取配置文件
+> Spring Cloud Config 支持从远程 Git 仓库读取配置文件，即 Config Server 可以不从本地的仓库读取，而是从远程的Git仓库读取。
+> 这样做的好处就是 将配置统一管理，并且可以通过 Spring Cloud Bus 在不人工启动程序的情况下对 Config Client 的配置进行刷新。
+>
+示例： 使用 GitHub 作为远程 Git 仓库
+1. 修改 Config Server 的配置文件 `application.yaml`：
+```yaml
+server:
+  port: 8769
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/GitSuperDrew/SpringBootDemo  # 远程的clone的地址
+          search-paths: tree/master/eureka/config-server
+          username: GitSuperDrew  # Git 仓库的登录用户名
+          password:   # Git 仓库的登录密码（公开的仓库，所以无需要密码）
+        native:
+          search-locations: classpath:/shared
+      label: master # label为git仓库的分支名，此处从主干分支
+  profiles:
+    active: native
+  application:
+    name: config-server
+```
+2. 以此启动服务 `eureka-server`,`config-server`,`config-client` 三个服务；
+3. 浏览器访问：[http://localhost:8762/foo](http://localhost:8762/foo)
+4. 结果显示：`foo version 1`, 可见`config-server`从远程仓库 Git 仓库读取了配置文件，`config-client` 从 `config-server` 中读取了配置文件。
 
