@@ -138,3 +138,26 @@
     ```
    * 重启服务，curl 命令访问 `curl http://www.spring4all.com/article/320` ;
    * 结果：如果成功，将返回网页的页面信息；否则返回 `404` 页面找不到的信息。
+
+7. Query 路由断言工厂
+   * Query路由断言工厂，即请求参数断言工厂，当请求携带的参数和配置的参数匹配时，路由被正确转发；否则，报 `404` 错误。该路由断言工厂需要配置2个参数，分别是参数名和参数值。
+   * 配置文件`application.yaml` 信息修改为：
+   ```yaml
+     server:
+       port: 8081
+     spring:
+       profiles:
+         active: query_route
+     ---  # 表示在application.yaml文件中再建一个配置文件，语法是 3个横线
+     spring:
+       cloud:
+         gateway:
+           routes:
+           - id: query_route
+             uri: http://httpbin.org:80
+             predicates:
+             - Query=foo, ba.
+       profiles: query_route
+   ```
+   * 重启服务，Windows安装并配置好curl的Path变量，打开CMD窗口，访问：**`curl localhost:8081/get?foo=ba.`**
+   * 结果：如果成功，则返回一串请求JSON的信息；否则返回404错误信息。
