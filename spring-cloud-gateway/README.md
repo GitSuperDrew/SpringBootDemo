@@ -92,3 +92,27 @@
         ```
       * 重启服务，使用curl命令：`curl -H Host:www.example.com localhost:8081/get` 进行CMD命令行访问。
       * 结果：请求中含有 Host 后缀为 example.com 的请求都会被路由转发到配置的Url。如果成功返回请求的JSON数据信息，否则返回 `404` 错误信息。
+
+5. Method 路由断言工厂
+    * Method 指的是请求的类型（使用 curl localhost:8081/get ,默认请求类型被视为 GET类型的请求）
+    * 请求类型：GET/POST/PUT/DELETE等
+    * 修改 `application.yaml` 配置文件，得到如下配置信息：
+    ```yaml
+         server:
+           port: 8081
+         spring:
+           profiles:
+             active: method_route
+         ---  # 表示在application.yaml文件中再建一个配置文件，语法是 3个横线
+         spring:
+           cloud:
+             gateway:
+               routes:
+               - id: method_route
+                 uri: http://httpbin.org:80
+                 predicates:
+                 - Method=GET
+           profiles: method_route
+    ```
+   * 重启服务，使用 curl 命令 `curl localhost:8081/get` 或 `curl -XGET localhost:8081/get` 发送请求；
+   * 结果：请求失败会出现 `404` 错误，成功则得到一串JSON格式的请求信息。如果使用 `curl -XPOST localhost:8081/get`, 将会得到错误信息。
