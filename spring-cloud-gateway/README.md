@@ -116,3 +116,25 @@
     ```
    * 重启服务，使用 curl 命令 `curl localhost:8081/get` 或 `curl -XGET localhost:8081/get` 发送请求；
    * 结果：请求失败会出现 `404` 错误，成功则得到一串JSON格式的请求信息。如果使用 `curl -XPOST localhost:8081/get`, 将会得到错误信息。
+   
+6. Path 路由断言工厂
+   * 修改配置文件为：
+   ```yaml
+        server:
+          port: 8081
+        spring:
+          profiles:
+            active: path_route
+        ---  # 表示在application.yaml文件中再建一个配置文件，语法是 3个横线
+        spring:
+          cloud:
+            gateway:
+              routes:
+              - id: path_route
+                uri: http://www.spring4all.com
+                predicates:
+                - Path=/article/{segment}   # 320
+          profiles: path_route
+    ```
+   * 重启服务，curl 命令访问 `curl http://www.spring4all.com/article/320` ;
+   * 结果：如果成功，将返回网页的页面信息；否则返回 `404` 页面找不到的信息。

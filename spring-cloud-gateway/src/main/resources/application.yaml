@@ -2,7 +2,8 @@ server:
   port: 8081
 spring:
   profiles:
-    active: method_route
+    active: path_route
+#    active: method_route
 #    active: host_route
 #    active: cookie_route
 #    active: header_route
@@ -12,19 +13,23 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: method_route
+      - id: path_route
+#      - id: method_route
 #      - id: host_route
 #      - id: cookie_route
 #      - id: header_route
 #      - id: after_route
-        uri: http://httpbin.org:80
+#        uri: http://httpbin.org:80
+        uri: http://www.spring4all.com
         predicates:
-        - Method=GET
+        - Path=/article/{segment}   # 320
+#        - Method=GET
 #        - Host=**.example.com
 #        - Cookie=name,Drew-Cookie-Route
 #        - Header=id,\d+
 #        - After=2017-01-20T17:42:47.789-07:00[America/Denver]
-  profiles: method_route
+  profiles: path_route
+#  profiles: method_route
 #  profiles: host_route
 #  profiles: cookie_route
 #  profiles: after_route
