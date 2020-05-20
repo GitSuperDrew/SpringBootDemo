@@ -81,6 +81,7 @@
 3. 使用 RestTemplate 和 Ribbon 来消费服务
     * 创建一个子工程`eureka-ribbon-client`服务
 
+<hr/>
 
 ## 声明式调用 Feign
 1. 作用： 远程调用其他的服务
@@ -102,6 +103,8 @@
         6. Request 对象交给 Client 去处理，其中 Client 的网络请求框架可以是 HttpURLConnection、HttpClient 和 OkHttp。
         7. 最后， Client 被封装到 LoadBalanceClient 类，这个类结合类 Ribbon 做到了负载均衡。
         
+
+<hr/>
 
 ## 熔断器 Hystrix
 1. 什么是 Hystrix？
@@ -165,6 +168,8 @@
         浏览器返回：`hi, " + name + ", sorry, error! =====> eureka-feign-client > Hystrix。` 。
         
 
+<hr/>
+
 ## 使用 Hystrix Dashboardd 监控熔断器的状态
 > 熔断器的状况反映了一个程序的可用性和健壮性，是一个重要的指标。
 > Hystrix Dashboard 是监控 Hystrix 的熔断器状况的一个组件，提供了数据监控和友好的图形化展示界面。
@@ -193,6 +198,8 @@
         ① http://localhost:8765/hystrix.stream
         ② 【Delay】2000
         ③ 【Title】 任意内容
+
+<hr/>
 
 ## 路由网关 Spring Cloud Zuul
 1. 为什么需要Zuul？
@@ -307,3 +314,34 @@
           serviceId: eureka-feign-client
       prefix: /v1   # 👉👉👉添加此配置信息
     3. 浏览器访问【最终的访问↑】 http://localhost:5000/v1/ribbonapi/ribbon2/testRibbon?name=zuul-drew-feign  ；>>> 得到成功响应。
+    
+    
+    
+    
+<hr/>
+
+## Zuul 再实践再深入
+1. 在 Zuul 上配置熔断器
+> Zuul 作为 Netflix 组件，可以于 Ribbon、Eureka 和 Hystrix 等组件相结合，实现负载平衡、熔断器功能。<br/>
+> 默认情况下，Zuul和Ribbon相结合，实现了负载均衡的功能。
+> 实现步骤如下：
+>   1. 实现 `ZuulFallbackProvider.java` 的接口。（实现两个方法：① getRoute()：用于指定熔断功能应用于哪些路由的服务；② fallbackResponse() 为进入熔断功能时执行的逻辑。）
+>   操作: ① 新建一个接口：`ZuulFallbackProvider.java`；② 在项目 `eureka-zuul-client` 服务中添加类`MyFallbackProvider.java`实现 ZuulFallbackProvider 的接口。
+>   2. 以此开启相关服务： eureka-server, eureka-client, eureka-ribbon-client, eureka-feign-client, eureka-zuul-client.
+>   3. 重启`eureka-zuul-client` 服务，并且关闭 `eureka-client` 所有实例；
+>   4. 注意检查，是否在服务 `eureka-zuul-client` 的配置文件中加入版本控制，导致 URL中需要在请求对应的接口时，需要添加 `/v1` 版本信息。
+>   5. 浏览器访问： [http://localhost:5000/hiapi/hi/hi?name=Drew-Zuul-Hystrix](http://localhost:5000/hiapi/hi/hi?name=Drew-Zuul-Hystrix)
+>   
+> 扩展：
+>   1. 如果需要所有的路由服务都加**熔断功能**，只需要修改 `getRoute()` 为如下所示即可：
+   ```java
+    
+   ```
+
+2. 在 Zuul 中使用过滤器
+
+3. Zuul的常用使用方式
+    * 对不同的渠道使用不同的 Zuul 来进行路由；
+    > 例如，移动端共用一个 Zuul 网关实例，Web 端用另外一个 Zuul 网关实例，其他的客户端用另一个 Zuul 实例进行路由。
+    * （集群）通过 Nginx 和 Zuul 相互结合来做负载均衡。
+    > 暴露在最外面的时 Nginx 主从双热备进行 Keepalive，Nginx 经过某种路由策略，将请求路由转发到 Zuul 集群上，Zuul最终将请求分发到具体服务上。

@@ -18,4 +18,4 @@ zuul:
     feignapi:
       path: /feignapi/**
       serviceId: eureka-feign-client
-  prefix: /v1
+  # prefix: /v1  # 取消注释之后，将需要在请求中加如 /v1。例如：http://localhost:8765/v1/hiapi/hi/hi?name=VERSION-DREW
