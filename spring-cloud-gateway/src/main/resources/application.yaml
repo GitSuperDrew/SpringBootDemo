@@ -2,14 +2,26 @@ server:
   port: 8081
 spring:
   profiles:
-    active: after_route
+    active: host_route
+#    active: cookie_route
+#    active: header_route
+#    active: after_route
 ---  # 表示在application.yaml文件中再建一个配置文件，语法是 3个横线
 spring:
   cloud:
     gateway:
       routes:
-      - id: after_route
+      - id: host_route
+#      - id: cookie_route
+#      - id: header_route
+#      - id: after_route
         uri: http://httpbin.org:80
         predicates:
-        - After=2017-01-20T17:42:47.789-07:00[America/Denver]
-  profiles: after_route
+        - Host=**.example.com
+#        - Cookie=name,Drew-Cookie-Route
+#        - Header=id,\d+
+#        - After=2017-01-20T17:42:47.789-07:00[America/Denver]
+  profiles: host_route
+#  profiles: cookie_route
+#  profiles: after_route
+#  profiles: header_route
