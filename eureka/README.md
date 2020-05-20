@@ -358,4 +358,25 @@
   
 <hr/>                                                                                                                                    >
 
+<hr/>
+
 ## 服务网关：新一代网关 `Gateway`，见下一个项目：`spring-cloud-gateway`
+
+<hr/>
+
+## 配置中心 Spring Cloud Config
+### 构建 config-server 工程
+1. 新建一个子工程：`config-server`；
+2. 引入依赖：`spring-cloud-config-server`
+3. 启动类添加注解：`@EnableConfigServer  // 开启 config server 地功能`
+4. 在 resource/shared 目录下添加文件 `config-client-dev.yml`
+
+### 构建 config-client 工程
+1. 新建一个子工程：`config-client`;
+2. 添加配置文件 `bootstrap.yml` 文件，写入配置信息；
+3. 在启动类 `ConfigClientApplication.java` 写入 注解 和 方法hi()；
+4. 启动 `eureka-server` 服务，启动 `config-server`服务，启动 `config-client` 服务；
+5. 浏览器访问：[http://localhost:8762/foo](http://localhost:8762/foo)
+6. 结果展示：`foo version 1`
+
+

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      uri: http://localhost:8769
+      fail-fast: true  # 如果没有读取成功 ，则执行快速失败，读取的是 dev 文件。
+  profiles:
+    active: dev
