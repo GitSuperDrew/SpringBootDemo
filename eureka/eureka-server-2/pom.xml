@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>config-server</artifactId>
+    <artifactId>eureka-server-2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>config-server</name>
+    <name>eureka-server-2</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,15 +19,10 @@
     </properties>
 
     <dependencies>
+        <!--eureka-server-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
-        </dependency>
-
-        <!--引入 eureka-client 依赖，开启 eureka client 的功能-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
         <dependency>

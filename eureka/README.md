@@ -409,3 +409,78 @@ spring:
 3. 浏览器访问：[http://localhost:8762/foo](http://localhost:8762/foo)
 4. 结果显示：`foo version 1`, 可见`config-server`从远程仓库 Git 仓库读取了配置文件，`config-client` 从 `config-server` 中读取了配置文件。
 
+### 构建高可用的 Config Server
+> 当服务实例很多时，所有的服务实例需要同时从配置中心 Config Server 读取配置文件，这时可以考虑将配置中心 Config Server 做成一个微服务，并且将其集群化，从而达到高可用。
+>
+1. 构建 `Eureka Server 2` 中心服务
+    * 新建一个 `eureka-server-2` 子工程；（Spring Boot 项目）
+    * 添加依赖：
+        ```xml
+        <!--eureka-server-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        ```
+   * 启动类添加注解 `@EnableEurekaServer` , 开启 Eureka Server 的功能。
+2. 改造 `Config Server` 服务  
+> Config Server 作为一个 Eureka Client ，需要在工程中的pom 文件中引入相关依赖
+   1. 引入依赖
+      ```xml
+        <!--引入 eureka-client 依赖，开启 eureka client 的功能-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+      ```
+   2. `config-server` 服务工程启动类，加入注解 `@EnableEurekaClient` , 开启 EurekaClient 的功能。
+   3. 在 `config-server` 服务的配置文件 `application.yaml` 中制定 服务注册的地址；
+      ```yaml
+      eureka:
+        client:
+          service-url: 
+            defaultZone: http://localhost:8761/eureka/
+     
+      ```
+3. 改造 `Config Client` 服务
+>  Config Server 一样作为 Eureka Client，在 pom 文件加上 Eureka Client 的依赖。
+   1. 添加依赖
+       ```xml
+        <!-- Eureka Client 依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+       ``` 
+   2. 启动类上添加注解`@EnableEurekaClient`，开启 Eureka Client 的功能;
+   3. 配置文件 `application.yaml` 中，添加相关配置:
+       ```yaml
+        spring:
+          application:
+            name: config-client
+          cloud:
+            config:
+              fail-fast: true
+              discovery:
+                enabled: true
+                service-id: config-client
+          profiles:
+            active: dev
+        server:
+          port: 8762
+        eureka:
+          client:
+            service-url: 
+              defautlZone: http://localhost:8761/eureka/
+      ```
+   4. 以此启动服务 `eureka-server-2`, `config-server`, `config-client` 工程，**注意这里需要`config-server`启动成功并且向`eureka-server-2`
+   注册完成后，才能启动`config-client`; 否则，`config-client` 找不到 `config-server`**;【可以访问：http://localhost:8761/ 来查看是否config
+   -server已经注册了】
+   5. 测试：浏览器访问 [http://localhost:8762/foo](http://localhost:8762/foo), 即可得到结果：`foo version 1`
+   6. **[那如何搭建高可用的 `Config Server` 呢？]()👉 只需要将 `Config Server` 多实例部署，用`IDEA`开启多个 `Config Sever` 实例，端口分别为 `8769` 和 `8768`
+   . 在浏览器上访问`Eureka Server`的主页：`http://localhost:8761/` ，多次启动`config-client`, 可以看到它从 `8769`和`8768`这两个端口切换读取 `Config Server`
+    的配置文件，并且做了负载均衡。**
