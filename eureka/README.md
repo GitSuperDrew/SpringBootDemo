@@ -539,3 +539,42 @@ spring:
 <hr/>
 
 ## 将配置存储在 MySQL 数据库中
+1. 在大多数情况下，我们将配置存储在 Git 仓库中，即可满足业务需求。Spring Cloud Config没有界面展示的功能，
+当我们需要二次开发对配置进行展示合作管控功能时，将配置存储在关系型数据库 MySQL 中可能会更便捷。
+2. 相关的服务：config-client , config-server, mysql, 
+> config-server 工程需要连接MySQL数据库，读取配置；<br/>
+> config-client 工程则是在启动时从 config-server工程读取。
+>
+3. 示例操作：
+    * 在 config-server 工程中引入 config-server的起步依赖，MySQL连接器，jdbc的起步依赖；
+    ```xml
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+    ```
+    * 进入 MySQL，添加数据库 config-jdbc 和 表 config_properties
+   ```mysql
+   create table `config_properties` (
+       `id` bigint(20) not null auto_increment,
+       `key1` varchar(50) collate utf8_bin not null , -- 配置的key
+       `value1` varchar(500) collate utf8_bin default null, -- 配置的值
+       `application` varchar(50) collate utf8_bin not null , -- 应用名
+       `profile` varchar(50) collate utf8_bin not null, -- 对应于环境
+       `label` varchar(50) collate utf8_bin default null, -- 对应于 读取的分支（指maseter还是feature等，一般为master），
+       primary key (`id`)
+   ) engine = InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+   ```
+   * 插入些数据：
+   ```mysql
+     insert into `config_properties` values('1','server.port', '8083','config-client', 'dev', 'master');
+     insert into `config_properties` values('2','foo', 'bar-jdbc','config-client', 'dev', 'master');
+   ```
+   * 依次启动 eureka-server-2 和 config-server 和 config-client 工程，其中，config-client的端口为 8083，这时数据库中配置的，可见 config-client 从
+   config-server 中读取了配置。
+   * 在浏览器访问 ：[http://localhost:8083/foo](http://localhost:8083/foo),浏览器显示 ：`bar-jdbc`, 由此可见， config-client 从 config
+   -server 中成功 读取到了配置信息，而配置信息存储在数据库中的。
