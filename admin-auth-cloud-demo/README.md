@@ -237,3 +237,28 @@
     * 结果：浏览器显示界面如下
         ![src\main\resources\static\images\security-login.png](src\main\resources\static\images\security-login.png)
     * 输入用户名和密码（`admin/admin`）, 点击 **登录** 即可进入 `Spring Boot Admin` 管理界面
+    
+## Spring Boot Admin 集成 Mail 组件
+> ⚠说明：由于邮箱为开通发送邮箱服务，即集成 mail 服务为经过自身测试！
+1. 当服务不健康或者下线了，都可以给指定邮箱发送邮件。集成非常简单，只需要对 `admin-server`工程引入 mail的起步依赖并对`admin-server`的配置文件`application.yaml`进行设置mail参数即可。
+2. 依赖
+    ```xml
+    <!--引入 Mail组件（邮箱告警）-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
+    ```
+3. 相关配置 `application.yaml`
+```yaml
+spring:
+  mail:
+    host: smtp.163.com   # 邮箱服务器
+    username: miles02    # 登录邮箱用户名
+    password:            # 密码
+  boot:
+    admin:
+      notify:
+        mail:
+          to: 27462137293@qq.com  # 自动监听，如果某个服务故障或下线了，会自动发送邮箱给此配置号的邮箱。
+```

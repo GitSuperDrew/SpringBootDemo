@@ -1,6 +1,15 @@
 server:
   port: 8769
 spring:
+#  mail:
+#    host: smtp.163.com
+#    username: miles02
+#    password:
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          to: 27462137293@qq.com
   application:
     name: admin-server
   security:
