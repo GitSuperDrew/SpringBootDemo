@@ -184,3 +184,55 @@
     * wallboard:
         ![src\main\resources\static\images\wallboard.png](src\main\resources\static\images\wallboard.png)
         ![src\main\resources\static\images\journal.png](src\main\resources\static\images\journal.png) 
+
+## Spring Boot Admin 集成 Security 组件
+> 在生产环境中，不希望通过网址直接访问 Spring Boot Admin Server 的主页面，因为这个界面包含了太多的服务信息，必须对这个界面的访问进行安全验证。
+> Spring Boot Admin 提供了登录界面的组件，并且和 Spring Boot Security 相结合，需要用户登录才能访问 Spring Boot Admin Server 的界面。
+
+1. 需要在admin-server 工程进行改造就行了。在 服务 `admin-server` 的 pom 文件中引入 `Security` 的起步依赖即可：
+    ```xml
+    <!--引入 security-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    ```
+2. 修改 `admin-server` 的配置文件 `application.yaml`:
+    ```yaml
+    server:
+      port: 8769
+    spring:
+      application:
+        name: admin-server
+      security:
+        user:
+          name: admin
+          password: admin
+    eureka:
+      client:
+        registry-fetch-interval-seconds: 5
+        service-url:
+          defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+      instance:
+        lease-renewal-interval-in-seconds: 10
+        health-check-url-path: /actuator/health
+        # 这个会导致 admin-server这个服务没有认证权限，从而失败，如果需要正常显示的话，请注释这下面三行。
+        metadata-map: 
+          user.name: admin
+          user.password: 123456
+    
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "*"
+      endpoint:
+        health:
+          show-details: always
+    ```
+3. 新建一个 `SecuritySecureConfig.java` ,对请求做认证处理；
+4. 测试：
+    * 重启 admin-server 工程(或者 依次启动eureka-server,admin-client,admin-server)，在浏览器访问 [http://localhost:8769/](http://localhost:8769/)
+    * 结果：浏览器显示界面如下
+        ![src\main\resources\static\images\security-login.png](src\main\resources\static\images\security-login.png)
+    * 输入用户名和密码（`admin/admin`）, 点击 **登录** 即可进入 `Spring Boot Admin` 管理界面

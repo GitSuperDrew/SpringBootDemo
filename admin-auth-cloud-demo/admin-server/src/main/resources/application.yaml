@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: admin-server
+  security:
+    user:
+      name: admin
+      password: admin
 eureka:
   client:
     registry-fetch-interval-seconds: 5
@@ -11,6 +15,10 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 10
     health-check-url-path: /actuator/health
+    # 这个会导致 admin-server这个服务没有认证权限，从而失败，如果需要正常显示的话，请注释这下面三行。
+    metadata-map:
+      user.name: admin
+      user.password: 123456
 
 management:
   endpoints:
