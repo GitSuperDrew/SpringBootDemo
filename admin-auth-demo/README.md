@@ -179,7 +179,7 @@
 ### 测试
 1. 依次开启服务：`admin-server` 和 `admin-client` (注意：可以**无需等待** `admin-server`完全启动后再去开启`admin-client`)
 2. 浏览器访问：[http://localhost:8769/](http://localhost:8769/) 进入到admin-server服务控制面板中。
-    ![admin-server-dashboard](/images/admin-server-dashboard.png)<br/>
-    ![admin-server-wallboard](/images/admin-server-wallboard.png)<br/>
-    ![admin-server-actionToAppDetails.png](/images/admin-server-actionToAppDetails.png)<br/>
-    ![admin-auth-demo/images/admin-server-show-AppDetails.png](/images/admin-server-show-AppDetails.png)<br/>
+    ![admin-server-dashboard](./images/admin-server-dashboard.png)<br/>
+    ![admin-server-wallboard](./images/admin-server-wallboard.png)<br/>
+    ![admin-server-actionToAppDetails.png](./images/admin-server-actionToAppDetails.png)<br/>
+    ![admin-auth-demo/images/admin-server-show-AppDetails.png](./images/admin-server-show-AppDetails.png)<br/>
