@@ -232,6 +232,7 @@
     ```
 3. 新建一个 `SecuritySecureConfig.java` ,对请求做认证处理；
 4. 测试：
+    * 每次启动服务时，确保前一个服务一定是成功启动了，不可前一个服务未启动就去启动下一个服务，那样会产生问题的。
     * 重启 admin-server 工程(或者 依次启动eureka-server,admin-client,admin-server)，在浏览器访问 [http://localhost:8769/](http://localhost:8769/)
     * 结果：浏览器显示界面如下
         ![src\main\resources\static\images\security-login.png](src\main\resources\static\images\security-login.png)
