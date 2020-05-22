@@ -15,17 +15,17 @@
 ### 🔨构建 `eureka-server` 服务
 1. 依赖：(添加的部分)
     ```xml
-     <!--eureka-server-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-            </dependency>
-    
-            <!--spring web-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
+    <!--eureka-server-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    </dependency>
+
+    <!--spring web-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
     ```
 2. 配置内容：(全部内容)
     ```yaml
@@ -250,15 +250,15 @@
     </dependency>
     ```
 3. 相关配置 `application.yaml`
-```yaml
-spring:
-  mail:
-    host: smtp.163.com   # 邮箱服务器
-    username: miles02    # 登录邮箱用户名
-    password:            # 密码
-  boot:
-    admin:
-      notify:
-        mail:
-          to: 27462137293@qq.com  # 自动监听，如果某个服务故障或下线了，会自动发送邮箱给此配置号的邮箱。
-```
+    ```yaml
+    spring:
+      mail:
+        host: smtp.163.com   # 邮箱服务器
+        username: miles02    # 登录邮箱用户名
+        password:            # 密码
+      boot:
+        admin:
+          notify:
+            mail:
+              to: 27462137293@qq.com  # 自动监听，如果某个服务故障或下线了，会自动发送邮箱给此配置号的邮箱。
+    ```
