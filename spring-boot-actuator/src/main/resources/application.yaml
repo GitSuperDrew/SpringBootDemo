@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+
+# 设置：spring 项目任何操作的DEBUG日志
+logging:
+  level:
+    web: debug
+
+# 设置：监控无需权限验证
+management:
+  security:
+    enabled: false
+# 禁用 localhost:8080/dump （即 访问 此路径报404，如果允许访问，enabled=true）
+endpoints:
+  dump:
+    enabled: false
