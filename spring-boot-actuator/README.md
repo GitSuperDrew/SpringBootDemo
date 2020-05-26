@@ -28,4 +28,15 @@
     * controller测试：
     ![HelloController测试](images\hellocontroller.png)
 
+4. 在配置文件`application.yaml` 修改部分配置为: 
+    ```yaml
+    # 禁用 localhost:8080/dump （即 访问 此路径报404，如果允许访问，enabled=true）
+    endpoints:
+      dump:
+        enabled: false
+      shutdown:
+        enabled: true  # 允许远程关闭此程序
+    ```
 
+5. 利用 `CURL` 工具进行模拟测试：
+    ![测试远程关闭此程序](images\test_remote_shutdown.png)

@@ -21,3 +21,5 @@ management:
 endpoints:
   dump:
     enabled: false
+  shutdown:
+    enabled: true  # 允许远程关闭此程序
