@@ -55,7 +55,7 @@
           logic-delete-value: 1 # 逻辑已删除值（默认1）
           logic-not-delete-value: 0 # 逻辑未删除值（默认0）
     ```
-3. * 如果是Mybatis Plus 3.1.1 之前的版本，则在 `MybatisPlusConfig.java` 中注册 `@Bean`：
+3. * 如果是Mybatis Plus 3.1.1 之前的版本，则在 `MybatisPlusConfig.java` 中注册 `@Bean`：[参考文章](https://www.cnblogs.com/grocivey/p/10344592.html)
     ```java
     @Bean
     public ISqlInjector sqlInjector() {
