@@ -1,5 +1,7 @@
 package com.study.module.mybatisplus.config;
 
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import org.mybatis.spring.annotation.MapperScan;
@@ -29,4 +31,9 @@ public class MybatisPlusConfig {
         paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize());
         return paginationInterceptor;
     }
+    // 由于是mybatis plus 3.1.1版本，所以不需要配置逻辑删除（即从3.1.1 开始不需要配置逻辑删除）
+//    @Bean
+//    public ISqlInjector sqlInjector() {
+//        return new LogicSqlInjector();
+//    }
 }

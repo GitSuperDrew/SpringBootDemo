@@ -1,7 +1,6 @@
 package com.study.module.mybatisplus.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,6 +18,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName(value = "user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +42,13 @@ public class User implements Serializable {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 逻辑删除标识（1：有效数据，0：无效数据）
+     */
+    @TableLogic(value = "0", delval = "1") // value 标识未删除，delval 标识删除了
+    @TableField(value = "remove_tag")
+    private Integer removeTag;
 
 
 }

@@ -147,4 +147,16 @@ public class UserController {
     // ===================👇👇👇 删除操作 👇👇👇======================
     // ===========================================================
 
+    /**
+     * 根据ID，逻辑删除字段
+     * URL：http://localhost:8989/mybatisplus/user/deleteById/1
+     *
+     * @param id 用户ID
+     * @return 是否删除成功
+     */
+    @GetMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id) {
+        return iUserService.removeById(id) ? "删除成功" : "删除失败";
+    }
+
 }

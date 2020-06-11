@@ -44,6 +44,48 @@
    .`”~~** 这个错误出现的有些奇怪！！
 6. 设置 `session` 的超时时间，当达到超时时间后，自动将用户退出登录。`Session` 超时的配置是 `SpringBoot` 原生支持的，我们只需要在 `application.properties` 配置文件中
 
+## Mybatis Plus 部分
+### 逻辑删除
+1. 导入`user.sql`文件的数据到指定的数据库，建立好`MySQL`连接的驱动相关信息。
+2. 配置文件`application.yaml`加入逻辑删除的配置。
+    ```yaml
+    mybatis-plus:
+      global-config:
+        db-config:
+          logic-delete-value: 1 # 逻辑已删除值（默认1）
+          logic-not-delete-value: 0 # 逻辑未删除值（默认0）
+    ```
+3. * 如果是Mybatis Plus 3.1.1 之前的版本，则在 `MybatisPlusConfig.java` 中注册 `@Bean`：
+    ```java
+    @Bean
+    public ISqlInjector sqlInjector() {
+        return new LogicSqlInjector();
+    }
+    ```
+   * 如果事在 3.1.1之后的版本，则无需在 `MybatisPlusConfig.java` 配置注册 `@Bean`。
+4. 在实体类中的逻辑删除字段上加上注解 `@TableLogic`
+    ```java
+    /**
+     * 逻辑删除标识（1：有效数据，0：无效数据）
+     */
+    @TableLogic(value = "0", delval = "1") // value 标识未删除，delval 标识删除了（双重保证，注意全局也配置，需要保持一致性）
+    @TableField(value = "remove_tag")
+    private Integer removeTag;
+    ```
+5. 测试：
+    ```java
+    /**
+     * 根据ID，逻辑删除字段
+     * URL：http://localhost:8989/mybatisplus/user/deleteById?id=1
+     *
+     * @param id 用户ID
+     * @return 是否删除成功
+     */
+    @DeleteMapping("/deleteById")
+    public String deleteById(@RequestParam(value = "id", defaultValue = "1L") Long id) {
+        return iUserService.removeById(id) ? "删除成功" : "删除失败";
+    }
+    ```
 
 ### 附件
 #### `Git` 提交规范
