@@ -20,21 +20,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af5cf3c1-1965-4364-8485-73962cee3285" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/eureka-server/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/src/main/java/com/example/eurekaserver/EurekaServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server/src/test/java/com/example/eurekaserver/EurekaServerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-client/src/main/java/com/example/adminclient/AdminClientApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-client/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/src/main/java/com/example/adminserver/AdminServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/src/test/java/com/example/adminserver/AdminServerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/src/main/java/com/example/eurekaserver/EurekaServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/src/test/java/com/example/eurekaserver/EurekaServerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -60,20 +79,125 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/GitHub-Local-Repo/SpringBootDemo" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zipkin-demo" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.45057473" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.ignored.files" />
   </component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
-  <component name="RunManager">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ConfigServerApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="config-server" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="config-server" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="config-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.configclient.ConfigClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.configserver.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaclient.EurekaClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaFeignClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-feign-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekafeignclient.EurekaFeignClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaRibbonClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-ribbon-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaribbonclient.EurekaRibbonClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServer2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-server-2" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaserver2.EurekaServer2Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="eureka-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaserver.EurekaServerApplication" />
@@ -81,6 +205,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="EurekaZuulClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-zuul-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekazuulclient.EurekaZuulClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.EurekaClientApplication" />
+      <item itemvalue="Spring Boot.EurekaFeignClientApplication" />
+      <item itemvalue="Spring Boot.EurekaRibbonClientApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.EurekaZuulClientApplication" />
+      <item itemvalue="Spring Boot.ConfigServerApplication" />
+      <item itemvalue="Spring Boot.ConfigClientApplication" />
+      <item itemvalue="Spring Boot.EurekaServer2Application" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
@@ -92,8 +233,121 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589803735148</updated>
-      <workItem from="1589803736791" duration="2486000" />
+      <workItem from="1589803736791" duration="6268000" />
+      <workItem from="1589848544164" duration="1097000" />
+      <workItem from="1589850226822" duration="4290000" />
+      <workItem from="1589878448313" duration="16423000" />
+      <workItem from="1589937703451" duration="5037000" />
+      <workItem from="1589965181983" duration="765000" />
+      <workItem from="1589965975390" duration="15629000" />
+      <workItem from="1590022966567" duration="4534000" />
     </task>
+    <task id="LOCAL-00001" summary="feat:添加 eureka-client 子工程&#10;&#10;添加 eureka-client 子工程并完成整个 服务注册中心和发现的测试。">
+      <created>1589808735002</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1589808735002</updated>
+    </task>
+    <task id="LOCAL-00002" summary="style: 提出问题：如何构建高可用的 eureka server 集群呢？&#10;&#10;在实际的项目中，可能由及时或者几百个的微服务实例，这是 eureka server 承担了非常高的负载。由于Eureaka server&#10;在微服务架构中有着举足轻重的作用，所以需要构建高可用性的 Eureka Server 集群。">
+      <created>1589809320546</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589809320546</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: 添加负载均衡 Ribbon&#10;&#10;Ribbon 是一种负载均衡的组件，和 eureka 配合使用能够很好的实现负载均衡的效果">
+      <created>1589878536179</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1589878536179</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: 添加负载均衡 Ribbon&#10;&#10;Ribbon 是一种负载均衡的组件，和 eureka 配合使用能够很好的实现负载均衡的效果">
+      <created>1589879796686</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589879796686</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: 添加：熔断器 Hystrix&#10;&#10;1. 在 RestTemplate 和 Ribbon 上使用熔断器；&#10;2. 在 Feign 上使用熔断器；">
+      <created>1589889515341</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589889515341</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: 添加：熔断器 Hystrix Dashboard&#10;&#10;1. 在 RestTemplate 和 Ribbon 上使用熔断器Dashboard；&#10;2. 在 Feign 上使用熔断器Dashboard；">
+      <created>1589893211363</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589893211363</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: 添加：网关 Zuul&#10;&#10;1. 搭建网关服务&#10;2. 在 Zuul上配置API接口的版本号&#10;3. TODO 在 Zuul 上配置熔断器">
+      <created>1589904172281</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589904172281</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: 在 Zuul 上配置熔断器&#10;&#10;1. 主要集中在实现了 ZuulFallbackProvider 的接口上。">
+      <created>1589940871180</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589940871180</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: 在 Zuul 上配置过滤器&#10;&#10;检验 请求连接中是否存在注定必要的参数，用来做安全验证，参数验证等。">
+      <created>1589942080265</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589942080265</updated>
+    </task>
+    <task id="LOCAL-00010" summary="docs: gateway工程，见下一个示例项目。">
+      <created>1589942549901</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1589942549901</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: 构建了 config-server 和 config-client 的示例&#10;&#10;见 README.md 历史变更记录">
+      <created>1589969050014</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1589969050014</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: config server 从远程仓库读取配置文件&#10;&#10;见 README.md，以及 提交的版本对比的历史变更记录。">
+      <created>1589974919807</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1589974919807</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: 搭建高可用的config server 从远程仓库读取配置文件&#10;&#10;见 README.md，以及 提交的版本对比的历史变更记录。">
+      <created>1589984117924</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1589984117924</updated>
+    </task>
+    <task id="LOCAL-00014" summary="docs: 添加：Spring Cloud Bus 讲解">
+      <created>1589989827190</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1589989827191</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: 添加——将配置存入MySQL数据库中。&#10;&#10;1. 需要求改config-server 和 config-client 以及开启 eureka-server-2 服务；&#10;2.&#10;需要准备数据库MySQL并创建新的数据库（config-jdbc），数据库表(config_properties)，并填充些示例数据。">
+      <created>1589992428248</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1589992428248</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,14 +363,100 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat:添加 eureka-client 子工程&#10;&#10;添加 eureka-client 子工程并完成整个 服务注册中心和发现的测试。" />
+    <MESSAGE value="style: 提出问题：如何构建高可用的 eureka server 集群呢？&#10;&#10;在实际的项目中，可能由及时或者几百个的微服务实例，这是 eureka server 承担了非常高的负载。由于Eureaka server&#10;在微服务架构中有着举足轻重的作用，所以需要构建高可用性的 Eureka Server 集群。" />
+    <MESSAGE value="feat: 添加负载均衡 Ribbon&#10;&#10;Ribbon 是一种负载均衡的组件，和 eureka 配合使用能够很好的实现负载均衡的效果" />
+    <MESSAGE value="feat: 添加：熔断器 Hystrix&#10;&#10;1. 在 RestTemplate 和 Ribbon 上使用熔断器；&#10;2. 在 Feign 上使用熔断器；" />
+    <MESSAGE value="feat: 添加：熔断器 Hystrix Dashboard&#10;&#10;1. 在 RestTemplate 和 Ribbon 上使用熔断器Dashboard；&#10;2. 在 Feign 上使用熔断器Dashboard；" />
+    <MESSAGE value="feat: 添加：网关 Zuul&#10;&#10;1. 搭建网关服务&#10;2. 在 Zuul上配置API接口的版本号&#10;3. TODO 在 Zuul 上配置熔断器" />
+    <MESSAGE value="feat: 在 Zuul 上配置熔断器&#10;&#10;1. 主要集中在实现了 ZuulFallbackProvider 的接口上。" />
+    <MESSAGE value="feat: 在 Zuul 上配置过滤器&#10;&#10;检验 请求连接中是否存在注定必要的参数，用来做安全验证，参数验证等。" />
+    <MESSAGE value="docs: gateway工程，见下一个示例项目。" />
+    <MESSAGE value="feat: 构建了 config-server 和 config-client 的示例&#10;&#10;见 README.md 历史变更记录" />
+    <MESSAGE value="feat: config server 从远程仓库读取配置文件&#10;&#10;见 README.md，以及 提交的版本对比的历史变更记录。" />
+    <MESSAGE value="feat: 搭建高可用的config server 从远程仓库读取配置文件&#10;&#10;见 README.md，以及 提交的版本对比的历史变更记录。" />
+    <MESSAGE value="docs: 添加：Spring Cloud Bus 讲解" />
+    <MESSAGE value="feat: 添加——将配置存入MySQL数据库中。&#10;&#10;1. 需要求改config-server 和 config-client 以及开启 eureka-server-2 服务；&#10;2.&#10;需要准备数据库MySQL并创建新的数据库（config-jdbc），数据库表(config_properties)，并填充些示例数据。" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 添加——将配置存入MySQL数据库中。&#10;&#10;1. 需要求改config-server 和 config-client 以及开启 eureka-server-2 服务；&#10;2.&#10;需要准备数据库MySQL并创建新的数据库（config-jdbc），数据库表(config_properties)，并填充些示例数据。" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="28" y="1" key="new project wizard" timestamp="1589804199889">
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1589941008593">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="28" y="1" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1589804199889" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1589941008593" />
+    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1590026347983">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1590026347983" />
+    <state width="898" height="337" key="GridCell.Tab.0.bottom" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state width="898" height="337" key="GridCell.Tab.0.center" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state width="898" height="337" key="GridCell.Tab.0.left" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state width="898" height="337" key="GridCell.Tab.0.right" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state width="898" height="337" key="GridCell.Tab.1.bottom" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state width="898" height="337" key="GridCell.Tab.1.center" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state width="898" height="337" key="GridCell.Tab.1.left" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state width="898" height="337" key="GridCell.Tab.1.right" timestamp="1589992569729">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="898" height="337" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1589992569729" />
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog" timestamp="1589967048139">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680@0.0.1280.680" timestamp="1589967048139" />
+    <state x="173" y="0" key="SettingsEditor" timestamp="1589967229643">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="173" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1589967229643" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1589992431157">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1589992431157" />
+    <state x="349" y="232" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1589967015768">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="349" y="232" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1280.680@0.0.1280.680" timestamp="1589967015768" />
+    <state x="439" y="253" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589941445538">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="439" y="253" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1589941445538" />
+    <state x="56" y="0" key="new project wizard" timestamp="1590026241465">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="56" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1590026241465" />
+    <state x="297" y="151" width="672" height="677" key="run.anything.popup" timestamp="1589965825455">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1589965825455" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1589991636738">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1589991636738" />
   </component>
 </project>

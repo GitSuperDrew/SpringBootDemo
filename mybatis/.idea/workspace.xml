@@ -19,7 +19,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8265376-e856-4863-a38a-cfca954c3696" name="Default Changelist" comment="" />
+    <list default="true" id="a8265376-e856-4863-a38a-cfca954c3696" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-client/src/main/java/com/example/eurekaclient/controller/RestTestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/src/main/java/com/example/eurekaribbonclient/EurekaRibbonClientApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/src/main/java/com/example/eurekaribbonclient/config/RibbonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/src/main/java/com/example/eurekaribbonclient/controller/RibbonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/src/main/java/com/example/eurekaribbonclient/service/RibbonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eureka/eureka-ribbon-client/src/test/java/com/example/eurekaribbonclient/EurekaRibbonClientApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eureka/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../eureka/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eureka/eureka-server/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../eureka/eureka-server/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/study/module/mybatis/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/study/module/mybatis/controller/UserController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +137,7 @@
       <workItem from="1589032792366" duration="154000" />
       <workItem from="1589036511958" duration="24000" />
       <workItem from="1589418628163" duration="8587000" />
+      <workItem from="1589876744909" duration="1115000" />
     </task>
     <task id="LOCAL-00001" summary="添加代码规范规定">
       <created>1588312050581</created>

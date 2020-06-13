@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2d7d3c2f-1fa5-407c-af81-7f7eacbdfa09" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-client/src/main/java/com/example/adminclient/AdminClientApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-client/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/src/main/java/com/example/adminserver/AdminServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/admin-server/src/test/java/com/example/adminserver/AdminServerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/src/main/java/com/example/eurekaserver/EurekaServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/eureka-server/src/test/java/com/example/eurekaserver/EurekaServerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../admin-auth-cloud-demo/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\maven\apache-maven-3.5.4\conf\maven_respository" />
+        <option name="mavenHome" value="C:/maven/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="C:\maven\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cDCTEuwixFUu1qIiE52FFb5V3y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.45057473" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\GitHub-Local-Repo\SpringBootDemo\admin-auth-demo\images" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.AdminServerApplication">
+    <configuration name="AdminClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="admin-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.adminclient.AdminClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdminServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="admin-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.adminserver.AdminServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.AdminClientApplication" />
+      <item itemvalue="Spring Boot.AdminServerApplication" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d7d3c2f-1fa5-407c-af81-7f7eacbdfa09" name="Default Changelist" comment="" />
+      <created>1590053782436</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590053782436</updated>
+      <workItem from="1590053791498" duration="3576000" />
+      <workItem from="1590066448481" duration="1088000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: 添加：Spring Boot Admin监控Spring Boot应用程序&#10;&#10;1. admin-server 服务&#10;2. admin-client 服务">
+      <created>1590055845609</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590055845609</updated>
+    </task>
+    <task id="LOCAL-00002" summary="docs: 修改README.md&#10;&#10;提交显示的图片">
+      <created>1590057029788</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590057029788</updated>
+    </task>
+    <task id="LOCAL-00003" summary="docs: 修改README.md&#10;&#10;提交显示的图片">
+      <created>1590057188779</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590057188779</updated>
+    </task>
+    <task id="LOCAL-00004" summary="docs: 修改README.md&#10;&#10;提交显示的图片">
+      <created>1590057267280</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1590057267280</updated>
+    </task>
+    <task id="LOCAL-00005" summary="docs: 修改README.md&#10;&#10;提交显示的图片">
+      <created>1590057339104</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1590057339104</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat: 添加：Spring Boot Admin监控Spring Boot应用程序&#10;&#10;1. admin-server 服务&#10;2. admin-client 服务" />
+    <MESSAGE value="docs: 修改README.md&#10;&#10;提交显示的图片" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs: 修改README.md&#10;&#10;提交显示的图片" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590054082038">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1590054082038" />
+    <state width="918" height="268" key="GridCell.Tab.0.bottom" timestamp="1590057621770">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590057621770" />
+    <state width="918" height="268" key="GridCell.Tab.0.center" timestamp="1590057621770">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590057621770" />
+    <state width="918" height="268" key="GridCell.Tab.0.left" timestamp="1590057621770">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590057621770" />
+    <state width="918" height="268" key="GridCell.Tab.0.right" timestamp="1590057621770">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590057621770" />
+    <state width="918" height="268" key="GridCell.Tab.1.bottom" timestamp="1590057621771">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590057621771" />
+    <state width="918" height="268" key="GridCell.Tab.1.center" timestamp="1590057621770">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1590057621770" />
+    <state width="918" height="268" key="GridCell.Tab.1.left" timestamp="1590057621770">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1590057621770" />
+    <state width="918" height="268" key="GridCell.Tab.1.right" timestamp="1590057621770">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="918" height="268" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1590057621770" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1590057340596">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1590057340596" />
+    <state x="28" y="1" key="new project wizard" timestamp="1590057603791">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="28" y="1" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1590057603791" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1590055650097">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590055650097" />
+  </component>
+</project>

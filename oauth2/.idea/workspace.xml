@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7a5ea299-ddfc-4b84-9ae5-26f6fd64e89c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/java/com/example/uaaservice/UaaServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/java/com/example/uaaservice/config/OAuth2Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/java/com/example/uaaservice/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/java/com/example/uaaservice/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/java/com/example/uaaservice/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/java/com/example/uaaservice/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/java/com/example/uaaservice/service/UserServiceDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-oauth2-jwt/uaa-service/src/test/java/com/example/uaaservice/UaaServiceApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\maven\apache-maven-3.5.4\conf\maven_respository" />
+        <option name="mavenHome" value="C:/maven/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="C:\maven\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cFmMd7bmvrsikbza87A57Pr1Og" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.45057473" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.EurekaServerApplication">
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="auth-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.authservice.AuthServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceHiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-hi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.servicehi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servicehi.ServiceHiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ServiceHiApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7a5ea299-ddfc-4b84-9ae5-26f6fd64e89c" name="Default Changelist" comment="" />
+      <created>1590132668254</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590132668254</updated>
+      <workItem from="1590132669817" duration="8466000" />
+      <workItem from="1590146873489" duration="7534000" />
+      <workItem from="1590159925528" duration="1560000" />
+      <workItem from="1590197017238" duration="603000" />
+    </task>
+    <task id="LOCAL-00001" summary="oauth2">
+      <created>1590141632070</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590141632070</updated>
+    </task>
+    <task id="LOCAL-00002" summary="build: 完善整个项目的架构&#10;&#10;添加了 service-hi 服务。整个 spring cloud oath2 的服务示例告一段落！！！">
+      <created>1590154810932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590154810932</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix: 启动类，参数未写正确">
+      <created>1590155767841</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590155767841</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix: 测试类">
+      <created>1590156135893</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1590156135893</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="oauth2" />
+    <MESSAGE value="build: 完善整个项目的架构&#10;&#10;添加了 service-hi 服务。整个 spring cloud oath2 的服务示例告一段落！！！" />
+    <MESSAGE value="fix: 启动类，参数未写正确" />
+    <MESSAGE value="fix: 测试类" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 测试类" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="746" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1590136427394">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="746" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1590136427394" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590133807112">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1590133807112" />
+    <state width="946" height="291" key="GridCell.Tab.0.bottom" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state width="946" height="291" key="GridCell.Tab.0.center" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state width="946" height="291" key="GridCell.Tab.0.left" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state width="946" height="291" key="GridCell.Tab.0.right" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state width="946" height="291" key="GridCell.Tab.1.bottom" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state width="946" height="291" key="GridCell.Tab.1.center" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state width="946" height="291" key="GridCell.Tab.1.left" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state width="946" height="291" key="GridCell.Tab.1.right" timestamp="1590156152018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="946" height="291" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1590156152018" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1590156137832">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1590156137832" />
+    <state x="28" y="1" key="new project wizard" timestamp="1590155043354">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="28" y="1" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1590155043354" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1590152517814">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590152517814" />
+  </component>
+</project>

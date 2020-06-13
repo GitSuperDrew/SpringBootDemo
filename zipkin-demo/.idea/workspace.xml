@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5d9369d7-629a-4068-91a7-5e8639052a1c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\maven\apache-maven-3.5.4\conf\maven_respository" />
+        <option name="mavenHome" value="C:/maven/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="C:\maven\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cCIeKbjXGl1pVodMiqT3blzu5u" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.45057473" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.EurekaClientFeignApplication">
+    <configuration name="EurekaClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaclient.EurekaClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaClientFeignApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-client-feign" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaclientfeign.EurekaClientFeignApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5d9369d7-629a-4068-91a7-5e8639052a1c" name="Default Changelist" comment="" />
+      <created>1590026242247</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590026242247</updated>
+      <workItem from="1590026245637" duration="42000" />
+      <workItem from="1590026352100" duration="13357000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: 链路追踪-前期准备&#10;&#10;需要有 服务注册中心eureka-server, 服务提供者eureka-client，服务消费者eureka-client-feign">
+      <created>1590042618248</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590042618248</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: 链路追踪&#10;&#10;依次开启：①服务中心eureka-server, ②服务提供者eureka-client，③服务消费者eureka-client-feign，④zipkin.jar 服务，上一个服务需要成功之后，再能开启下一个服务">
+      <created>1590053561133</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590053561133</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat: 链路追踪-前期准备&#10;&#10;需要有 服务注册中心eureka-server, 服务提供者eureka-client，服务消费者eureka-client-feign" />
+    <MESSAGE value="feat: 链路追踪&#10;&#10;依次开启：①服务中心eureka-server, ②服务提供者eureka-client，③服务消费者eureka-client-feign，④zipkin.jar 服务，上一个服务需要成功之后，再能开启下一个服务" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 链路追踪&#10;&#10;依次开启：①服务中心eureka-server, ②服务提供者eureka-client，③服务消费者eureka-client-feign，④zipkin.jar 服务，上一个服务需要成功之后，再能开启下一个服务" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590028123886">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1590028123886" />
+    <state width="934" height="328" key="GridCell.Tab.0.bottom" timestamp="1590053789268">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590053789268" />
+    <state width="934" height="328" key="GridCell.Tab.0.center" timestamp="1590053789268">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1590053789268" />
+    <state width="934" height="328" key="GridCell.Tab.0.left" timestamp="1590053789268">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1590053789268" />
+    <state width="934" height="328" key="GridCell.Tab.0.right" timestamp="1590053789268">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1590053789268" />
+    <state width="934" height="328" key="GridCell.Tab.1.bottom" timestamp="1590053789269">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1590053789269" />
+    <state width="934" height="328" key="GridCell.Tab.1.center" timestamp="1590053789268">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1590053789268" />
+    <state width="934" height="328" key="GridCell.Tab.1.left" timestamp="1590053789268">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1590053789268" />
+    <state width="934" height="328" key="GridCell.Tab.1.right" timestamp="1590053789268">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="934" height="328" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1590053789268" />
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog" timestamp="1590028539942">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680@0.0.1280.680" timestamp="1590028539942" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1590053574756">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1590053574756" />
+    <state x="56" y="0" key="new project wizard" timestamp="1590053782347">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="56" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1590053782347" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1590049245408">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1590049245408" />
+  </component>
+</project>
