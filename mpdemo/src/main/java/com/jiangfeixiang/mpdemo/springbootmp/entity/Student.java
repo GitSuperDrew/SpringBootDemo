@@ -1,11 +1,11 @@
 package com.jiangfeixiang.mpdemo.springbootmp.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -26,10 +26,13 @@ public class Student implements Serializable {
     @TableId(value = "stu_id", type = IdType.AUTO)
     private Integer stuId;
 
+    @TableField(value = "stu_name")
     private String stuName;
 
+    @TableField(value = "stu_age")
     private Integer stuAge;
 
+    @TableField(value = "stu_sex")
     private String stuSex;
 
     @TableField(value = "deleted")

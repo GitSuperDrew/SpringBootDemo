@@ -1,7 +1,7 @@
 package com.jiangfeixiang.mpdemo.springbootmp.service;
 
-import com.jiangfeixiang.mpdemo.springbootmp.entity.Student;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.jiangfeixiang.mpdemo.springbootmp.entity.Student;
 
 /**
  * <p>

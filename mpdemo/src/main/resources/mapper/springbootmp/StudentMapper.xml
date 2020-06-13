@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jiangfeixiang.mpdemo.springbootmp.mapper.StudentMapper">
 
+    <resultMap id="BaseResultMap" type="com.jiangfeixiang.mpdemo.springbootmp.entity.Student">
+        <result column="stu_id" property="stuId" jdbcType="INT" javaType="int"/>
+        <result column="stu_age" property="stuAge" jdbcType="INT" javaType="int"/>
+        <result column="stu_sex" property="stuSex" jdbcType="CHAR" javaType="string"/>
+        <result column="stu_name" property="stuName" jdbcType="VARCHAR" javaType="string"/>
+        <result column="deleted" property="deleted" jdbcType="INT" javaType="int"/>
+    </resultMap>
 </mapper>

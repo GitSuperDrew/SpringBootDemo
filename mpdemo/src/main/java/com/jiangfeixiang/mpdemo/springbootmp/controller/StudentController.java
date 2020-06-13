@@ -1,11 +1,19 @@
 package com.jiangfeixiang.mpdemo.springbootmp.controller;
 
+import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.common.collect.ImmutableMap;
 import com.jiangfeixiang.mpdemo.springbootmp.entity.Student;
 import com.jiangfeixiang.mpdemo.springbootmp.service.IStudentService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -32,6 +40,56 @@ public class StudentController {
     public List<Student> getAllStudent() {
         List<Student> list = iStudentService.list();
         return list;
+    }
+
+    /**
+     * 分页查询：根据名称模糊匹配
+     *
+     * @param currentPage 当前页码
+     * @param pageCount   当前页显示条目数
+     * @param orderBy     排序字段
+     * @param isDesc      排序规则（true：降序，false：升序）
+     * @return
+     */
+    @GetMapping(value = "pageAllByNameLike")
+    public Map<String, Object> pageAllByNameLike(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+                                                 @RequestParam(value = "pageCount", defaultValue = "10") int pageCount,
+                                                 @RequestParam(value = "orderBy") String orderBy,
+                                                 @RequestParam(value = "isDesc", defaultValue = "true") boolean isDesc,
+                                                 @RequestParam(value = "search", required = false) String search) {
+        Page<Student> page = new Page(currentPage, pageCount);
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(search)) {
+            Student student = JSONUtil.toBean(search, Student.class);
+            if (student.getStuId() != null) {
+                queryWrapper.eq("stu_id", student.getStuId());
+            }
+            if (StringUtils.isNotBlank(student.getStuName())) {
+                queryWrapper.like("stu_name", student.getStuName());
+            }
+            if (StringUtils.isNotBlank(student.getStuSex())) {
+                queryWrapper.eq("stu_sex", student.getStuSex());
+            }
+            if (student.getStuAge() != null) {
+                queryWrapper.eq("stu_age", student.getStuAge());
+            }
+        }
+        if (isDesc) {
+            page.setDesc(orderBy);
+        } else {
+            page.setAsc(orderBy);
+        }
+        IPage<Student> iPage = iStudentService.page(page, queryWrapper);
+        Map<String, Object> result = new HashMap<>();
+        result.put("data", iPage.getRecords());
+        result.put("page", ImmutableMap.builder()
+                .put("currentPage", iPage.getCurrent())
+                .put("pageCount", iPage.getSize())
+                .put("orderBy", orderBy)
+                .put("isDesc", isDesc)
+                .put("totalPage", iPage.getPages())
+                .put("totalCount", iPage.getTotal()).build());
+        return result;
     }
 
     /**

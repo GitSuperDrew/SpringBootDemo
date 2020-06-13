@@ -11,6 +11,8 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1 # 标识逻辑删除了
       logic-not-delete-value: 0 # 未被逻辑的标识
+  configuration:
+    map-underscore-to-camel-case: true
 logging:
   level:
     com.jiangfeixiang.mpdemo.springbootmp.mapper: debug
