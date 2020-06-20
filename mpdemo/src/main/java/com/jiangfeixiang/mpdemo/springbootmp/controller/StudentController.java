@@ -58,7 +58,7 @@ public class StudentController {
                                                  @RequestParam(value = "isDesc", defaultValue = "true") boolean isDesc,
                                                  @RequestParam(value = "search", required = false) String search) {
         Page<Student> page = new Page(currentPage, pageCount);
-        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<Student>();
         if (StringUtils.isNotBlank(search)) {
             Student student = JSONUtil.toBean(search, Student.class);
             if (student.getStuId() != null) {
@@ -80,7 +80,7 @@ public class StudentController {
             page.setAsc(orderBy);
         }
         IPage<Student> iPage = iStudentService.page(page, queryWrapper);
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("data", iPage.getRecords());
         result.put("page", ImmutableMap.builder()
                 .put("currentPage", iPage.getCurrent())
