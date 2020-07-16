@@ -105,3 +105,12 @@
     * [`scope`]()(可选)：用户说明 commit 的影响范围，比如数据库层/控制层/视图层等等，是项目不同而不同。
     * [`subject`]()(必须)：commit简短描述，不可超过50个字符。
 3. 工具推荐：`commitizen` 是一个撰写合格 Commit message 的工具(依照 AngularJS 提交的规范)
+4. 自定义spring boot 启动banner地址：
+    ```text
+    自定义spring boot的banner
+    ① http://patorjk.com/software/taag
+    ② http://www.network-science.de/ascii/
+    ```
+5. 修改`spring boot`的`banner`步骤：
+    * 在 `resources` 目录下，新建一个文件 banner.txt ；即可
+    * 附加：可以在启动类中加入启动图标字符即可。
