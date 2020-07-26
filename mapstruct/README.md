@@ -76,9 +76,57 @@ public interface StudentConverter {
 ```
 
 ### 4.maven 编译
-`mvn compiler` 会得到一个`StudentConverter`的实现类。
+`mvn compiler` 会得到一个`StudentConverter`的实现类。**尽量保证编译无警告/错误**
 
+### 5.编写测试类 `StudentConverterTest.java`
+```java
+package com.study.module.mapstruct.service;
 
+import com.study.module.mapstruct.dao.StudentDao;
+import com.study.module.mapstruct.dto.StudentDTO;
+import com.study.module.mapstruct.entity.Student;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.annotation.Resource;
+
+/**
+ * @author Administrator
+ * @date 2020/7/26 上午 10:30
+ */
+@SpringBootTest
+class StudentConverterTest {
+    @Resource
+    private StudentDao studentDao;
+
+    @Test
+    void demain2DTO() {
+        Student student = Student.builder()
+                .stuId(1)
+                .stuName("Drew")
+                .stuAge(12)
+                .stuSex("female")
+                .build();
+        StudentDTO studentDTO = StudentConverter.INSTANCE.demain2DTO(student);
+        System.out.println(studentDTO);
+    }
+
+    @Test
+    void toStudentDTO() {
+        Student student = studentDao.queryById(2);
+        System.out.println(StudentConverter.INSTANCE.demain2DTO(student));
+    }
+}
+```
+⚠注意：查看`pom.xml`文件是否有 junit测试依赖：如无可加入以下依赖：
+```xml
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-launcher</artifactId>
+    <version>1.6.2</version>
+    <scope>test</scope>
+</dependency>
+```
 
 
 ### 附录
