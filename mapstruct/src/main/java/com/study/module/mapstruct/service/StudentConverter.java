@@ -7,6 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * @author Administrator
  * @date 2020/7/26 上午 10:24
@@ -22,5 +24,7 @@ public interface StudentConverter {
             @Mapping(source = "stuSex", target = "sex")
     })
     StudentDTO demain2DTO(Student student);
+
+    List<StudentDTO> domain2dto(List<Student> studentDTOs);
 
 }

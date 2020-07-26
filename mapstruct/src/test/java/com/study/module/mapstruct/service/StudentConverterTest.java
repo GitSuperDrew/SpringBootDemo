@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Administrator
@@ -33,5 +35,14 @@ class StudentConverterTest {
     void toStudentDTO() {
         Student student = studentDao.queryById(2);
         System.out.println(StudentConverter.INSTANCE.demain2DTO(student));
+    }
+
+    @Test
+    void toStuDtoList() {
+        Student student1 = studentDao.queryById(2);
+        Student student2 = studentDao.queryById(3);
+        List<Student> students = Arrays.asList(student1, student2);
+        List<StudentDTO> studentDTOS = StudentConverter.INSTANCE.domain2dto(students);
+        System.out.println(studentDTOS);
     }
 }
