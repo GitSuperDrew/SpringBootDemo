@@ -1,6 +1,9 @@
 package com.study.module.mapstruct.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -11,6 +14,9 @@ import java.io.Serializable;
  * @since 2020-07-26 08:53:12
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student implements Serializable {
     private static final long serialVersionUID = 665444367804476552L;
     /**

@@ -1,7 +1,7 @@
 package com.study.module.mapstruct.service.impl;
 
-import com.study.module.mapstruct.entity.Student;
 import com.study.module.mapstruct.dao.StudentDao;
+import com.study.module.mapstruct.entity.Student;
 import com.study.module.mapstruct.service.StudentService;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
