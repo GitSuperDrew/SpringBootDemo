@@ -1,4 +1,4 @@
-package com.study.module.mapstruct.service;
+package com.study.module.mapstruct.converter;
 
 import com.study.module.mapstruct.dto.StudentDTO;
 import com.study.module.mapstruct.entity.Student;

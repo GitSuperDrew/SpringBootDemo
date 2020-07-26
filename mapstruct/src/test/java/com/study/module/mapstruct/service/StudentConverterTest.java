@@ -1,5 +1,6 @@
 package com.study.module.mapstruct.service;
 
+import com.study.module.mapstruct.converter.StudentConverter;
 import com.study.module.mapstruct.dao.StudentDao;
 import com.study.module.mapstruct.dto.StudentDTO;
 import com.study.module.mapstruct.entity.Student;

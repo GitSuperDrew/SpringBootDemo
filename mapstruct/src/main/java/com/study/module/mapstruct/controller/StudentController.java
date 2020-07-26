@@ -2,7 +2,7 @@ package com.study.module.mapstruct.controller;
 
 import com.study.module.mapstruct.dto.StudentDTO;
 import com.study.module.mapstruct.entity.Student;
-import com.study.module.mapstruct.service.StudentConverter;
+import com.study.module.mapstruct.converter.StudentConverter;
 import com.study.module.mapstruct.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
