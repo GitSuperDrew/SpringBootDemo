@@ -37,7 +37,7 @@ public class LoginCheck {
     @GetMapping("/images/imageCode")
     public String imageCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
         OutputStream os = response.getOutputStream();
-        Map<String, Object> map = ImageCode.getImageCode(85, -1,6, os);
+        Map<String, Object> map = ImageCode.getImageCode(85, -1, 6, os);
         String simpleCaptcha = "simpleCaptcha";
         request.getSession().setAttribute(simpleCaptcha, map.get("strEnsure").toString().toLowerCase());
         request.getSession().setAttribute("codeTime", System.currentTimeMillis());

@@ -32,7 +32,7 @@ public class MybatisPlusConfig {
                 // 如果你想自定义做点什么，可以重写父类方法像这样子
                 if ("student".equals(delete.getTable().getName())) {
                     // 自定义跳过某个表，其他关联表可以调用 delete.getTables() 判断
-                    return ;
+                    return;
                 }
                 super.processDelete(delete);
             }
