@@ -6,13 +6,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.jiangfeixiang.mpdemo.springbootmp.entity.Student;
 import com.jiangfeixiang.mpdemo.springbootmp.service.IStudentService;
 import com.jiangfeixiang.mpdemo.springbootmp.util.ExcelUtilPlus;
+import com.jiangfeixiang.mpdemo.springbootmp.util.ExcelUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,6 +123,30 @@ public class StudentController {
             Map<String, String> headerMap = ImmutableMap.of("stuId", "学生编号", "stuName", "学生姓名", "stuAge", "学生年龄",
                     "stuSex", "学生性别", "deleted", "数据有效性：0无效，1有效");
             ExcelUtilPlus.beanExport(UUID.fastUUID().toString(), students, headerMap);
+            return "导出成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "导出失败";
+        }
+    }
+
+    /**
+     * 基于Controller的导出
+     *
+     * @param response 回显
+     * @return 是否导入成功
+     */
+    @GetMapping(value = "/exportStudent")
+    public String exportStudent(HttpServletResponse response) {
+        try {
+            List<Student> students = iStudentService.list();
+            Map<String, String> headerMap = ImmutableMap.of("stuId", "学生编号", "stuName", "学生姓名", "stuAge", "学生年龄",
+                    "stuSex", "学生性别", "deleted", "数据有效性：1无效，0有效");
+            String[] columnNames = Lists.newArrayList(headerMap.keySet()).toArray(new String[]{});
+            //new String[]{"stuId", "stuName", "stuAge", "stuSex", "deleted"};
+            String[] alias = Lists.newArrayList(headerMap.values()).toArray(new String[]{});
+            //new String[]{"学生编号", "学生姓名", "学生年龄", "学生性别", "数据有效性：1无效，0有效"};
+            ExcelUtils.export(response, UUID.fastUUID().toString(), students, columnNames, alias);
             return "导出成功";
         } catch (Exception e) {
             e.printStackTrace();
