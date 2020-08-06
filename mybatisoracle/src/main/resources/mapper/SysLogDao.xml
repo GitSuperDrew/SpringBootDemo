@@ -17,7 +17,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="SysLogMap">
         select
-          ID, USER_ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, GMT_CREATE
+        ID, USER_ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, GMT_CREATE
         from ZHONGZERO.SYS_LOG
         where ID = #{id}
     </select>
@@ -25,7 +25,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SysLogMap">
         select
-          ID, USER_ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, GMT_CREATE
+        ID, USER_ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, GMT_CREATE
         from ZHONGZERO.SYS_LOG
         limit #{offset}, #{limit}
     </select>
@@ -33,7 +33,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="SysLogMap">
         select
-          ID, USER_ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, GMT_CREATE
+        ID, USER_ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, GMT_CREATE
         from ZHONGZERO.SYS_LOG
         <where>
             <if test="id != null">

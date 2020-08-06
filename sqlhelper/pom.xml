@@ -46,17 +46,17 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <!--sqlhelper-->
-<!--        <dependency>-->
-<!--            <groupId>com.github.fangjinuo.sqlhelper</groupId>-->
-<!--            <artifactId>sqlhelper-mybatisplus-spring-boot-starter</artifactId>-->
-<!--            <version>${sqlhelper.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.fangjinuo.sqlhelper</groupId>-->
+        <!--            <artifactId>sqlhelper-mybatisplus-spring-boot-starter</artifactId>-->
+        <!--            <version>${sqlhelper.version}</version>-->
+        <!--        </dependency>-->
         <!--mybatis:spring boot-->
-<!--        <dependency>-->
-<!--            <groupId>com.github.fangjinuo.easyjson</groupId>-->
-<!--            <artifactId>easyjson-core</artifactId>-->
-<!--            <version>2.0.5</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.fangjinuo.easyjson</groupId>-->
+        <!--            <artifactId>easyjson-core</artifactId>-->
+        <!--            <version>2.0.5</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>

@@ -18,13 +18,14 @@ public class DemoController {
 
     /**
      * URL: http://localhost:8080/demo/index
+     *
      * @param model
      * @return
      */
-    @ApiOperation(value = "访问录入",notes = "请求地址为： http://localhost:8080/demo/index")
+    @ApiOperation(value = "访问录入", notes = "请求地址为： http://localhost:8080/demo/index")
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("name","Drew");
+        model.addAttribute("name", "Drew");
         return "index";
     }
 }

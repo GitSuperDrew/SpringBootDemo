@@ -14,106 +14,106 @@ import java.io.Serializable;
 public class Salary implements Serializable {
     private static final long serialVersionUID = -11008172794921765L;
     /**
-    * 编号
-    */
+     * 编号
+     */
     private String id;
     /**
-    * 流程实例ID
-    */
+     * 流程实例ID
+     */
     private String procInsId;
     /**
-    * 变动用户
-    */
+     * 变动用户
+     */
     private String userId;
     /**
-    * 归属部门
-    */
+     * 归属部门
+     */
     private String officeId;
     /**
-    * 岗位
-    */
+     * 岗位
+     */
     private String post;
     /**
-    * 性别
-    */
+     * 性别
+     */
     private String age;
     /**
-    * 学历
-    */
+     * 学历
+     */
     private String edu;
     /**
-    * 调整原因
-    */
+     * 调整原因
+     */
     private String content;
     /**
-    * 现行标准 薪酬档级
-    */
+     * 现行标准 薪酬档级
+     */
     private String olda;
     /**
-    * 现行标准 月工资额
-    */
+     * 现行标准 月工资额
+     */
     private String oldb;
     /**
-    * 现行标准 年薪总额
-    */
+     * 现行标准 年薪总额
+     */
     private String oldc;
     /**
-    * 调整后标准 薪酬档级
-    */
+     * 调整后标准 薪酬档级
+     */
     private String newa;
     /**
-    * 调整后标准 月工资额
-    */
+     * 调整后标准 月工资额
+     */
     private String newb;
     /**
-    * 调整后标准 年薪总额
-    */
+     * 调整后标准 年薪总额
+     */
     private String newc;
     /**
-    * 月增资
-    */
+     * 月增资
+     */
     private String addNum;
     /**
-    * 执行时间
-    */
+     * 执行时间
+     */
     private String exeDate;
     /**
-    * 人力资源部门意见
-    */
+     * 人力资源部门意见
+     */
     private String hrText;
     /**
-    * 分管领导意见
-    */
+     * 分管领导意见
+     */
     private String leadText;
     /**
-    * 集团主要领导意见
-    */
+     * 集团主要领导意见
+     */
     private String mainLeadText;
     /**
-    * 创建者
-    */
+     * 创建者
+     */
     private String createBy;
     /**
-    * 创建时间
-    */
+     * 创建时间
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
     /**
-    * 更新者
-    */
+     * 更新者
+     */
     private String updateBy;
     /**
-    * 更新时间
-    */
+     * 更新时间
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateDate;
     /**
-    * 备注信息
-    */
+     * 备注信息
+     */
     private String remarks;
     /**
-    * 删除标记
-    */
+     * 删除标记
+     */
     private String delFlag;
 
 

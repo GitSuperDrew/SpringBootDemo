@@ -15,7 +15,7 @@ import java.io.InputStream;
  * @date 2020/5/20 上午 9:37
  */
 @Component
-public class MyFallbackProvider implements ZuulFallbackProvider{
+public class MyFallbackProvider implements ZuulFallbackProvider {
 
     @Override
     public String getRoute() {

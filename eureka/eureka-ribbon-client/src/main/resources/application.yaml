@@ -9,7 +9,7 @@ eureka:
       defualtZone: http://localhost:8761/eureka/
 stores:
   ribbon:
-      listOfServers: example.com,google.com
+    listOfServers: example.com,google.com
 ribbon:
   eureka:
     enabled: false

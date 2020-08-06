@@ -12,13 +12,13 @@ spring:
       server:
         jdbc:
           sql: SELECT key1, value1 from config_properties where APPLICATION=? and PROFILE=? and LABEL=?
-#        git:
-#          uri: https://github.com/GitSuperDrew/SpringBootDemo  # 远程的clone的地址
-#          search-paths: tree/master/eureka/config-server
-#          username: GitSuperDrew  # Git 仓库的登录用户名
-#          password:   # Git 仓库的登录密码（公开的仓库，所以无需要密码）
-#        native:
-#          search-locations: classpath:/shared
+  #        git:
+  #          uri: https://github.com/GitSuperDrew/SpringBootDemo  # 远程的clone的地址
+  #          search-paths: tree/master/eureka/config-server
+  #          username: GitSuperDrew  # Git 仓库的登录用户名
+  #          password:   # Git 仓库的登录密码（公开的仓库，所以无需要密码）
+  #        native:
+  #          search-locations: classpath:/shared
   profiles:
     active: jdbc
   application:

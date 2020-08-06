@@ -30,7 +30,7 @@ public class MpdemoApplicationTests {
         // junit 断言测试（如果，出现student为null的情况，将阻断程序继续向下执行，并将message返回在控制台）
         Assert.assertNotNull("not find", student);
         System.out.println("student name is : " + student.getStuAge());
-        List<Integer> nums = Arrays.asList(1,2,2,3,4,5,6,8,13,10,14);
+        List<Integer> nums = Arrays.asList(1, 2, 2, 3, 4, 5, 6, 8, 13, 10, 14);
     }
 
 }

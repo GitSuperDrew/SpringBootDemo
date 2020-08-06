@@ -33,7 +33,8 @@
     <!--查询单个-->
     <select id="queryById" resultMap="SalaryMap">
         select
-          ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
+        ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM,
+        EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
         from SALARY
         where ID = #{id}
     </select>
@@ -41,7 +42,8 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SalaryMap">
         select
-          ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
+        ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM,
+        EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
         from SALARY
         limit #{offset}, #{limit}
     </select>
@@ -49,7 +51,8 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="SalaryMap">
         select
-          ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
+        ID, PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM,
+        EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG
         from SALARY
         <where>
             <if test="id != null and id != ''">
@@ -132,8 +135,12 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into SALARY(PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC, ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS, DEL_FLAG)
-        values (#{procInsId}, #{userId}, #{officeId}, #{post}, #{age}, #{edu}, #{content}, #{olda}, #{oldb}, #{oldc}, #{newa}, #{newb}, #{newc}, #{addNum}, #{exeDate}, #{hrText}, #{leadText}, #{mainLeadText}, #{createBy}, #{createDate}, #{updateBy}, #{updateDate}, #{remarks}, #{delFlag})
+        insert into SALARY(PROC_INS_ID, USER_ID, OFFICE_ID, POST, AGE, EDU, CONTENT, OLDA, OLDB, OLDC, NEWA, NEWB, NEWC,
+        ADD_NUM, EXE_DATE, HR_TEXT, LEAD_TEXT, MAIN_LEAD_TEXT, CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, REMARKS,
+        DEL_FLAG)
+        values (#{procInsId}, #{userId}, #{officeId}, #{post}, #{age}, #{edu}, #{content}, #{olda}, #{oldb}, #{oldc},
+        #{newa}, #{newb}, #{newc}, #{addNum}, #{exeDate}, #{hrText}, #{leadText}, #{mainLeadText}, #{createBy},
+        #{createDate}, #{updateBy}, #{updateDate}, #{remarks}, #{delFlag})
     </insert>
 
     <!--通过主键修改数据-->

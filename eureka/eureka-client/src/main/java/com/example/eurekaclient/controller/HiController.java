@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/hi")
 public class HiController {
     @Value(value = "${server.port}")  // 从配置文件中读取配置的端口信息
-    String port;
+            String port;
 
     /**
      * URL：http://localhost:8762/hi/hi?name=drew
      *
      * @param name
-     * @return  "hi drew, I am from port:8762"
+     * @return "hi drew, I am from port:8762"
      */
     @GetMapping("/hi")
     public String home(@RequestParam String name) {

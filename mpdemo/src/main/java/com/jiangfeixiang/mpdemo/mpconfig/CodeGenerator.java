@@ -64,7 +64,7 @@ public class CodeGenerator {
         //自定义数据类型转换
         dataSourceConfig.setTypeConvert(new MySqlTypeConvert());
         dataSourceConfig
-            .setUrl("jdbc:mysql://localhost:3306/mydb?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false");
+                .setUrl("jdbc:mysql://localhost:3306/mydb?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false");
         dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
         dataSourceConfig.setUsername("root");
         dataSourceConfig.setPassword("root");
@@ -81,7 +81,8 @@ public class CodeGenerator {
          * 自定义配置
          */
         InjectionConfig cfg = new InjectionConfig() {
-            @Override public void initMap() {
+            @Override
+            public void initMap() {
                 // to do nothing
             }
         };
@@ -98,10 +99,11 @@ public class CodeGenerator {
         List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
         focList.add(new FileOutConfig(templatePath) {
-            @Override public String outputFile(TableInfo tableInfo) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + "/src/main/resources/mapper/" + pc.getModuleName() + "/" + tableInfo
-                    .getEntityName() + "Mapper" + StringPool.DOT_XML;
+                        .getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
         cfg.setFileOutConfigList(focList);

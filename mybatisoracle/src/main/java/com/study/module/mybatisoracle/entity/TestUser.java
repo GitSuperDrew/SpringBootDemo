@@ -10,11 +10,11 @@ import java.io.Serializable;
  */
 public class TestUser implements Serializable {
     private static final long serialVersionUID = -85584612772481156L;
-    
+
     private Double id;
-    
+
     private String name;
-    
+
     private String phone;
 
 

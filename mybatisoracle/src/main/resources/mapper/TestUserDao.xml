@@ -11,7 +11,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="TestUserMap">
         select
-          ID, NAME, PHONE
+        ID, NAME, PHONE
         from ZHONGZERO.TEST_USER
         where ID = #{id}
     </select>
@@ -19,7 +19,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="TestUserMap">
         select
-          ID, NAME, PHONE
+        ID, NAME, PHONE
         from ZHONGZERO.TEST_USER
         limit #{offset}, #{limit}
     </select>
@@ -27,7 +27,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="TestUserMap">
         select
-          ID, NAME, PHONE
+        ID, NAME, PHONE
         from ZHONGZERO.TEST_USER
         <where>
             <if test="id != null">
@@ -49,10 +49,10 @@
         </selectKey>
         insert into ZHONGZERO.TEST_USER(ID,NAME, PHONE)
         values (
-                #{id,jdbcType=DOUBLE,javaType=Double},
-                #{name},
-                #{phone}
-            )
+        #{id,jdbcType=DOUBLE,javaType=Double},
+        #{name},
+        #{phone}
+        )
     </insert>
 
     <!--通过主键修改数据-->

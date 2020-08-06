@@ -33,7 +33,7 @@ public class TestUserController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.GET)
-    public TestUser save(){
+    public TestUser save() {
         TestUser testUser = new TestUser();
         testUser.setName("JD");
         testUser.setPhone("18797730122");
