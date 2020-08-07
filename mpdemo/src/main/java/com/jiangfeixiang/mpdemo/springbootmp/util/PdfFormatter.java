@@ -15,20 +15,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * PDF填充数据（读取pdf模板，并注入数据）
+ *
  * @author Administrator
  * @date 2020/8/6 下午 5:18
  */
 @Component
 public class PdfFormatter {
     public static class PdfFormater {
-        //pdf模板和结果路径相关设置
+        /**
+         * pdf模板和结果路径相关设置
+         */
         private String templateDir;
 
         private String basePath;
 
         private String templateFileFo;
 
-        //需填充数据
+        /**
+         * 需填充数据
+         */
         private Map dataMap;
 
         private String barcodeString;
@@ -36,23 +42,20 @@ public class PdfFormatter {
         private String tempFileName;
 
         private String resultFileName;
-        //动态数据
+        /**
+         * 动态数据
+         */
         private List dynData;
 
         /**
          * 构造器，生成PDF引擎实例，并引入相应模板文件XXX.FO、路径和报表数据HashMap
          *
-         * @param templateDir
-         *            模板文件所在目录
-         * @param basePath
-         *            模板文件工作副本及结果PDF文件所在工作目录
-         * @param templateFileFo
-         *            模板文件名，推荐格式为“XXXTemplate.FO”， 其文件由word模板文档在设计时转换而成
-         * @param dataMap
-         *            对应模板的数据HashMap，由调用该打印引擎的里程根据模板格式和约定进行准备
+         * @param templateDir    模板文件所在目录
+         * @param basePath       模板文件工作副本及结果PDF文件所在工作目录
+         * @param templateFileFo 模板文件名，推荐格式为“XXXTemplate.FO”， 其文件由word模板文档在设计时转换而成
+         * @param dataMap        对应模板的数据HashMap，由调用该打印引擎的里程根据模板格式和约定进行准备
          */
-        public PdfFormater(String templateDir, String basePath,
-                           String templateFileFo, Map dataMap) {
+        public PdfFormater(String templateDir, String basePath, String templateFileFo, Map dataMap) {
             this.templateDir = templateDir;
             this.basePath = basePath;
             this.templateFileFo = templateFileFo;
@@ -63,9 +66,8 @@ public class PdfFormatter {
             // 需要根据不同的模板返回字体
             BaseFont bf = null;
             try {
-            /*bf = BaseFont.createFont("simsun.ttf",
-                    BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);*/
-                bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H",BaseFont.NOT_EMBEDDED);
+                // bf = BaseFont.createFont("simsun.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
             } catch (DocumentException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -97,7 +99,6 @@ public class PdfFormatter {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return basePath + "/" + resultFileName;
         }
 
@@ -112,18 +113,18 @@ public class PdfFormatter {
             }
             String key = "";
             Iterator ekey = dataMap.keySet().iterator();
-            Object obj = null ;
+            Object obj = null;
             while (ekey.hasNext()) {
                 key = ekey.next().toString();
                 try {
                     obj = dataMap.get(key);
-                    if(obj instanceof List)    {
+                    if (obj instanceof List) {
                         //map中放的是list，为动态字段
-                        dynData = (List)obj;
+                        dynData = (List) obj;
                         transformDynTable(form);
-                    }else{
+                    } else {
                         //非空放入
-                        if( dataMap.get(key) != null) {
+                        if (dataMap.get(key) != null) {
                             form.setField(key, dataMap.get(key).toString());
                         }
                     }
@@ -137,6 +138,7 @@ public class PdfFormatter {
 
         /**
          * 动态table的填充
+         *
          * @param form
          */
         private void transformDynTable(AcroFields form) {
@@ -180,11 +182,9 @@ public class PdfFormatter {
                 Rectangle pageSize = reader.getPageSize(1);
                 float width = pageSize.getWidth();
                 //float height = pageSize.getHeight();
-            /*BaseFont bf = BaseFont.createFont("simsun.ttf",
-                    BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);*/
-                BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H",BaseFont.NOT_EMBEDDED);
-            /*BaseFont bfComic = BaseFont.createFont("simhei.ttf",
-                    BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);*/
+                // BaseFont bf = BaseFont.createFont("simsun.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+                // BaseFont bfComic = BaseFont.createFont("simhei.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 PdfContentByte over;
                 int total = reader.getNumberOfPages() + 1;
                 for (int i = 1; i < total; i++) {
