@@ -21,34 +21,25 @@ import java.util.List;
 public class PDFUtil {
 
     public static void main(String[] args) throws Exception {
+        // C:/Users/Administrator/Desktop
         String outFilePath = "C:/Users/Administrator/Desktop/" + UUID.fastUUID().toString() + ".pdf";
+        // 1.图片水印
         String imageFilePath = "C:\\Users\\Administrator\\Pictures\\2.png";
-        imageWaterMark(createPdf(outFilePath, imageFilePath), imageFilePath);
+         imageWaterMark(createPdf(outFilePath, imageFilePath), imageFilePath);
         // imageWaterMark(createPDF(outFilePath, imageFilePath), imageFilePath);
+        // 2.文字水印(效果不怎么的)
+        // String fileAddr = createPdf(outFilePath, imageFilePath);
+        // stringWaterMark(fileAddr, "博纳智慧园缴费通知单");
     }
 
     /**
-     * 设置页面横向
+     * 生成缴费通知单
      *
-     * @param document 文档对象
+     * @param filePath  导出文件的路径
+     * @param imagePath 水印图片的地址
+     * @return 文件存放的路径
+     * @throws Exception
      */
-    public static void setPageSizeHen(Document document) {
-        Rectangle rect = new Rectangle(PageSize.A4.getHeight(), PageSize.A4.getWidth());
-        rect.rotate();
-        document.setPageSize(rect);
-    }
-
-    /**
-     * 设置页面竖向
-     *
-     * @param document 文档对象
-     */
-    public static void setPageSizeShu(Document document) {
-        Rectangle rect = new Rectangle(PageSize.A4.getWidth(), PageSize.A4.getHeight());
-        rect.rotate();
-        document.setPageSize(rect);
-    }
-
     public static String createPdf(String filePath, String imagePath) throws Exception {
         //一、设置纸张
         Rectangle rect = new Rectangle(PageSize.A4);
@@ -159,7 +150,7 @@ public class PDFUtil {
 
 
     /**
-     * 创建PDF文档
+     * 创建PDF文档（生成企业信用报告PDF文档）
      *
      * @param filePath  输出文件路劲 "C:/Users/Administrator/Desktop/"+ UUID.fastUUID().toString() +".pdf";
      * @param imagePath 手指图片 "C:\\Users\\Administrator\\Pictures\\1.jpg"
@@ -594,11 +585,11 @@ public class PDFUtil {
     }
 
     /**
-     * 创建单元格
+     * 创建单元格（填充数据在此接口中添加）
      *
-     * @param table
-     * @param row
-     * @param cols
+     * @param table 表格字段
+     * @param row   行数
+     * @param cols  列数
      * @return
      * @throws IOException
      * @throws DocumentException
@@ -733,6 +724,28 @@ public class PDFUtil {
     }
 
     /**
+     * 设置页面横向
+     *
+     * @param document 文档对象
+     */
+    public static void setPageSizeHen(Document document) {
+        Rectangle rect = new Rectangle(PageSize.A4.getHeight(), PageSize.A4.getWidth());
+        rect.rotate();
+        document.setPageSize(rect);
+    }
+
+    /**
+     * 设置页面竖向
+     *
+     * @param document 文档对象
+     */
+    public static void setPageSizeShu(Document document) {
+        Rectangle rect = new Rectangle(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+        rect.rotate();
+        document.setPageSize(rect);
+    }
+
+    /**
      * 设置左边距
      *
      * @param str
@@ -741,9 +754,9 @@ public class PDFUtil {
      */
     public static String leftPad(String str, int i) {
         int addSpaceNo = i - str.length();
-        String space = "";
+        StringBuilder space = new StringBuilder();
         for (int k = 0; k < addSpaceNo; k++) {
-            space = " " + space;
+            space.insert(0, " ");
         }
         String result = space + str;
         return result;
@@ -768,11 +781,11 @@ public class PDFUtil {
      * @return
      */
     public static String printBlank(int tmp) {
-        String space = "";
+        StringBuilder space = new StringBuilder();
         for (int m = 0; m < tmp; m++) {
-            space = space + " ";
+            space.append(" ");
         }
-        return space;
+        return space.toString();
     }
 
 }
