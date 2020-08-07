@@ -8,6 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +23,138 @@ public class PDFUtil {
     public static void main(String[] args) throws Exception {
         String outFilePath = "C:/Users/Administrator/Desktop/" + UUID.fastUUID().toString() + ".pdf";
         String imageFilePath = "C:\\Users\\Administrator\\Pictures\\2.png";
-        imageWaterMark(createPDF(outFilePath, imageFilePath), imageFilePath);
+        imageWaterMark(createPdf(outFilePath, imageFilePath), imageFilePath);
+        // imageWaterMark(createPDF(outFilePath, imageFilePath), imageFilePath);
+    }
+
+    /**
+     * 设置页面横向
+     *
+     * @param document 文档对象
+     */
+    public static void setPageSizeHen(Document document) {
+        Rectangle rect = new Rectangle(PageSize.A4.getHeight(), PageSize.A4.getWidth());
+        rect.rotate();
+        document.setPageSize(rect);
+    }
+
+    /**
+     * 设置页面竖向
+     *
+     * @param document 文档对象
+     */
+    public static void setPageSizeShu(Document document) {
+        Rectangle rect = new Rectangle(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+        rect.rotate();
+        document.setPageSize(rect);
+    }
+
+    public static String createPdf(String filePath, String imagePath) throws Exception {
+        //一、设置纸张
+        Rectangle rect = new Rectangle(PageSize.A4);
+        rect.setBackgroundColor(BaseColor.WHITE);// 设置背景色为白色
+        rect.setBorderColor(BaseColor.DARK_GRAY);// 设置border浅灰色
+        //二、创建文档实例（并设置文档信息）
+        Document doc = new Document(rect);
+        setPageSizeHen(doc);
+        doc.addTitle("标题");
+        doc.addAuthor("作者：Bn");
+        doc.addCreationDate();
+        //附加1：添加中文字体
+        BaseFont bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+        //附近2：设置字体样式
+        Font textFont = new Font(bfChinese, 11, Font.NORMAL); //正常
+        Font redTextFont = new Font(bfChinese, 11, Font.NORMAL); //正常,红色
+        redTextFont.setColor(BaseColor.RED);
+        Font boldFont = new Font(bfChinese, 11, Font.BOLD); //加粗
+        Font redBoldFont = new Font(bfChinese, 11, Font.BOLD); //加粗,红色
+        redBoldFont.setColor(BaseColor.RED);
+        Font firsetTitleFont = new Font(bfChinese, 22, Font.BOLD); //一级标题
+        Font secondTitleFont = new Font(bfChinese, 15, Font.BOLD); //二级标题
+        Font underlineFont = new Font(bfChinese, 11, Font.UNDERLINE); //下划线斜体
+
+        //手指图片
+        Image hand = Image.getInstance(imagePath);
+        //创建输出流
+        PdfWriter pdf = PdfWriter.getInstance(doc, new FileOutputStream(new File(filePath)));
+        //对文件进行安全性限定设置(参数一：设置usePassword为123；参数二：设置ownerPassword为1234；参数三：设置user的权限可以复制、可以打印；参数四：设置加密类型       pdf
+        //pdf.setEncryption(new byte[]{'1', '2', '3'}, new byte[]{'1', '2', '3', '4'}, PdfWriter.ALLOW_DEGRADED_PRINTING, PdfWriter.STANDARD_ENCRYPTION_128);
+
+        doc.open();
+        doc.newPage();
+
+        //段落
+        Paragraph p1 = new Paragraph();
+        //短语
+        Phrase ph1 = new Phrase();
+        //块
+        Chunk c1 = new Chunk("NO.", redTextFont);
+        Chunk c11 = new Chunk("<<通知单编号ID>>", redTextFont);
+        //将块添加到短语
+        ph1.add(c1);
+        ph1.add(c11);
+        //将短语添加到段落
+        p1.add(ph1);
+        //设置内容靠右
+        p1.setAlignment(Element.ALIGN_RIGHT);
+        //将段落添加到短语
+        doc.add(p1);
+
+        p1 = new Paragraph("通知单据", firsetTitleFont);
+        p1.setLeading(50);
+        p1.setAlignment(Element.ALIGN_CENTER);
+        p1.setSpacingAfter(15);
+        doc.add(p1);
+
+        Paragraph p2 = new Paragraph();
+        Phrase ph2 = new Phrase();
+        Chunk c21_1 = new Chunk("住户姓名：", textFont);
+        Chunk c21_2 = new Chunk("张三", textFont);
+        Chunk c22_1 = new Chunk(leftPad("房号：", 45), textFont);
+        Chunk c22_2 = new Chunk("测试12345-1单元-3007", textFont);
+        Chunk c23_1 = new Chunk(leftPad("手机号：", 45), textFont);
+        Chunk c23_2 = new Chunk("18797765243", textFont);
+        ph2.add(c21_1);
+        ph2.add(c21_2);
+        ph2.add(c22_1);
+        ph2.add(c22_2);
+        ph2.add(c23_1);
+        ph2.add(c23_2);
+        p2.add(ph2);
+        p2.setAlignment(Element.ALIGN_CENTER);
+        p2.setSpacingAfter(15);
+        doc.add(p2);
+
+        // 二、添加一个表格 TABLE
+        PdfPTable table = new PdfPTable(10);
+        //设置列宽
+        // table.setTotalWidth(new float[]{55, 55, 55, 55, 55, 55, 55, 55, 55, 55}); //竖向打印列宽设置
+        table.setTotalWidth(new float[]{100, 150, 100, 100, 55, 55, 55, 55, 55, 55});// 横向打印列宽设置
+        //锁定列宽
+        table.setLockedWidth(true);
+        //指定表头名
+        table = createCell(table, new String[]{"收费项目", "类别", "开始时间", "结束时间", "数量", "单价", "金额",
+                "优惠", "滞纳金", "应收合计"}, 5, 10);
+        doc.add(table);
+
+        // 三、合计和打印日期
+        p1 = new Paragraph();
+        p1.setLeading(20);
+        p1.setAlignment(Element.ALIGN_RIGHT);
+        ph1 = new Phrase();
+        Chunk c3 = new Chunk("合计：", boldFont);
+        Chunk c33 = new Chunk("2843.10", textFont);
+        Chunk c4 = new Chunk(leftPad("打印日期：", 10), boldFont);
+        Chunk c44 = new Chunk(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), textFont);
+        ph1.add(c3);
+        ph1.add(c33);
+        ph1.add(c4);
+        ph1.add(c44);
+        p1.add(ph1);
+        doc.add(p1);
+
+        doc.close();
+        return filePath;
     }
 
 
