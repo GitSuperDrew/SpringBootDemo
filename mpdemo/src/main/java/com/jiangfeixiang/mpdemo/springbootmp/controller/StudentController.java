@@ -1,6 +1,5 @@
 package com.jiangfeixiang.mpdemo.springbootmp.controller;
 
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -12,18 +11,12 @@ import com.jiangfeixiang.mpdemo.springbootmp.entity.Student;
 import com.jiangfeixiang.mpdemo.springbootmp.service.IStudentService;
 import com.jiangfeixiang.mpdemo.springbootmp.util.ExcelUtilPlus;
 import com.jiangfeixiang.mpdemo.springbootmp.util.ExcelUtils;
-import com.jiangfeixiang.mpdemo.springbootmp.util.PdfFormatter;
+import com.jiangfeixiang.mpdemo.springbootmp.vo.StudentVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,25 +68,26 @@ public class StudentController {
         Page<Student> page = new Page(currentPage, pageCount);
         QueryWrapper<Student> queryWrapper = new QueryWrapper<Student>();
         if (StringUtils.isNotBlank(search)) {
-            Student student = JSONUtil.toBean(search, Student.class);
-            if (student.getStuId() != null) {
-                queryWrapper.eq("stu_id", student.getStuId());
+            StudentVO studentVO = JSONUtil.toBean(search, StudentVO.class);
+            if (studentVO.getStuId() != null) {
+                queryWrapper.eq("stu_id", studentVO.getStuId());
             }
-            if (StringUtils.isNotBlank(student.getStuName())) {
-                queryWrapper.like("stu_name", student.getStuName());
+            if (StringUtils.isNotBlank(studentVO.getStuName())) {
+                queryWrapper.like("stu_name", studentVO.getStuName());
             }
-            if (StringUtils.isNotBlank(student.getStuSex())) {
-                queryWrapper.eq("stu_sex", student.getStuSex());
+            if (StringUtils.isNotBlank(studentVO.getStuSex())) {
+                queryWrapper.eq("stu_sex", studentVO.getStuSex());
             }
-            if (student.getStuAge() != null) {
-                queryWrapper.eq("stu_age", student.getStuAge());
+            if (studentVO.getStuAge() != null) {
+                queryWrapper.eq("stu_age", studentVO.getStuAge());
             }
         }
-        // TODO 此处的 orderBy 是前端传递过来的（例如按照学生年龄排序，传入的值为 stuAge，而方法 page.setDesc(var) var需要的是数据库字段的值，所以需要一个VO或map将其转化为数据库字段）
+        // 此处的 orderBy 是前端传递过来的（例如按照学生年龄排序，传入的值为 stuAge，而方法 page.setDesc(var) var需要的是数据库字段的值，所以需要一个VO或map将其转化为数据库字段）
+        String orderColumns = StudentVO.toSqlCols().getOrDefault(orderBy, "stu_id");
         if (isDesc) {
-            page.setDesc(orderBy);
+            page.setDesc(orderColumns);
         } else {
-            page.setAsc(orderBy);
+            page.setAsc(orderColumns);
         }
         IPage<Student> iPage = iStudentService.page(page, queryWrapper);
         Map<String, Object> result = new HashMap<String, Object>();
