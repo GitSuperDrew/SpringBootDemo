@@ -13,3 +13,10 @@
     search:  {"stuId":2}
     ```
 2. 可能是由于实现了那个 `IService` 相关的接口，导致的，所以，尽量借鉴兄弟项目`SpringBootDemo/mybatisplus`的相关操作
+
+# 全局异常处理
+> Spring Boot 实现统一异常处理的方法主要有以下两种：
+> 1. 第一种：使用 `@ControllerAdvice` 和 `@ExceptionHandler` 注解
+> 2. 第二种：使用 `ErrorController` 类来实现。
+
+见全局异常捕获类（`GlobalExceptionHandler.java` 以及测试相关 controller `StudentController/pageAllByNameLike` 接口）

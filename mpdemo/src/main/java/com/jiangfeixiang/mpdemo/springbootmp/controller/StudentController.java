@@ -57,6 +57,8 @@ public class StudentController {
 
     /**
      * 分页查询：根据名称模糊匹配
+     * 测试1：(用来测试全局异常，令 stuId 改为 id 排序字段)
+     * URL：http://localhost:8888/springbootmp/student/pageAllByNameLike?currentPage=1&pageCount=3&orderBy=id&isDesc=true
      *
      * @param currentPage 当前页码
      * @param pageCount   当前页显示条目数
@@ -87,6 +89,7 @@ public class StudentController {
                 queryWrapper.eq("stu_age", student.getStuAge());
             }
         }
+        // TODO 此处的 orderBy 是前端传递过来的（例如按照学生年龄排序，传入的值为 stuAge，而方法 page.setDesc(var) var需要的是数据库字段的值，所以需要一个VO或map将其转化为数据库字段）
         if (isDesc) {
             page.setDesc(orderBy);
         } else {
@@ -159,91 +162,6 @@ public class StudentController {
             e.printStackTrace();
             return "导出失败";
         }
-    }
-
-    @GetMapping(value = "/print")
-    public void pdfPrint(@RequestParam(required = false, value = "templateName") String templateName,
-                         HttpServletRequest request,
-                         HttpServletResponse response
-//                         ,AgentPayDetailInfo agentForm
-    ) throws Exception {
-
-
-        //agentPayInfo  这个对象可以根据具体的需求换成你们自己的java对象，Text1-Text13，是pdf模板上空白处的表单的key值，通过该值可以用程序编辑pdf
-
-        //组装模板所需数据HashMap
-        HashMap<String, String> mapPDF = new HashMap<String, String>();
-        mapPDF.put("Text1", new Date().toString());//交易时间
-        mapPDF.put("Text2", "Drew");//付款方全称
-        mapPDF.put("Text4", "中国银行-普通用户-King");//账户名称
-        mapPDF.put("Text5", String.valueOf(233434987657865654L));//银行卡号
-        mapPDF.put("Text6", "中国银行");//开户行
-        mapPDF.put("Text3", "壹佰元整");//金额人民币大写  汉字
-        mapPDF.put("Text7", "100.00");////金额人民币小写  数字
-        mapPDF.put("Text8", "人名币");//账户类型
-        mapPDF.put("Text9", "银行卡");//交易类型
-        mapPDF.put("Text10", "");//用途
-        mapPDF.put("Text11", "备注信息");//备注
-        String receiptNumber = UUID.fastUUID().toString();
-        mapPDF.put("Text12", "电子回单编号：" + receiptNumber);//电子回单编号
-        mapPDF.put("Text13", String.valueOf(System.nanoTime()));//章子时间
-
-//        mapPDF.put("Text1", DateUtil.getDateFormatYH(agentPayInfo.getFinishDate()));//交易时间
-//        mapPDF.put("Text2", Constants.PAY_ONESELF_NAME);//付款方全称
-//        mapPDF.put("Text3", NumberToCN.number2CNMontrayUnit(agentPayInfo.getAmount()));//金额人民币大写  汉字
-//        mapPDF.put("Text4", agentPayInfo.getCardholder());//账户名称
-//        mapPDF.put("Text5", agentPayInfo.getBankCardNo());//银行卡号
-//        mapPDF.put("Text6", agentPayInfo.getBankName());//开户行
-//        mapPDF.put("Text7", agentPayInfo.getAmount().toString());////金额人民币小写  数字
-//        mapPDF.put("Text8", Constants.RMB);//账户类型
-//        mapPDF.put("Text9", Constants.PAY_CERTIFICATE_TYPE);//交易类型
-//        mapPDF.put("Text10", "");//用途
-//        mapPDF.put("Text11", Constants.PAY_CERTIFICATE_REMARK);//备注
-//        String receiptNumber = DateUtil.getFDate(agentPayInfo.getFinishDate()) + agentPayInfo.getOutOrderId() + agentPayInfo.getSerialNumber();
-//        mapPDF.put("Text12", "电子回单编号：" + receiptNumber);//电子回单编号
-//        mapPDF.put("Text13", DateUtil.getFormatDate(agentPayInfo.getFinishDate()));//章子时间
-
-        //生成pdf
-        InputStream pdfStream = this.print(templateName, mapPDF, request);
-
-        ServletOutputStream op = response.getOutputStream();
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "inline; filename=\""
-                + new String(receiptNumber.getBytes("gb18030"), "ISO8859-1") + ".pdf" + "\"");
-
-        int length = 0;
-        byte[] bytes = new byte[1024];
-        while ((pdfStream != null) && ((length = pdfStream.read(bytes)) != -1)) {
-            op.write(bytes, 0, length);
-        }
-        op.close();
-        response.flushBuffer();
-    }
-
-    /**
-     * 打印，以PDF为模板
-     *
-     * @param templateName String 模板名字
-     * @param map          模板数据HashMap
-     * @return InputStream
-     * @throws IOException
-     */
-    private InputStream print(String templateName, HashMap map, HttpServletRequest request) throws IOException {
-        InputStream is = null;
-        //服务器端PDF模板文件名
-        //String merchId = getCurrentUser().getMerchId();
-        String realPath = request.getSession().getServletContext().getRealPath("/");
-//        String web_info_URL = PropertyUtils.getValue("WEB_INFO_URL");
-//        String agentPayPath = PropertyUtils.getValue("PDF_PATH");
-//        String url = realPath + web_info_URL + agentPayPath;// pdf
-        String url = realPath;
-        String templatePath = url + "/model/";//模板路径
-        String serverPath = url + "/template/";//临时文件路径
-
-        PdfFormatter.PdfFormater pdf = new PdfFormatter.PdfFormater(templatePath, serverPath, templateName, map);
-        String PdfFilePath = pdf.doTransform();
-        is = new FileInputStream(PdfFilePath);
-        return is;
     }
 
     /**
