@@ -20,3 +20,7 @@
 > 2. 第二种：使用 `ErrorController` 类来实现。
 
 见全局异常捕获类（`GlobalExceptionHandler.java` 以及测试相关 controller `StudentController/pageAllByNameLike` 接口）
+
+# 二维码
+1. 见工具类 `com.jiangfeixiang.mpdemo.springbootmp.util.QRCodeUtil.java` .
+2. controller测试类：`com.jiangfeixiang.mpdemo.springbootmp.controller.QRCodeController.java` .
