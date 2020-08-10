@@ -1,6 +1,8 @@
 package com.jiangfeixiang.mpdemo.springbootmp.util;
 
 import cn.hutool.core.lang.UUID;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 代码中定制生成PDF工具类
@@ -25,7 +28,7 @@ public class PDFUtil {
         String outFilePath = "C:/Users/Administrator/Desktop/" + UUID.fastUUID().toString() + ".pdf";
         // 1.图片水印
         String imageFilePath = "C:\\Users\\Administrator\\Pictures\\2.png";
-         imageWaterMark(createPdf(outFilePath, imageFilePath), imageFilePath);
+        imageWaterMark(createPdf(outFilePath, imageFilePath), imageFilePath);
         // imageWaterMark(createPDF(outFilePath, imageFilePath), imageFilePath);
         // 2.文字水印(效果不怎么的)
         // String fileAddr = createPdf(outFilePath, imageFilePath);
@@ -124,8 +127,8 @@ public class PDFUtil {
         //锁定列宽
         table.setLockedWidth(true);
         //指定表头名
-        table = createCell(table, new String[]{"收费项目", "类别", "开始时间", "结束时间", "数量", "单价", "金额",
-                "优惠", "滞纳金", "应收合计"}, 5, 10);
+        String[] tableHeader = new String[]{"收费项目", "类别", "开始时间", "结束时间", "数量", "单价", "金额", "优惠", "滞纳金", "应收合计"};
+        table = createCell(table, tableHeader, 5, 10);
         doc.add(table);
 
         // 三、合计和打印日期
@@ -602,28 +605,112 @@ public class PDFUtil {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < cols; j++) {
                 PdfPCell cell = new PdfPCell();
-                if (i == 0 && title != null) {//设置表头
-                    cell = new PdfPCell(new Phrase(title[j], font)); //这样表头才能居中
+                //设置表头
+                if (i == 0 && title != null) {
+                    //这样表头才能居中
+                    cell = new PdfPCell(new Phrase(title[j], font));
                     if (table.getRows().size() == 0) {
                         cell.setBorderWidthTop(3);
                     }
+                } else {
+                    Phrase phi = new Phrase();
+                    //块(//正常)
+                    Font textFont = new Font(bfChinese, 11, Font.NORMAL);
+                    Chunk c11 = new Chunk("<<通知单编号ID>>", textFont);
+                    //将块添加到短语
+                    phi.add(c11);
+                    cell.setPhrase(phi);
                 }
-                if (row == 1 && cols == 1) { //只有一行一列
+                //只有一行一列
+                if (row == 1 && cols == 1) {
                     cell.setBorderWidthTop(3);
                 }
-                if (j == 0) {//设置左边的边框宽度
+                //设置左边的边框宽度
+                if (j == 0) {
                     cell.setBorderWidthLeft(3);
                 }
-                if (j == (cols - 1)) {//设置右边的边框宽度
+                //设置右边的边框宽度
+                if (j == (cols - 1)) {
                     cell.setBorderWidthRight(3);
                 }
-                if (i == (row - 1)) {//设置底部的边框宽度
+                //设置底部的边框宽度
+                if (i == (row - 1)) {
                     cell.setBorderWidthBottom(3);
                 }
-                cell.setMinimumHeight(40); //设置单元格高度
-                cell.setUseAscender(true); //设置可以居中
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER); //设置水平居中
-                cell.setVerticalAlignment(Element.ALIGN_MIDDLE); //设置垂直居中
+                //设置单元格高度
+                cell.setMinimumHeight(40);
+                //设置可以居中
+                cell.setUseAscender(true);
+                //设置水平居中
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                //设置垂直居中
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+                table.addCell(cell);
+            }
+        }
+        return table;
+    }
+
+    /**
+     * 对table填充数据（要求：title的数量和Map的数量保持一致） TODO 待定完善
+     *
+     * @param table     table框架
+     * @param title     table表头
+     * @param tableData table数据集
+     * @return PDF——TABLE数据表格
+     * @throws Exception
+     */
+    private static PdfPTable createCell2(PdfPTable table, String[] title, List<Map<String, Object>> tableData) throws Exception {
+        //添加中文字体
+        BaseFont bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+        Font font = new Font(bfChinese, 11, Font.BOLD), font_normal = new Font(bfChinese, 11, Font.NORMAL);
+        if (title == null || title.length == 0 || tableData == null || tableData.size() == 0) {
+            return table;
+        }
+        int row = tableData.size() + 1, cols = title.length;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < cols; j++) {
+                PdfPCell cell = new PdfPCell();
+                //设置表头
+                if (i == 0 && title != null) {
+                    //这样表头才能居中
+                    cell = new PdfPCell(new Phrase(title[j], font));
+                    if (table.getRows().size() == 0) {
+                        cell.setBorderWidthTop(3);
+                    }
+                } else {
+                    Phrase phi = new Phrase();
+                    //块
+                    Chunk c11 = new Chunk(tableData.get(0).get("perPrice").toString(), font_normal);
+                    //将块添加到短语
+                    phi.add(c11);
+                    cell.setPhrase(phi);
+                }
+                //只有一行一列
+                if (row == 1 && cols == 1) {
+                    cell.setBorderWidthTop(3);
+                }
+                //设置左边的边框宽度
+                if (j == 0) {
+                    cell.setBorderWidthLeft(3);
+                }
+                //设置右边的边框宽度
+                if (j == (cols - 1)) {
+                    cell.setBorderWidthRight(3);
+                }
+                //设置底部的边框宽度
+                if (i == (row - 1)) {
+                    cell.setBorderWidthBottom(3);
+                }
+                //设置单元格高度
+                cell.setMinimumHeight(40);
+                //设置可以居中
+                cell.setUseAscender(true);
+                //设置水平居中
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                //设置垂直居中
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
                 table.addCell(cell);
             }
@@ -760,18 +847,6 @@ public class PDFUtil {
         }
         String result = space + str;
         return result;
-    }
-
-    /**
-     * 设置模拟数据
-     *
-     * @param list
-     * @param num
-     */
-    public static void add(List<String> list, int num) {
-        for (int i = 0; i < num; i++) {
-            list.add("test" + i);
-        }
     }
 
     /**
