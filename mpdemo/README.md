@@ -29,3 +29,4 @@
 1. 在MainApplication中添加注解 `@EnableScheduling` 注解
 2. 自定义一个定时任务处理类（专门用于定时调用的接口）如：`TaskSchedulingService.java`;
 3. 重启服务，马上开始根据自定义的时间执行定时任务（有 cron 表达式的方式/fixedRate 等等方式设置周期性）
+> 生成 cron表达式的网站：[https://cron.qqe2.com/](https://cron.qqe2.com/)
