@@ -18,6 +18,20 @@
 1. REST ful 接口文档：`SwaggerUI2`
 > 需要符合rest ful请求规范：POST、GET、DELETE、PUT
 
+2. 美化♣ `SwaggerUI2` 接口文档: `Knife4j` 
+第一步：引入依赖;
+```xml
+<!--整合Knife4j-->
+<dependency>
+    <groupId>com.github.xiaoymin</groupId>
+    <artifactId>knife4j-spring-boot-starter</artifactId>
+    <version>2.0.4</version>
+</dependency>
+```
+第二步： 在SwaggerConfiguation上添加注解 `@EnableKnife4j`
+第三步： 浏览器访问 [http://localhost:8089/doc.html#/home](http://localhost:8089/doc.html#/home)
+说明：这样就可以将原来swaggerui2的文档美化了，并且提供了更方便的测试环境（如：有权限验证的情况下，不需要每个接口重复添加token到每个请求上。）
+
 ## 开发工具
 1.`IDE`：`IntelliJ IDEA`
 
