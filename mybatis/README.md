@@ -31,6 +31,7 @@
 第二步： 在SwaggerConfiguation上添加注解 `@EnableKnife4j`
 第三步： 浏览器访问 [http://localhost:8089/doc.html#/home](http://localhost:8089/doc.html#/home)
 说明：这样就可以将原来swaggerui2的文档美化了，并且提供了更方便的测试环境（如：有权限验证的情况下，不需要每个接口重复添加token到每个请求上。）
+补充：[附加学习目录](https://www.toutiao.com/i6851744784730554891/)、 [官网](https://doc.xiaominfo.com/guide/)
 
 ## 开发工具
 1.`IDE`：`IntelliJ IDEA`
