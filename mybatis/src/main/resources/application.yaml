@@ -1,5 +1,6 @@
 server:
   port: 8089
+secretKey: 123456333
 spring:
   devtools:
     restart:
