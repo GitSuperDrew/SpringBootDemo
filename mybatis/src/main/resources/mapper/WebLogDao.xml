@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.module.mybatis.dao.WebLogDao">
+
+    <resultMap type="com.study.module.mybatis.entity.WebLog" id="WebLogMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="INTEGER"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="INTEGER"/>
+        <result property="spendTime" column="spend_time" jdbcType="INTEGER"/>
+        <result property="basePath" column="base_path" jdbcType="VARCHAR"/>
+        <result property="uri" column="uri" jdbcType="VARCHAR"/>
+        <result property="url" column="url" jdbcType="VARCHAR"/>
+        <result property="method" column="method" jdbcType="VARCHAR"/>
+        <result property="ip" column="ip" jdbcType="VARCHAR"/>
+        <result property="parameter" column="parameter" jdbcType="VARCHAR"/>
+        <result property="result" column="result" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="WebLogMap">
+        select id,
+               code,
+               description,
+               username,
+               start_time,
+               spend_time,
+               base_path,
+               uri,
+               url,
+               method,
+               ip,
+               parameter,
+               result
+        from zero.web_log
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="WebLogMap">
+        select id,
+               code,
+               description,
+               username,
+               start_time,
+               spend_time,
+               base_path,
+               uri,
+               url,
+               method,
+               ip,
+               parameter,
+               result
+        from zero.web_log
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="WebLogMap">
+        select
+        id, code, description, username, start_time, spend_time, base_path, uri, url, method, ip, parameter, result
+        from zero.web_log
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null">
+                and code = #{code}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="spendTime != null">
+                and spend_time = #{spendTime}
+            </if>
+            <if test="basePath != null and basePath != ''">
+                and base_path = #{basePath}
+            </if>
+            <if test="uri != null and uri != ''">
+                and uri = #{uri}
+            </if>
+            <if test="url != null and url != ''">
+                and url = #{url}
+            </if>
+            <if test="method != null and method != ''">
+                and method = #{method}
+            </if>
+            <if test="ip != null and ip != ''">
+                and ip = #{ip}
+            </if>
+            <if test="parameter != null and parameter != ''">
+                and parameter = #{parameter}
+            </if>
+            <if test="result != null and result != ''">
+                and result = #{result}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into zero.web_log(code, description, username, start_time, spend_time, base_path, uri, url, method, ip,
+                                 parameter, result)
+        values (#{code}, #{description}, #{username}, #{startTime}, #{spendTime}, #{basePath}, #{uri}, #{url},
+                #{method}, #{ip}, #{parameter}, #{result})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update zero.web_log
+        <set>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="spendTime != null">
+                spend_time = #{spendTime},
+            </if>
+            <if test="basePath != null and basePath != ''">
+                base_path = #{basePath},
+            </if>
+            <if test="uri != null and uri != ''">
+                uri = #{uri},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+            <if test="method != null and method != ''">
+                method = #{method},
+            </if>
+            <if test="ip != null and ip != ''">
+                ip = #{ip},
+            </if>
+            <if test="parameter != null and parameter != ''">
+                parameter = #{parameter},
+            </if>
+            <if test="result != null and result != ''">
+                result = #{result},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from zero.web_log
+        where id = #{id}
+    </delete>
+
+</mapper>
