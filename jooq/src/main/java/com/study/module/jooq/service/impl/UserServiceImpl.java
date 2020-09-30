@@ -18,6 +18,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     DSLContext dsl;
 
+    /**
+     * 给User表 重命名 u 。（类似sql语句中的 user as u）.
+     * 注意一点，这个User类是逆向生成的tables包下的，不是pojos包下的User实体类。
+     * （逆向工程它会生成两个User类。一个在pojos下，一个再tables下）
+     */
     User u = User.USER.as("u");
 
     /**
@@ -68,7 +73,7 @@ public class UserServiceImpl implements UserService {
                 .where(u.ID.eq(id))
                 .fetch()
                 .into(com.study.module.jooq.tables.pojos.User.class);
-        return result.get(0);
+        return result != null && !result.isEmpty() ? result.get(0) : null;
     }
 
     /**
@@ -80,15 +85,16 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<com.study.module.jooq.tables.pojos.User> selectAll(int pageNum, int pageSize) {
-        return dsl.select()
+        List<com.study.module.jooq.tables.pojos.User> result = dsl.select(u.NAME, u.AGE, u.EMAIL)
                 .from(u)
                 // 排序字段，（根据ID降序排序）
                 .orderBy(u.ID.desc())
                 // 分页
-                .limit(0)
-                .offset(10)
+                .offset(0)
+                .limit(10)
                 .fetch()
                 // 数据类型格式转换
                 .into(com.study.module.jooq.tables.pojos.User.class);
+        return result;
     }
 }
