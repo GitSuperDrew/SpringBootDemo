@@ -1,12 +1,12 @@
-package com.study.module.jooq.service;
+package com.study.module.springbootjooq.service;
 
-import com.study.module.jooq.tables.pojos.User;
+import com.study.module.springbootjooq.generate.tables.pojos.User;
 
 import java.util.List;
 
 /**
  * @author Administrator
- * @date 2020/9/30 下午 10:41
+ * @date 2020/10/1 上午 7:48
  */
 public interface UserService {
     void delete(long id);
@@ -15,6 +15,12 @@ public interface UserService {
 
     int update(User user);
 
+    /**
+     * 获取单个详情
+     *
+     * @param id 用户ID
+     * @return
+     */
     User selectById(long id);
 
     List<User> selectAll(int pageNum, int pageSize);
