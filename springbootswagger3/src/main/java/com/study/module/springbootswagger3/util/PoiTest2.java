@@ -1,9 +1,6 @@
 package com.study.module.springbootswagger3.util;
 
-import org.apache.poi.hssf.usermodel.DVConstraint;
-import org.apache.poi.hssf.usermodel.HSSFDataValidation;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddressList;
 
 import java.io.FileOutputStream;
@@ -43,6 +40,9 @@ public class PoiTest2 {
 
         // 第二列的前501行都设置提示.
         sheetList = setHSSFPrompt(sheetList, "promt Title", "prompt Content", 0, 500, 1, 1);
+
+        // 指定单元格添加批注
+        sheetList = setHSSFComment(sheetList, 3, 1, "测试批注单元格", "Drew");
 
         wb.write(out);
         out.close();
@@ -94,6 +94,36 @@ public class PoiTest2 {
         HSSFDataValidation dataValidationView = new HSSFDataValidation(regions, constraint);
         dataValidationView.createPromptBox(promptTitle, promptContent);
         sheet.addValidationData(dataValidationView);
+        return sheet;
+    }
+
+
+    /**
+     * 设置单元格批注
+     *
+     * @param sheet          需要设置的sheet
+     * @param curRowIndex    指定行
+     * @param curColIndex    指定列
+     * @param contentComment 批注内容
+     * @param author         指定批注的作者
+     * @return
+     */
+    public static HSSFSheet setHSSFComment(HSSFSheet sheet, int curRowIndex, int curColIndex, String contentComment,
+                                           String author) {
+        //创建绘图对象
+        HSSFPatriarch p = sheet.createDrawingPatriarch();
+        //创建单元格对象,批注插入到4行,1列,B5单元格
+        HSSFCell cell = sheet.createRow(curRowIndex).createCell(curColIndex);
+        //插入单元格内容
+        // cell.setCellValue(new HSSFRichTextString("批注"));
+        //获取批注对象(int dx1, int dy1, int dx2, int dy2, short col1, int row1, short col2, int row2)  前四个参数是坐标点,后四个参数是编辑和显示批注时的大小.
+        HSSFComment comment = p.createComment(new HSSFClientAnchor(0, 0, 0, 0, (short) 3, 3, (short) 5, 6));
+        //输入批注信息
+        comment.setString(new HSSFRichTextString(contentComment));
+        //添加作者,选中B5单元格,看状态栏
+        comment.setAuthor(author);
+        //将批注添加到单元格对象中
+        cell.setCellComment(comment);
         return sheet;
     }
 
