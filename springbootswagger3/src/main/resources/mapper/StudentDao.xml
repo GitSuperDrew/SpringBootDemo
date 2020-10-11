@@ -17,7 +17,7 @@
                stu_age,
                stu_sex,
                deleted
-        from zero.student
+        from student
         where stu_id = #{stuId}
     </select>
 
@@ -28,7 +28,7 @@
                stu_age,
                stu_sex,
                deleted
-        from zero.student
+        from student
         limit #{offset}, #{limit}
     </select>
 
@@ -36,7 +36,7 @@
     <select id="queryAll" resultMap="StudentMap">
         select
         stu_id, stu_name, stu_age, stu_sex, deleted
-        from zero.student
+        from student
         <where>
             <if test="stuId != null">
                 and stu_id = #{stuId}
@@ -58,13 +58,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="stuId" useGeneratedKeys="true">
-        insert into zero.student(stu_name, stu_age, stu_sex, deleted)
+        insert into student(stu_name, stu_age, stu_sex, deleted)
         values (#{stuName}, #{stuAge}, #{stuSex}, #{deleted})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update zero.student
+        update student
         <set>
             <if test="stuName != null and stuName != ''">
                 stu_name = #{stuName},
@@ -85,7 +85,7 @@
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
-        from zero.student
+        from student
         where stu_id = #{stuId}
     </delete>
 
