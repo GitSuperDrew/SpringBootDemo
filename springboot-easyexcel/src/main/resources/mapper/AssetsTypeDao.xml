@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.module.springbooteasyexcel.dao.AssetsTypeDao">
+
+    <resultMap type="com.study.module.springbooteasyexcel.entity.AssetsType" id="AssetsTypeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="assetsCode" column="assets_code" jdbcType="VARCHAR"/>
+        <result property="assetsName" column="assets_name" jdbcType="VARCHAR"/>
+        <result property="parentCode" column="parent_code" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="revision" column="revision" jdbcType="INTEGER"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AssetsTypeMap">
+        select id,
+               assets_code,
+               assets_name,
+               parent_code,
+               remark,
+               revision,
+               created_by,
+               created_time,
+               updated_by,
+               updated_time
+        from assets_type
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AssetsTypeMap">
+        select id,
+               assets_code,
+               assets_name,
+               parent_code,
+               remark,
+               revision,
+               created_by,
+               created_time,
+               updated_by,
+               updated_time
+        from assets_type
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AssetsTypeMap">
+        select
+        id, assets_code, assets_name, parent_code, remark, revision, created_by, created_time, updated_by, updated_time
+        from assets_type
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="assetsCode != null and assetsCode != ''">
+                and assets_code = #{assetsCode}
+            </if>
+            <if test="assetsName != null and assetsName != ''">
+                and assets_name = #{assetsName}
+            </if>
+            <if test="parentCode != null and parentCode != ''">
+                and parent_code = #{parentCode}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="revision != null">
+                and revision = #{revision}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="createdTime != null">
+                and created_time = #{createdTime}
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                and updated_by = #{updatedBy}
+            </if>
+            <if test="updatedTime != null">
+                and updated_time = #{updatedTime}
+            </if>
+        </where>
+    </select>
+
+    <!--查询固定资产第一层级的数据-->
+    <select id="queryOneAll" resultType="com.study.module.springbooteasyexcel.entity.AssetsType">
+        select
+            id, assets_code, assets_name, parent_code, remark, revision, created_by, created_time, updated_by, updated_time
+        from
+            assets_type_copy
+        where
+            assets_code
+        like '%0000'
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into assets_type(assets_code, assets_name, parent_code, remark, revision, created_by, created_time,
+                                     updated_by, updated_time)
+        values (#{assetsCode}, #{assetsName}, #{parentCode}, #{remark}, #{revision}, #{createdBy}, #{createdTime},
+                #{updatedBy}, #{updatedTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update assets_type
+        <set>
+            <if test="assetsCode != null and assetsCode != ''">
+                assets_code = #{assetsCode},
+            </if>
+            <if test="assetsName != null and assetsName != ''">
+                assets_name = #{assetsName},
+            </if>
+            <if test="parentCode != null and parentCode != ''">
+                parent_code = #{parentCode},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="revision != null">
+                revision = #{revision},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                updated_by = #{updatedBy},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from assets_type
+        where id = #{id}
+    </delete>
+
+</mapper>
