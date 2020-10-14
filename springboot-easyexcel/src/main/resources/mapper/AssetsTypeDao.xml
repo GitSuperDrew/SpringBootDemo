@@ -91,7 +91,7 @@
         select
             id, assets_code, assets_name, parent_code, remark, revision, created_by, created_time, updated_by, updated_time
         from
-            assets_type_copy
+            assets_type
         where
             assets_code
         like '%0000'
