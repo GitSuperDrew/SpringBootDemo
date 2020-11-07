@@ -48,22 +48,33 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
 注意：
 1. 需要注意配置 SpringBootApplication启动类；
-```java
-@MapperScan(value = {"com.study.module.springbootmybatis.dao"})
-public class SpringbootMybatisApplication {
-```
+    ```java
+    @MapperScan(value = {"com.study.module.springbootmybatis.dao"})
+    public class SpringbootMybatisApplication {
+    ```
 2. 需要在生成的 `*Dao.xml` 上加入注解 `@Repository` 或者 `@Mapper` ；
 3. 配置spingboot-mybatis相关的属性
-```properties
-## 重点配置 SpringBoot Mybatis
-mybatis.type-aliases-package=com.student.module.springbootmybatis.entity
-mybatis.mapper-locations=classpath:/mapper/*Dao.xml
-#开启 mybatis 查询日志
-mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
-```
+    ```properties
+    ## 重点配置 SpringBoot Mybatis
+    mybatis.type-aliases-package=com.student.module.springbootmybatis.entity
+    mybatis.mapper-locations=classpath:/mapper/*Dao.xml
+    #开启 mybatis 查询日志
+    mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+    ```
 4. 由于初始化项目的时候引入一些很多的依赖包（lombok、rest docs、thymeleaf、validation等），
 例如 `Lombok` 工具，你可以优化下 `entity` 包下的DO;利用`Lombok`提供的注解，简化实体类DO相关的文件的内容。
 
-
+### 4，Mybatis类型处理器
+> 下面以处理 性别的类型处理器为例子
+1. 新建一个枚举类 `SexEnum.java`;
+2. 为了实力类与之前的不冲突，新建一个新的DO：`Teacher.java`;
+3. `application.properties` 添加相关配置；
+    ```properties
+    #配置 typeHandler 的扫描包
+    mybatis.type-handlers-package=com.study.module.springbootmybatis.handler
+    ```
+4. 新建类型处理器 `SexTypeHandler.java` ；
+5. 对实体类`TeacherDO.java`可以添加注解`@Alias` 方便 `*Mapper.xml` 中使用（可选）；
+6. `TeacherController.java`提供一个新的测试接口`getByIdLogic(...)`。
 
 ## 附件

@@ -1,6 +1,7 @@
 package com.study.module.springbootmybatis.service;
 
 import com.study.module.springbootmybatis.entity.Teacher;
+import com.study.module.springbootmybatis.entity.TeacherDO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,15 @@ public interface TeacherService {
      * @return 实例对象
      */
     Teacher queryById(Long id);
+
+    /**
+     * 获取详情
+     *
+     * @param id 唯一标识
+     * @param delTag 逻辑删除标识
+     * @return
+     */
+    TeacherDO getById(Long id, Integer delTag);
 
     /**
      * 查询多条数据

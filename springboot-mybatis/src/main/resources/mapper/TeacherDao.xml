@@ -22,6 +22,27 @@
     </resultMap>
 
     <!--查询单个-->
+    <select id="getById" resultType="com.study.module.springbootmybatis.entity.TeacherDO">
+        select id,
+               name,
+               age,
+               sex,
+               id_card as idCard,
+               phone,
+               mobile,
+               address,
+               entry_date as entryDate,
+               remark,
+               revision,
+               created_by as createdBy,
+               created_time as createdTime,
+               updated_by as updatedBy,
+               updated_time as updatedTime
+        from teacher
+        where id = #{id} and del_tag = #{delTag}
+    </select>
+
+    <!--查询单个-->
     <select id="queryById" resultMap="TeacherMap">
         select id,
                name,

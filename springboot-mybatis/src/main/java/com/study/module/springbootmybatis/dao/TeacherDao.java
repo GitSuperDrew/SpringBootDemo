@@ -1,6 +1,7 @@
 package com.study.module.springbootmybatis.dao;
 
 import com.study.module.springbootmybatis.entity.Teacher;
+import com.study.module.springbootmybatis.entity.TeacherDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +23,15 @@ public interface TeacherDao {
      * @return 实例对象
      */
     Teacher queryById(Long id);
+
+    /**
+     * 根据唯一标识得到教师详情
+     *
+     * @param id     教师唯一标识ID
+     * @param delTag 逻辑删除标识（0有效数据，1无效数据）
+     * @return 教师详情
+     */
+    TeacherDO getById(Long id, Integer delTag);
 
     /**
      * 查询指定行数据

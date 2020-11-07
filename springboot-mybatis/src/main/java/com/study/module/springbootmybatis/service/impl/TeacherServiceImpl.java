@@ -2,6 +2,7 @@ package com.study.module.springbootmybatis.service.impl;
 
 import com.study.module.springbootmybatis.dao.TeacherDao;
 import com.study.module.springbootmybatis.entity.Teacher;
+import com.study.module.springbootmybatis.entity.TeacherDO;
 import com.study.module.springbootmybatis.service.TeacherService;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,21 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher queryById(Long id) {
         return this.teacherDao.queryById(id);
+    }
+
+    /**
+     * 获取详情
+     *
+     * @param id     唯一标识
+     * @param delTag 逻辑删除标识
+     * @return
+     */
+    @Override
+    public TeacherDO getById(Long id, Integer delTag) {
+        if (delTag == null) {
+            delTag = 0;
+        }
+        return this.teacherDao.getById(id, delTag);
     }
 
     /**
