@@ -87,6 +87,22 @@
             <scope>test</scope>
         </dependency>
 
+        <!--mybatis-pagehelper 分页插件
+            官方地址：https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/en/HowToUse.md
+        -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
+        </dependency>
+
         <!-- Swagger 3.0 接口API文档依赖-->
         <dependency>
             <groupId>io.springfox</groupId>

@@ -1,9 +1,12 @@
 package com.study.module.springbootmybatis.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageInfo;
 import com.study.module.springbootmybatis.SexEnum;
 import com.study.module.springbootmybatis.entity.Teacher;
 import com.study.module.springbootmybatis.entity.TeacherDO;
 import com.study.module.springbootmybatis.service.TeacherService;
+import com.study.module.springbootmybatis.utils.PageVO;
 import com.study.module.springbootmybatis.utils.Result;
 import com.study.module.springbootmybatis.vo.TeacherVO;
 import io.swagger.annotations.Api;
@@ -17,8 +20,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Collections;
 
 /**
  * 教师表(Teacher)表控制层
@@ -91,6 +94,33 @@ public class TeacherController {
             return Result.ok(teacherVO);
         } catch (Exception e) {
             log.error("错误信息：{}", e);
+            return Result.error("服务器异常");
+        }
+    }
+
+    /**
+     * 分页得到教师集合信息
+     *
+     * @return 教师集合
+     */
+    @ApiOperation(value = "获取教师集合信息", httpMethod = "GET", notes = "get page teacher list.")
+    @GetMapping(value = "/page")
+    public Result<?> page(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                          @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+                          @RequestParam(value = "orderBy", required = false, defaultValue = "id") String orderBy,
+                          @RequestParam(value = "isDesc", required = false) boolean isDesc,
+                          @RequestParam(value = "search", required = false) String search) {
+        try {
+            PageVO page = PageVO.builder().current(pageNum).size(pageSize).orderBy(orderBy).isDesc(isDesc).build();
+            Teacher teacher = JSON.parseObject(search, Teacher.class);
+            PageInfo<TeacherVO> list = this.teacherService.queryPage(page, teacher);
+            page.setTotal((int) list.getTotal());
+            page.setPages(list.getPages());
+            page.setRecords(Collections.singletonList(list.getList()));
+            return Result.ok(page);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("分页得到教师集合: {}", e);
             return Result.error("服务器异常");
         }
     }

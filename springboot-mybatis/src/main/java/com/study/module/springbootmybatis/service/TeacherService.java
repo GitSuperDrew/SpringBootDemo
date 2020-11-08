@@ -1,8 +1,10 @@
 package com.study.module.springbootmybatis.service;
 
+import com.github.pagehelper.PageInfo;
 import com.study.module.springbootmybatis.entity.Teacher;
 import com.study.module.springbootmybatis.entity.TeacherDO;
-import org.springframework.stereotype.Service;
+import com.study.module.springbootmybatis.utils.PageVO;
+import com.study.module.springbootmybatis.vo.TeacherVO;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public interface TeacherService {
     /**
      * 获取详情
      *
-     * @param id 唯一标识
+     * @param id     唯一标识
      * @param delTag 逻辑删除标识
      * @return
      */
@@ -39,6 +41,14 @@ public interface TeacherService {
      * @return 对象列表
      */
     List<Teacher> queryAllByLimit(int offset, int limit);
+
+    /**
+     * 分页读取教师集合信息
+     *
+     * @param pageVO 分页实体类
+     * @return 分页信息
+     */
+    PageInfo<TeacherVO> queryPage(PageVO<?> pageVO, Teacher teacherParam);
 
     /**
      * 新增数据

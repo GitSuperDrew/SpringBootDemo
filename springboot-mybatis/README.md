@@ -169,6 +169,39 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
     - swagger3访问地址依赖保留了，（`port/swagger-ui/`）
     - Knife4j-swagger3 访问地址：`http://host:port/doc.html#/plus`;
 
+### 8. `mybatis-pageHelper` 分页插件
+1. 引入依赖：
+    ```xml
+    <!--mybatis-pagehelper 分页插件
+        官方地址：https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/en/HowToUse.md
+    -->
+    <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>1.3.0</version>
+    </dependency>
+    ```
+2. 新建接口用于测试（`TeacherController.page`）；
+3. 提供了两个分页实体类（`PageVO.java`, `PageForm.java`）；
+4. 引入了 `Fastjson` 依赖包；
+    ```xml
+    <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.73</version>
+    </dependency>
+    ```
+5. 引入了分页插件 `PageHelper` 依赖包；
+    ```xml
+    <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>1.3.0</version>
+    </dependency>
+    ```
+
+
 ## 附件
 ### 1. Swagger2.x 的相关注解说明：
 ```text
@@ -226,3 +259,7 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
             请求参数无法使用@ApiImplicitParam注解进行描述的时候）
     @ApiModelProperty：用在属性上，描述响应类的属性
 ```
+
+### 3. Kinfe4j 使用官方文档：
+1. 官方文档地址: [https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html](https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html)
+2. Giteed地址: [https://gitee.com/xiaoym/knife4j](https://gitee.com/xiaoym/knife4j)

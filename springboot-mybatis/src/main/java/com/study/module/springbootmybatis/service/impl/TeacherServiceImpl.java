@@ -1,9 +1,16 @@
 package com.study.module.springbootmybatis.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
+import com.study.module.springbootmybatis.SexEnum;
 import com.study.module.springbootmybatis.dao.TeacherDao;
 import com.study.module.springbootmybatis.entity.Teacher;
 import com.study.module.springbootmybatis.entity.TeacherDO;
 import com.study.module.springbootmybatis.service.TeacherService;
+import com.study.module.springbootmybatis.utils.PageVO;
+import com.study.module.springbootmybatis.vo.TeacherVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -56,6 +63,28 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<Teacher> queryAllByLimit(int offset, int limit) {
         return this.teacherDao.queryAllByLimit(offset, limit);
+    }
+
+    /**
+     * 分页读取教师集合信息
+     *
+     * @param pageVO 分页实体
+     * @return 分页集合信息
+     */
+    @Override
+    public PageInfo<TeacherVO> queryPage(PageVO pageVO, Teacher teacherParam) {
+        PageHelper.startPage(pageVO.getCurrent(), pageVO.getSize()).setOrderBy(pageVO.getOrderBy());
+        List<Teacher> teacherList = this.teacherDao.queryAll(teacherParam);
+        List<TeacherVO> teacherVOList = Lists.newArrayList();
+        for (Teacher teacher : teacherList) {
+            TeacherVO teacherVO = new TeacherVO();
+            BeanUtils.copyProperties(teacher, teacherVO);
+            teacherVO.setSex(SexEnum.getEnumById(teacher.getSex()).getName());
+            teacherVOList.add(teacherVO);
+        }
+        PageInfo<TeacherVO> pageInfo = new PageInfo<>(teacherVOList);
+        PageHelper.clearPage();
+        return pageInfo;
     }
 
     /**
