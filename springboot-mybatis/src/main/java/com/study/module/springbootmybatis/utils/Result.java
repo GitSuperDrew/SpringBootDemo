@@ -1,6 +1,7 @@
 package com.study.module.springbootmybatis.utils;
 
 import com.study.module.springbootmybatis.constant.CommonConstant;
+import com.study.module.springbootmybatis.enums.ResultEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.io.Serializable;
  * @date 2020/11/8 上午 10:25
  */
 @Data
-@ApiModel(value="接口返回对象", description="接口返回对象")
+@ApiModel(value = "接口返回对象", description = "接口返回对象")
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -94,12 +95,27 @@ public class Result<T> implements Serializable {
         return r;
     }
 
+    /**
+     * 错误
+     *
+     * @param resultEnum 错误枚举类
+     * @return 错误信息
+     */
+    public static Result error(ResultEnum resultEnum) {
+        Result result = new Result();
+        result.setSuccess(resultEnum.isSuccess());
+        result.setCode(resultEnum.getCode());
+        result.setMessage(resultEnum.getMessage());
+        return result;
+    }
+
     public Result<T> error500(String message) {
         this.message = message;
         this.code = CommonConstant.SERVER_ERROR_500;
         this.success = false;
         return this;
     }
+
     /**
      * 无权限访问返回结果
      */

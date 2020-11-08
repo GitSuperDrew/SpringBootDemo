@@ -74,4 +74,10 @@ public interface TeacherService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 删除指定教师
+     *
+     * @param id 教师ID
+     */
+    void deleteTeacher(Long id);
 }

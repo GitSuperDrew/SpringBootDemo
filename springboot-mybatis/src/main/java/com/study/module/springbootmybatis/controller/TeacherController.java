@@ -2,9 +2,9 @@ package com.study.module.springbootmybatis.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
-import com.study.module.springbootmybatis.SexEnum;
 import com.study.module.springbootmybatis.entity.Teacher;
 import com.study.module.springbootmybatis.entity.TeacherDO;
+import com.study.module.springbootmybatis.enums.SexEnum;
 import com.study.module.springbootmybatis.service.TeacherService;
 import com.study.module.springbootmybatis.utils.PageVO;
 import com.study.module.springbootmybatis.utils.Result;
@@ -32,6 +32,7 @@ import java.util.Collections;
 @Api(tags = {"教师管理"})
 @Slf4j
 @RestController
+@Transactional(rollbackFor = Exception.class)
 @RequestMapping("/teacher")
 public class TeacherController {
     /**
@@ -155,6 +156,19 @@ public class TeacherController {
             log.error("添加教师发生异常! 异常信息为：{}", e);
             return null;
         }
+    }
+
+    /**
+     * 删除指定教师
+     *
+     * @param id 教师唯一ID
+     * @return 成功或失败
+     */
+    @ApiOperation(value = "删除指定教师")
+    @DeleteMapping(value = "/delete/{id}")
+    public Result<?> deleteTeacher(@PathVariable(value = "id") Long id) {
+        teacherService.deleteTeacher(id);
+        return Result.ok();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.study.module.springbootmybatis.handler;
 
-import com.study.module.springbootmybatis.SexEnum;
+import com.study.module.springbootmybatis.enums.SexEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;

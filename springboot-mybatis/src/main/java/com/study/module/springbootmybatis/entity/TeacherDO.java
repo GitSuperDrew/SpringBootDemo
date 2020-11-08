@@ -1,7 +1,7 @@
 package com.study.module.springbootmybatis.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.study.module.springbootmybatis.SexEnum;
+import com.study.module.springbootmybatis.enums.SexEnum;
 import com.study.module.springbootmybatis.constant.CommonConstant;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;

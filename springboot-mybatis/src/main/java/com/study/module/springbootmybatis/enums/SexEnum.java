@@ -1,4 +1,4 @@
-package com.study.module.springbootmybatis;
+package com.study.module.springbootmybatis.enums;
 
 import lombok.Getter;
 
@@ -8,7 +8,18 @@ import lombok.Getter;
  */
 @Getter
 public enum SexEnum {
-    OTHER(0, "其他"), MALE(1, "男"), FEMALE(2, "女");
+    /**
+     * 其他
+     */
+    OTHER(0, "其他"),
+    /**
+     * 男
+     */
+    MALE(1, "男"),
+    /**
+     * 女
+     */
+    FEMALE(2, "女");
 
     private int id;
     private String name;

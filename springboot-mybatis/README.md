@@ -201,6 +201,15 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
     </dependency>
     ```
 
+### 9. 全局异常捕获处理 + 统一返回值
+1. 创建枚举类 `ResultEnum.java`；
+2. 提供全局自定义异常，如 `CustomException.java`；
+3. 提供全局异常捕获类，如 `GlobalExceptionHandling.java`；
+4. 提供必要的工具类，如 `MethodUtil`；
+5. 提供必要的测试接口，如 `TeacherController#delete`；
+6. 如何使用全局异常捕获工具，请看：`TeacherServiceImpl#deleteTeacher`；
+7. 其他接口例如`保存 save`，请自行更改成全局异常捕获；
+
 
 ## 附件
 ### 1. Swagger2.x 的相关注解说明：
@@ -284,4 +293,4 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
 ### 3. Kinfe4j 使用官方文档：
 1. 官方文档地址: [https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html](https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html)
-2. Giteed地址: [https://gitee.com/xiaoym/knife4j](https://gitee.com/xiaoym/knife4j)
+2. Gitee地址: [https://gitee.com/xiaoym/knife4j](https://gitee.com/xiaoym/knife4j)

@@ -3,11 +3,14 @@ package com.study.module.springbootmybatis.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
-import com.study.module.springbootmybatis.SexEnum;
 import com.study.module.springbootmybatis.dao.TeacherDao;
 import com.study.module.springbootmybatis.entity.Teacher;
 import com.study.module.springbootmybatis.entity.TeacherDO;
+import com.study.module.springbootmybatis.enums.ResultEnum;
+import com.study.module.springbootmybatis.enums.SexEnum;
+import com.study.module.springbootmybatis.exceptions.CustomException;
 import com.study.module.springbootmybatis.service.TeacherService;
+import com.study.module.springbootmybatis.utils.MethodUtil;
 import com.study.module.springbootmybatis.utils.PageVO;
 import com.study.module.springbootmybatis.vo.TeacherVO;
 import org.springframework.beans.BeanUtils;
@@ -120,5 +123,19 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public boolean deleteById(Long id) {
         return this.teacherDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 删除指定教师
+     *
+     * @param id 教师ID
+     */
+    @Override
+    public void deleteTeacher(Long id) {
+        // 如果删除失败抛出异常。--- 演示而已，不推荐此写法
+        // 需要演示删除失败的全局异常捕获，请传入数据库中不存的id值，即可得到对应的结果
+        if (!deleteById(id)) {
+            throw new CustomException(ResultEnum.DELETE_ERROR, MethodUtil.getLineInfo());
+        }
     }
 }
