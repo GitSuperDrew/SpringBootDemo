@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
  * @date 2020/11/7 下午 10:36
  */
 public class CommonConstant {
+    public final static int SC_OK_200 = 200;
+    public final static int SERVER_ERROR_500 = 500;
+    public final static int NO_AUTH = 403;
     /**
      * 日期时间
      */
