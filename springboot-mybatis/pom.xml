@@ -93,6 +93,12 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
         </dependency>
+        <!--Swagger 3.0 接口文档增强美化依赖：Knife4j [https://gitee.com/xiaoym/knife4j]-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
     </dependencies>
 

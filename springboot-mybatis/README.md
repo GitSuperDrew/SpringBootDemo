@@ -94,7 +94,7 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 > 相关博客学习推荐：[验证注解@Pattern](https://blog.csdn.net/qq_36927265/article/details/87864026)
 > 
 
-### 6. 配置 API接口文档 `Swaggerr3.0`
+### 6. 配置 API接口文档 `Swagger3.0`
 > 相关博客学习文档：[知乎](https://zhuanlan.zhihu.com/p/161947638)
 1. 引入 swagger3.0 的依赖, 并移除 `Swagger2.x`相关依赖；
     ```xml
@@ -139,6 +139,35 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
     ```
 4. 注解使用说明：见[附件](#附件)
 5. 访问接口文档的地址从 swagger2.x的`port/swagger-ui.html` 变成了 swagger3.0的`port/swagger-ui/index.html`或者`port/swagger-ui/`;
+
+### 7. Swagger3.0整合 Knife4j 美化接口文档
+> 官方地址：[Knife4j](https://gitee.com/xiaoym/knife4j)
+1. 引入依赖
+    ```xml
+    <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-spring-boot-starter</artifactId>
+        <!-- 由于我这里时swagger3.0，所以引入了3.0.X的版本-->
+        <version>3.0.1</version>
+    </dependency>
+    ```
+2. Application添加注解 `@EnableKnife4j`
+    ```java
+    @EnableOpenApi
+    @EnableKnife4j  // 关键注解
+    @SpringBootApplication
+    @MapperScan(value = {"com.study.module.springbootmybatis.dao"})
+    public class SpringbootMybatisApplication {
+    
+        public static void main(String[] args) {
+            SpringApplication.run(SpringbootMybatisApplication.class, args);
+        }
+    
+    }
+    ```
+3. 访问地址：
+    - swagger3访问地址依赖保留了，（`port/swagger-ui/`）
+    - Knife4j-swagger3 访问地址：`http://host:port/doc.html#/plus`;
 
 ## 附件
 ### 1. Swagger2.x 的相关注解说明：
