@@ -260,6 +260,28 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
     @ApiModelProperty：用在属性上，描述响应类的属性
 ```
 
+### 3. SpringBoot 自定义Banner
+1. 在 `src/main/resources` 目录下，创建一个Banner.txt；
+2. 在 以下网址中生成你想要的 `banner` 图标；
+    - http://patorjk.com/software/taag
+    - http://www.network-science.de/ascii/
+    - http://www.degraeve.com/img2txt.php
+3. 讲解博客地址：[SpringBoot自定义Banner](https://www.jianshu.com/p/a53f324c92f2)
+4. 启动项目试试，你会发现奇迹出现！（^_^）
+5. 如果你想在测试环境中省略掉banner，你可以删除banner.txt中所有的内容保存重启即可；
+6. 如果你想对banner进行更个性化的修饰：下面的这些属性可以帮到你：
+    ```properties
+    spring.banner.charset=UTF8 #默认配置
+    spring.banner.location=classpath:banner.txt #默认配置
+    spring.banner.image.bitdepth=4 #默认配置
+    spring.banner.image.height=76
+    spring.banner.image.invert=false #默认配置
+    spring.banner.image.location=classpath:banner.gif #默认配置
+    spring.banner.image.margin=2 #默认配置
+    spring.banner.image.pixelmode=TEXT #默认配置
+    spring.banner.image.width=76 #默认配置
+    ```
+
 ### 3. Kinfe4j 使用官方文档：
 1. 官方文档地址: [https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html](https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html)
 2. Giteed地址: [https://gitee.com/xiaoym/knife4j](https://gitee.com/xiaoym/knife4j)
