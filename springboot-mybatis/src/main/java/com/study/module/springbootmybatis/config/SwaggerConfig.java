@@ -1,5 +1,6 @@
 package com.study.module.springbootmybatis.config;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -12,7 +13,6 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * 常用注解：
@@ -41,37 +41,24 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @date 2020/11/8 上午 10:42
  */
 @Configuration
-@EnableSwagger2
-@Profile(value = {"dev", "test", "pro", "fat", "uat"})
-public class SwaggerConfig extends WebMvcConfigurationSupport {
+public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
                 .select()
-                //"com.study.module.springbootmybatis.controller"， web层所在的目录
-                .apis(RequestHandlerSelectors.basePackage("com.study.module.springbootmybatis.controller"))
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .contact(new Contact("Drew", "http://www.baidu.com", "123@163.COM"))
-                .title("springboot利用swagger构建api文档---数据源管理系统")
-                .description("简单优雅的restfun风格")
-                .termsOfServiceUrl("http://localhost:8080/")
+                .title("Swagger3接口文档")
+                .description("更多请咨询服务开发者Ray。")
+                .contact(new Contact("Drew", "https://www.baidu.com", "123456@foxmail.com"))
                 .version("1.0")
                 .build();
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //这些配置要有，我遇到了如果不配置，swagger一直是 404的问题
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-        // 解决 SWAGGER 404报错
-        registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
 }

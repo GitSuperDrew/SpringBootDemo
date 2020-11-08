@@ -26,7 +26,7 @@ import javax.validation.Valid;
  * @author makejava
  * @since 2020-11-07 19:04:41
  */
-@Api(value = "教师管理", tags = {"教师管理"}, description = "教师管理说明", hidden = false)
+@Api(tags = {"教师管理"})
 @Slf4j
 @RestController
 @RequestMapping("/teacher")
@@ -56,8 +56,7 @@ public class TeacherController {
      * @return 教师详情信息
      */
     @GetMapping(value = "/getById/{id}")
-    @ApiOperation(value = "获取教师详情", notes = "teacher details", httpMethod = "GET",
-            nickname = "Teacher-Details")
+    @ApiOperation(value = "查看教师详情")
     public Result<?> getById(@PathVariable(value = "id") Long id) {
         try {
             return Result.ok(this.teacherService.queryById(id));
@@ -76,8 +75,7 @@ public class TeacherController {
      * @return 教师详情信息
      */
     @GetMapping(value = "/getByIdLogic")
-    @ApiOperation(value = "获取教师详情", notes = "get logic exist teacher details.", httpMethod = "GET",
-            nickname = "Teacher-Details")
+    @ApiOperation(value = "查看教师详情")
     public Result<?> getByIdLogic(@RequestParam(value = "id") Long id,
                                   @RequestParam(value = "delTag", required = false, defaultValue = "0") Integer delTag) {
         try {
