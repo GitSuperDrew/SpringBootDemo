@@ -75,6 +75,14 @@ public class Result<T> implements Serializable {
         return r;
     }
 
+    public static Result<Object> ok(ResultEnum resultEnum) {
+        Result<Object> r = new Result<>();
+        r.setSuccess(true);
+        r.setCode(resultEnum.getCode());
+        r.setMessage(resultEnum.getMessage());
+        return r;
+    }
+
     public static Result<Object> ok(Object data) {
         Result<Object> r = new Result<Object>();
         r.setSuccess(true);

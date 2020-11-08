@@ -1,7 +1,7 @@
 # SpringBoot基于Mybatis学习笔记
 ## 一、 SpringBoot 整合 Mybatis 框架
 > 引入：学无止尽，精益求精。
-### 1，引入相关依赖
+### 1. 引入相关依赖
 ```xml
 <dependency>
     <groupId>org.mybatis.spring.boot</groupId>
@@ -10,7 +10,7 @@
 </dependency>
 ```
 
-### 2，配置application.properties文件
+### 2. 配置application.properties文件
 ```properties
 # 应用名称
 spring.application.name=springboot-mybatis
@@ -43,7 +43,7 @@ mybatis.mapper-locations=classpath:/mapper/*Dao.xml
 mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 ```
 
-### 3，利用IDEA插件EasyCode，生成mybatis相关接口文档
+### 3. 利用IDEA插件EasyCode，生成mybatis相关接口文档
 > 安利一个mybatis快捷生成插件：easycode  （idea）
 使用教程请 😀[百度搜索](http://www.baidu.com)
 
@@ -67,7 +67,7 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 4. 由于初始化项目的时候引入一些很多的依赖包（lombok、rest docs、thymeleaf、validation等），
 例如 `Lombok` 工具，你可以优化下 `entity` 包下的DO;利用`Lombok`提供的注解，简化实体类DO相关的文件的内容。
 
-### 4，Mybatis类型处理器
+### 4. Mybatis类型处理器
 > 下面以处理 性别的类型处理器为例子
 1. 新建一个枚举类 `SexEnum.java`;
 2. 为了实力类与之前的不冲突，新建一个新的DO：`Teacher.java`;
@@ -291,6 +291,6 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
     spring.banner.image.width=76 #默认配置
     ```
 
-### 3. Kinfe4j 使用官方文档：
+### 4. Kinfe4j 使用官方文档：
 1. 官方文档地址: [https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html](https://doc.xiaominfo.com/knife4j/autoEnableKnife4j.html)
 2. Gitee地址: [https://gitee.com/xiaoym/knife4j](https://gitee.com/xiaoym/knife4j)
