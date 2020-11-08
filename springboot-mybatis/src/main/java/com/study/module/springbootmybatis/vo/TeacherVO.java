@@ -1,23 +1,21 @@
-package com.study.module.springbootmybatis.entity;
+package com.study.module.springbootmybatis.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.study.module.springbootmybatis.SexEnum;
 import com.study.module.springbootmybatis.constant.CommonConstant;
 import lombok.Data;
-import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
+ * VO 教师展示层对象
+ *
  * @author Administrator
- * @date 2020/11/7 下午 8:15
+ * @date 2020/11/8 上午 9:29
  */
 @Data
-@Alias(value = "teacherDO") // mybatis 指定的别名
-public class TeacherDO {
-
+public class TeacherVO {
     /**
      * 唯一标识，主键ID
      */
@@ -34,7 +32,7 @@ public class TeacherDO {
     /**
      * 教师性别
      */
-    private SexEnum sex = null;
+    private String sex;
     /**
      * 身份证号
      */
@@ -63,14 +61,6 @@ public class TeacherDO {
      */
     @Pattern(regexp = CommonConstant.REG_MAX_LENGTH_1024, message = "备注内容超过最大字符1024的限制")
     private String remark;
-    /**
-     * 逻辑删除标识：0有效数据，1无效数据
-     */
-    private Integer delTag;
-    /**
-     * 乐观锁
-     */
-    private Integer revision;
     /**
      * 创建记录者
      */

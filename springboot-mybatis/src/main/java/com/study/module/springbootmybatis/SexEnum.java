@@ -1,8 +1,6 @@
 package com.study.module.springbootmybatis;
 
-import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author Administrator
@@ -10,7 +8,7 @@ import lombok.Setter;
  */
 @Getter
 public enum SexEnum {
-    MALE(1, "男"), FEMALE(2, "女");
+    OTHER(0, "其他"), MALE(1, "男"), FEMALE(2, "女");
 
     private int id;
     private String name;
@@ -29,7 +27,7 @@ public enum SexEnum {
     }
 
     public static SexEnum getEnumById(int id) {
-        for (SexEnum sex : SexEnum.values()){
+        for (SexEnum sex : SexEnum.values()) {
             if (sex.getId() == id) {
                 return sex;
             }

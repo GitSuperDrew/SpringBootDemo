@@ -33,6 +33,7 @@
                address,
                entry_date as entryDate,
                remark,
+               del_tag as delTag,
                revision,
                created_by as createdBy,
                created_time as createdTime,

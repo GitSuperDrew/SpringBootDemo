@@ -9,6 +9,7 @@
     <version>2.1.3</version>
 </dependency>
 ```
+
 ### 2，配置application.properties文件
 ```properties
 # 应用名称
@@ -44,13 +45,15 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
 ### 3，利用IDEA插件EasyCode，生成mybatis相关接口文档
 > 安利一个mybatis快捷生成插件：easycode  （idea）
-使用教程请 😀[百度搜索](www.baidu.com)
+使用教程请 😀[百度搜索](http://www.baidu.com)
 
 注意：
 1. 需要注意配置 SpringBootApplication启动类；
     ```java
     @MapperScan(value = {"com.study.module.springbootmybatis.dao"})
     public class SpringbootMybatisApplication {
+     //...
+    }
     ```
 2. 需要在生成的 `*Dao.xml` 上加入注解 `@Repository` 或者 `@Mapper` ；
 3. 配置spingboot-mybatis相关的属性
@@ -76,5 +79,20 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 4. 新建类型处理器 `SexTypeHandler.java` ；
 5. 对实体类`TeacherDO.java`可以添加注解`@Alias` 方便 `*Mapper.xml` 中使用（可选）；
 6. `TeacherController.java`提供一个新的测试接口`getByIdLogic(...)`。
+
+### 5. 参数验证
+1. 添加依赖；
+    ```xml
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    ``` 
+2. 安利：IDEA`插件AnyRule`；（用于快速得到正则表达式的插件）
+3. 对 DTO 或 VO 进行中的每个需要验证的属性加入对应的验证注解（spring-validation），例如：`TeacherDO.java`
+4. controller 层需要在保存或者修改的操作时，需要写成 `@Valid Teacher teacher` 
+> 相关博客学习推荐：[验证注解@Pattern](https://blog.csdn.net/qq_36927265/article/details/87864026)
+> 
+
 
 ## 附件
