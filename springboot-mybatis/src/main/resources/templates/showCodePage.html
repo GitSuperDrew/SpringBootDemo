@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringBoot集成Kaptcha验证码工具-测试</title>
+</head>
+<body>
+    <h3 th:text="${code}">Welcome to springboot kaptchar!</h3>
+    <div class="form-group">
+        <div class="input-group">
+            <input class="form-control" type="text" autocomplete="new-password" placeholder="验证码" required maxlength="4" v-model="verifyCode">
+            <span class="input-group-btn">
+                <img id="captcha_img" alt="验证码" title="点击更换" onclick="refreshKaptcha()" src="/kaptcha" />
+            </span>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        refreshKaptcha();
+    };
+    // 点击验证码刷新的时候触发
+    function refreshKaptcha() {
+        document.getElementById('captcha_img').src="/code/kaptcha?"+ Math.random();
+    }
+</script>
+</html>

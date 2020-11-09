@@ -210,6 +210,93 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 6. 如何使用全局异常捕获工具，请看：`TeacherServiceImpl#deleteTeacher`；
 7. 其他接口例如`保存 save`，请自行更改成全局异常捕获；
 
+### 10. Web-验证码工具
+> 学习博客地址：[头条](https://www.toutiao.com/i6892962386928468484/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1604899587&app=news_article&utm_source=weixin&utm_medium=toutiao_android&use_new_style=1&req_id=202011091326270100270510141302F806&group_id=6892962386928468484)
+1. 引入依赖`kaptcha`;
+    ```xml
+    <!-- https://mvnrepository.com/artifact/com.github.penggle/kaptcha -->
+    <dependency>
+        <groupId>com.github.penggle</groupId>
+        <artifactId>kaptcha</artifactId>
+        <version>2.3.2</version>
+    </dependency>
+    ```
+2. 添加相关配置文件`KaptchaConfig.java`；
+    ```java
+    import com.google.code.kaptcha.impl.DefaultKaptcha;
+    import com.google.code.kaptcha.util.Config;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    
+    import java.util.Properties;
+    
+    /**
+     * @author Administrator
+     * @date 2020/11/9 下午 1:33
+     */
+    @Configuration
+    public class KaptchaConfig {
+        @Bean
+        public DefaultKaptcha getDefaultKaptcha(){
+            DefaultKaptcha captchaProducer = new DefaultKaptcha();
+            Properties properties = new Properties();
+            properties.setProperty("kaptcha.border", "no");
+            properties.setProperty("kaptcha.border.color", "105,179,90");
+            properties.setProperty("kaptcha.textproducer.font.color", "blue");
+            properties.setProperty("kaptcha.image.width", "110");
+            properties.setProperty("kaptcha.image.height", "36");
+            properties.setProperty("kaptcha.textproducer.font.size", "30");
+            properties.setProperty("kaptcha.session.key", "code");
+            properties.setProperty("kaptcha.textproducer.char.length", "4");
+            properties.setProperty("kaptcha.textproducer.font.names", "宋体,楷体,微软雅黑");
+            properties.setProperty("kaptcha.textproducer.char.string", "0123456789ABCEFGHIJKLMNOPQRSTUVWXYZ");
+            properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.WaterRipple");
+            properties.setProperty("kaptcha.noise.color", "black");
+    //        properties.setProperty("kaptcha.noise.impl", "com.google.code.kaptcha.impl.DefaultNoise");
+            properties.setProperty("kaptcha.noise.impl", "com.google.code.kaptcha.impl.NoNoise");
+            properties.setProperty("kaptcha.background.clear.from", "232,240,254");
+            properties.setProperty("kaptcha.background.clear.to", "232,240,254");
+            properties.setProperty("kaptcha.textproducer.char.space", "3");
+            Config config = new Config(properties);
+            captchaProducer.setConfig(config);
+            return captchaProducer;
+    
+        }
+    }    
+    ```
+3. 书写生成验证码的控制层（`KaptchaController.java`）； 
+4. 页面显示的代码
+    ```html
+    <div class="form-group">
+        <div class="input-group">
+            <input class="form-control" type="text" autocomplete="new-password" placeholder="验证码" required maxlength="4" v-model="verifyCode">
+            <span class="input-group-btn">
+                <img id="captcha_img" alt="验证码" title="点击更换" onclick="refreshKaptcha()" src="/kaptcha" />
+            </span>
+        </div>    
+    </div>
+    ```
+   更新验证码JavaScript方法
+   ```javascript
+    function refreshKaptcha() {
+        document.getElementById('captcha_img').src="/kaptcha?"+ Math.random();
+    }
+    ```
+5. 验证校验码；
+    ```text
+    // 获取session中生成的校验码
+    String kaptchaCode = (String) request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+    
+    // 获取页面提交的验证码
+    String verifyCode = request.getParameter("verifyCode");
+    
+    //校验验证码
+    if (!StringUtils.equalsIgnoreCase(verifyCode, kaptchaCode)){
+        throw new Exception("校验码错误！");
+    }
+    ```
+6. 至此，SpringBoot集成`Kaptcha`验证码工具类完毕，请自行测试；
+
 
 ## 附件
 ### 1. Swagger2.x 的相关注解说明：
