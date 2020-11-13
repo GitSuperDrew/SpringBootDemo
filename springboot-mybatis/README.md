@@ -297,6 +297,188 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
     ```
 6. 至此，SpringBoot集成`Kaptcha`验证码工具类完毕，请自行测试；
 
+### 11. mybatis 自定义`拦截器插件interceptor`
+1. mybatis 中拦截器的类型有4种：
+
+    |   拦截器 |  说明 |
+    | --- | --- |
+    |   Executor            |   拦截执行器的方法        |
+    |   ParameterHandler    |   拦截参数的处理          |
+    |   ResultHandler       |   拦截结果集的处理        |
+    |   StatementHandler    |   拦截 SQL 语法构建的处理。 |
+    
+    - Executor: 拦截执行器的方法。
+    - ParameterHandler：拦截参数的处理。
+    - ResultHandler：拦截结果集的处理。
+    - StatementHandler：拦截 SQL 语法构建的处理。
+
+2. 拦截器规则：
+    1. Intercepts 注解需要一个 Signature （拦截点）参数数组。通过 Signature 来指定拦截哪个对象里面的哪个方法。
+    2. `@Intercepts` 注解定义如下：
+        ```java
+        @Documented
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.TYPE)
+        public @interface Intercepts {
+            /* 定义拦截：只有符合拦截点的条件才会进入到拦截器 */
+            Signature[] value();
+        }
+        ```
+.....
+
+### 12. SpringBoot-Mybatis下的文件上传
+1. 确保存在SpringBootWeb依赖：
+    ```xml
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    ```
+2. application.properties 添加相关配置：
+    ```properties
+    # 上传文件所需的配置
+    spring.servlet.multipart.max-file-size=10MB
+    spring.servlet.multipart.max-request-size=10MB
+    ```
+3. 书写优先级最高的配置 `*Config.java` 
+    ```java
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+    import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+    
+    /**
+     * 配置虚拟路径映射（这一步很重要，我们将文件上传到服务器上时，我们需要将我们的请求路径和服务器上的路径进行对应，不然很有可能文件上传成功，但访问失败。）
+     * <p>对应关系需要自己去定义，如果访问失败，可以试着打印下路径，看看是否漏缺了分隔符</p>
+     * <p>如果 addResourceHandler 不要写成处理 /**, 这样写会被拦截掉其他请求。</p>
+     *
+     * @author Administrator
+     * @date 2020/11/13 下午 8:23
+     */
+    @Configuration
+    public class MvcConfig implements WebMvcConfigurer {
+    
+        private static final String UPLOADED_FOLDER = System.getProperty("user.dir");
+    
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry.addResourceHandler("/upload/**")
+                    .addResourceLocations("file:///" + UPLOADED_FOLDER + "/");
+        }
+    }
+    ```
+4. 控制层：
+    ```java
+    import org.springframework.stereotype.Controller;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RequestParam;
+    import org.springframework.web.multipart.MultipartFile;
+    import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+    
+    import java.io.IOException;
+    import java.nio.file.Path;
+    import java.nio.file.Paths;
+    
+    /**
+     * 文件上传
+     *
+     * @author Administrator
+     * @date 2020/11/13 下午 8:19
+     */
+    @Controller
+    @RequestMapping(value = "/fileUpload")
+    public class FileUploadController {
+    
+        private static final String UPLOADED_FOLDER = System.getProperty("user.dir");
+    
+        @GetMapping("/redirectFilePage")
+        public String index() {
+            return "file";
+        }
+    
+        @PostMapping("/upload")
+        public String singleFileUpload(@RequestParam("file") MultipartFile file,
+                                       RedirectAttributes redirectAttributes) throws IOException {
+    
+            if (file.isEmpty()) {
+                redirectAttributes.addFlashAttribute("msg", "文件为空,请选择你的文件上传");
+                return "redirect:uploadStatus";
+            }
+            saveFile(file);
+            redirectAttributes.addFlashAttribute("msg", "上传文件" + file.getOriginalFilename() + "成功");
+            redirectAttributes.addFlashAttribute("url", "/upload/" + file.getOriginalFilename());
+            return "redirect:uploadStatus";
+        }
+    
+        private void saveFile(MultipartFile file) throws IOException {
+            Path path = Paths.get(UPLOADED_FOLDER + "/" + file.getOriginalFilename());
+            file.transferTo(path);
+        }
+    
+        @GetMapping("/uploadStatus")
+        public String uploadStatus() {
+            return "uploadStatus";
+        }
+    }
+    ```
+5. 添加测试页面
+    1. 主页面：file.html
+    ```html
+    <html>
+    <!--suppress ALL-->
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>文件上传界面</title>
+    </head>
+    <body>
+    <div>
+        <form method="POST" enctype="multipart/form-data" action="/fileUpload/upload">
+            <table>
+                <tr>
+                    <td><input type="file" name="file"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="上传"/></td>
+                </tr>
+            </table>
+        </form>
+    
+    </div>
+    </body>
+    </html>
+    
+    ```
+6. 上传成功与否的状态页面
+    ```html
+    <!--suppress ALL-->
+    <html xmlns:th="http://www.thymeleaf.org">
+    
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>文件上传界面</title>
+    </head>
+    <body>
+    <div th:if="${msg}">
+        <h2 th:text="${msg}"/>
+    </div>
+    <div>
+        <img src="" th:src="${url}" alt="">
+    </div>
+    </body>
+    </html>
+    
+    ```
+7. 测试文件上传功能；
+   1. 请求URL：`http://localhost:8080/fileUpload/redirectFilePage`
+   2. 选择文件，如果上传文件成功，则文件将保存到与src同一级别的目录中。
+8. 提供SpringBoot 的 Restful API 接口。（见`FileUploadRestController.java`）
+
+
+
 
 ## 附件
 ### 1. Swagger2.x 的相关注解说明：
