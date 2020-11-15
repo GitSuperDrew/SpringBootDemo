@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration debug="false">
+    <!--定义日志文件的存储地址：勿在 Logback 的配置中使用相对路径-->
+    <property name="LOG_HOME" value="d:/"/>
+
+    <!--控制台输出-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %n%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--按照每天生成日志文件-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/mongodbdemo.log.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %n%msg%n</pattern>
+        </encoder>
+        <!--日志文件最大的大小-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <!--日志输出级别-->
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+    <logger name="org.springframework.data.mongodb.core.MongoTemplate" level="DEBUG" additivity="false">
+        <!--关键点：配置MongoDB日志输出，name是输出日志的类，level设置成debug，才会将执行的语句输出到控制台/文件；
+        additivity="false" ：如果不加，则会在控制台上打印两次。
+        -->
+        <appender-ref ref="STDOUT"/>
+    </logger>
+</configuration>
