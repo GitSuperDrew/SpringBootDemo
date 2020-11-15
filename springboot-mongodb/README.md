@@ -9,6 +9,8 @@
     > 如果不存在表，将会以类名自动创建集合；（例如 类为 GoodsEntity.java, 没有配置好@Document(value="test_goods")；则会自动创建goodsEntity为集合。）
 
 博客学习：[今日头条](https://www.toutiao.com/a6657007220812677644/)
+示例学习2：[SpringBoot-MongoDB](https://www.toutiao.com/i6894995575263986179/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1605371525&app=news_article&utm_source=weixin&utm_medium=toutiao_android&use_new_style=1&req_id=202011150032040101450260141198536F&group_id=6894995575263986179)
+
 ### 1.引入MongoDB的依赖
 ```xml
 <dependency>
