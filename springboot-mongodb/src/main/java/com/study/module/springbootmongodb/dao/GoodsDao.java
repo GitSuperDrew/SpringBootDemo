@@ -57,6 +57,23 @@ public class GoodsDao {
     }
 
     /**
+     * 删除指定文档
+     *
+     * @param id ObjectId MongoDB自动生成的唯一标识ID
+     * @return 是否成功 true成功，false失败
+     */
+    public boolean delByObjectId(String id) {
+        Query query = new Query(Criteria.where("id").is(id));
+        GoodsEntity entity = mongoTemplate.findOne(query, GoodsEntity.class);
+        assert entity != null;
+        DeleteResult deleteResult = mongoTemplate.remove(entity);
+        if (deleteResult.getDeletedCount() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 查看商品详情
      *
      * @param id 商品文档记录ID
