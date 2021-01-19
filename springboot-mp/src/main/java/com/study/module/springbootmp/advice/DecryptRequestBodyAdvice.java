@@ -15,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 /**
  * @author zl
@@ -30,7 +31,7 @@ public class DecryptRequestBodyAdvice extends RequestBodyAdviceAdapter {
     @Override
     public boolean supports(MethodParameter methodParameter, Type targetType,
                             Class<? extends HttpMessageConverter<?>> converterType) {
-        return methodParameter.getMethod().isAnnotationPresent(SIProtection.class)
+        return Objects.requireNonNull(methodParameter.getMethod()).isAnnotationPresent(SIProtection.class)
                 || methodParameter.getMethod().getDeclaringClass().isAnnotationPresent(SIProtection.class);
     }
 
@@ -45,7 +46,7 @@ public class DecryptRequestBodyAdvice extends RequestBodyAdviceAdapter {
             }
 
             @Override
-            public InputStream getBody() throws IOException {
+            public InputStream getBody() {
                 return new ByteArrayInputStream(body.getBytes());
             }
         };

@@ -29,11 +29,12 @@ public interface SecretProcess {
      */
     String getAlgorithm();
 
-    // 对数据进行16进制转换
-    public static class Hex {
+    /**
+     * 对数据进行16进制转换
+     */
+    class Hex {
 
-        private static final char[] HEX = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'a', 'b', 'c', 'd', 'e', 'f'};
+        private static final char[] HEX = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
         public static byte[] decode(CharSequence s) {
             int nChars = s.length();
@@ -45,8 +46,7 @@ public interface SecretProcess {
                 int msb = Character.digit(s.charAt(i), 16);
                 int lsb = Character.digit(s.charAt(i + 1), 16);
                 if (msb < 0 || lsb < 0) {
-                    throw new IllegalArgumentException(
-                            "Detected a Non-hex character at " + (i + 1) + " or " + (i + 2) + " position");
+                    throw new IllegalArgumentException("Detected a Non-hex character at " + (i + 1) + " or " + (i + 2) + " position");
                 }
                 result[i / 2] = (byte) ((msb << 4) | lsb);
             }
@@ -55,7 +55,7 @@ public interface SecretProcess {
 
         public static String encode(byte[] buf) {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0, leng = buf.length; i < leng; i++) {
+            for (int i = 0, len = buf.length; i < len; i++) {
                 sb.append(HEX[(buf[i] & 0xF0) >>> 4]).append(HEX[buf[i] & 0x0F]);
             }
             return sb.toString();

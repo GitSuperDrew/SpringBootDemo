@@ -24,7 +24,7 @@ public class SecretProcessController {
     @GetMapping(value = "/getInfo")
     public Object getInfo(String str) {
         System.out.println("输入的内容为：" + str);
-        // 加密后的内容为：2503a82a70a880d2c6edb7f726f31cee
+        // 加密后的内容为：a346727cb21019989aca9bb2b771446fafa5fdb0c7fa45dbd6a7193789c48e8555b5f4d912ec56fe0b5a2820fb822b37
         return "hello world! hello secret data.";
     }
 

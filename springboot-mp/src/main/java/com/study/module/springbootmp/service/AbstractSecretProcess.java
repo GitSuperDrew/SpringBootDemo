@@ -7,7 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 /**
@@ -36,7 +36,7 @@ public abstract class AbstractSecretProcess implements SecretProcess {
         try {
             Cipher cipher = Cipher.getInstance(getAlgorithm());
             cipher.init(Cipher.ENCRYPT_MODE, keySpec());
-            return Hex.encode(cipher.doFinal(data.getBytes(Charset.forName("UTF-8"))));
+            return Hex.encode(cipher.doFinal(data.getBytes(StandardCharsets.UTF_8)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

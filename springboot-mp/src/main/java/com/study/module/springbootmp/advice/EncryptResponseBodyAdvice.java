@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * @author zl
  * @date 2021/1/18 19:12
  **/
-
 @ControllerAdvice
 @ConditionalOnProperty(name = "secret.enabled", havingValue = "true")
-public class EncryptResponseBodyAdvice  implements ResponseBodyAdvice<Object> {
+public class EncryptResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
     @Resource
     private SecretProcess secretProcess;
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return returnType.getMethod().isAnnotationPresent(SIProtection.class)
+        return Objects.requireNonNull(returnType.getMethod()).isAnnotationPresent(SIProtection.class)
                 || returnType.getMethod().getDeclaringClass().isAnnotationPresent(SIProtection.class);
     }
 
@@ -37,7 +37,7 @@ public class EncryptResponseBodyAdvice  implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request,
                                   ServerHttpResponse response) {
         if (body == null) {
-            return body;
+            return null;
         }
         try {
             String jsonStr = new ObjectMapper().writeValueAsString(body);
