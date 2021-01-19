@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页：测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<h3>
+    hello world!
+</h3>
+<hr>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>NAME</td>
+        <td>AGE</td>
+    </tr>
+    <tr>
+        <td th:text="${id}"></td>
+        <td th:text="${name}"></td>
+        <td th:text="${age}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
