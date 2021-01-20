@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.module.dao.SysOperLogDao">
+
+    <resultMap type="com.study.module.entity.SysOperLog" id="SysOperLogMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="businessType" column="business_type" jdbcType="INTEGER"/>
+        <result property="method" column="method" jdbcType="VARCHAR"/>
+        <result property="spellTime" column="spell_time" jdbcType="INTEGER"/>
+        <result property="params" column="params" jdbcType="VARCHAR"/>
+        <result property="responseData" column="response_data" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="errorMsg" column="error_msg" jdbcType="VARCHAR"/>
+        <result property="operTime" column="oper_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SysOperLogMap">
+        select id,
+               title,
+               business_type,
+               method,
+               spell_time,
+               params,
+               response_data,
+               status,
+               error_msg,
+               oper_time
+        from sys_oper_log
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SysOperLogMap">
+        select id,
+               title,
+               business_type,
+               method,
+               spell_time,
+               params,
+               response_data,
+               status,
+               error_msg,
+               oper_time
+        from sys_oper_log limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SysOperLogMap">
+        select
+        id, title, business_type, method, spell_time, params, response_data, status, error_msg, oper_time
+        from sys_oper_log
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="businessType != null">
+                and business_type = #{businessType}
+            </if>
+            <if test="method != null and method != ''">
+                and method = #{method}
+            </if>
+            <if test="spellTime != null">
+                and spell_time = #{spellTime}
+            </if>
+            <if test="params != null and params != ''">
+                and params = #{params}
+            </if>
+            <if test="responseData != null and responseData != ''">
+                and response_data = #{responseData}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="errorMsg != null and errorMsg != ''">
+                and error_msg = #{errorMsg}
+            </if>
+            <if test="operTime != null">
+                and oper_time = #{operTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_oper_log(title, business_type, method, spell_time, params, response_data, status,
+                                 error_msg, oper_time)
+        values (#{title}, #{businessType}, #{method}, #{spellTime}, #{params}, #{responseData}, #{status}, #{errorMsg},
+                #{operTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_oper_log(title, business_type, method, spell_time, params, response_data, status,
+        error_msg, oper_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.title}, #{entity.businessType}, #{entity.method}, #{entity.spellTime}, #{entity.params},
+            #{entity.responseData}, #{entity.status}, #{entity.errorMsg}, #{entity.operTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_oper_log(title, business_type, method, spell_time, params, response_data, status,
+        error_msg, oper_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.title}, #{entity.businessType}, #{entity.method}, #{entity.spellTime}, #{entity.params},
+            #{entity.responseData}, #{entity.status}, #{entity.errorMsg}, #{entity.operTime})
+        </foreach>
+        on duplicate key update
+        title = values(title) , business_type = values(business_type) , method = values(method) , spell_time =
+        values(spell_time) , params = values(params) , response_data = values(response_data) , status = values(status) ,
+        error_msg = values(error_msg) , oper_time = values(oper_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update sys_oper_log
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType},
+            </if>
+            <if test="method != null and method != ''">
+                method = #{method},
+            </if>
+            <if test="spellTime != null">
+                spell_time = #{spellTime},
+            </if>
+            <if test="params != null and params != ''">
+                params = #{params},
+            </if>
+            <if test="responseData != null and responseData != ''">
+                response_data = #{responseData},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="errorMsg != null and errorMsg != ''">
+                error_msg = #{errorMsg},
+            </if>
+            <if test="operTime != null">
+                oper_time = #{operTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from sys_oper_log
+        where id = #{id}
+    </delete>
+
+</mapper>
