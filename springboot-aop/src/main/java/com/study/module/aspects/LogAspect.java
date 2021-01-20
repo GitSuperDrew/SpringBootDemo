@@ -13,6 +13,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import java.lang.reflect.Method;
@@ -47,6 +48,11 @@ public class LogAspect {
     public void logPointCut() {
     }
 
+    /**
+     * 接口请求前，执行
+     *
+     * @param joinPoint 切点
+     */
     @Before(value = "logPointCut()")
     public void doBefore(JoinPoint joinPoint) {
         String args = Arrays.toString(joinPoint.getArgs());
@@ -82,8 +88,8 @@ public class LogAspect {
             Map<String, Object> jsonResult = new HashMap<>(16);
             jsonResult.put(SPELL_TIME, spellTime);
             // 方法入参
-            String args = Arrays.toString(point.getArgs());
-            jsonResult.put(PARAMS, args);
+            Map<String, Object> params = this.getRequestParams(point);
+            jsonResult.put(PARAMS, params);
             // 方法返回值
             jsonResult.put(RESPONSE_DATA, point.proceed());
             handleLog(point, null, jsonResult);
@@ -95,7 +101,7 @@ public class LogAspect {
 
 
     /**
-     * 拦截异常操作
+     * 接口捕获拦截异常时执行此操作
      *
      * @param joinPoint 切点
      * @param e         异常
@@ -190,5 +196,31 @@ public class LogAspect {
             return method.getAnnotation(Log.class);
         }
         return null;
+    }
+
+    /**
+     * 获取请求参数
+     *
+     * @param proceedingJoinPoint 切点
+     * @return 参数以及参数值的map
+     */
+    private Map<String, Object> getRequestParams(ProceedingJoinPoint proceedingJoinPoint) {
+        Map<String, Object> requestParams = new HashMap<>();
+        //参数名
+        String[] paramNames = ((MethodSignature) proceedingJoinPoint.getSignature()).getParameterNames();
+        //参数值
+        Object[] paramValues = proceedingJoinPoint.getArgs();
+
+        for (int i = 0; i < paramNames.length; i++) {
+            Object value = paramValues[i];
+            //如果是文件对象
+            if (value instanceof MultipartFile) {
+                MultipartFile file = (MultipartFile) value;
+                //获取文件名
+                value = file.getOriginalFilename();
+            }
+            requestParams.put(paramNames[i], value);
+        }
+        return requestParams;
     }
 }
