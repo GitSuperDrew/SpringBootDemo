@@ -5,7 +5,6 @@ import com.study.module.entity.Stu;
 import com.study.module.enums.BusinessType;
 import com.study.module.service.StuService;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
