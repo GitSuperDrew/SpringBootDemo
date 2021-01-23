@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.study.module.springbootsecurity.dao.SysPermissionDao">
+
+    <resultMap type="edu.study.module.springbootsecurity.entity.SysPermission" id="SysPermissionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="permName" column="perm_name" jdbcType="VARCHAR"/>
+        <result property="permTag" column="perm_tag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SysPermissionMap">
+        select
+          id, perm_name, perm_tag
+        from zero.sys_permission
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SysPermissionMap">
+        select
+          id, perm_name, perm_tag
+        from zero.sys_permission
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SysPermissionMap">
+        select
+        id, perm_name, perm_tag
+        from zero.sys_permission
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="permName != null and permName != ''">
+                and perm_name = #{permName}
+            </if>
+            <if test="permTag != null and permTag != ''">
+                and perm_tag = #{permTag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into zero.sys_permission(perm_name, perm_tag)
+        values (#{permName}, #{permTag})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into zero.sys_permission(perm_name, perm_tag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.permName}, #{entity.permTag})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into zero.sys_permission(perm_name, perm_tag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.permName}, #{entity.permTag})
+        </foreach>
+        on duplicate key update
+        perm_name = values(perm_name) , perm_tag = values(perm_tag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update zero.sys_permission
+        <set>
+            <if test="permName != null and permName != ''">
+                perm_name = #{permName},
+            </if>
+            <if test="permTag != null and permTag != ''">
+                perm_tag = #{permTag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from zero.sys_permission where id = #{id}
+    </delete>
+
+</mapper>
