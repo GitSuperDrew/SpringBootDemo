@@ -1,5 +1,11 @@
 package edu.study.module.springbootsecurity.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +14,11 @@ import java.io.Serializable;
  * @author drew
  * @since 2021-01-23 11:12:55
  */
+@Data
+@Builder
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class SysRolePermission implements Serializable {
     private static final long serialVersionUID = 216768168180083751L;
     /**
@@ -22,30 +33,5 @@ public class SysRolePermission implements Serializable {
      * 权限ID
      */
     private Integer pid;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getRid() {
-        return rid;
-    }
-
-    public void setRid(Integer rid) {
-        this.rid = rid;
-    }
-
-    public Integer getPid() {
-        return pid;
-    }
-
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
 
 }

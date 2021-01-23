@@ -37,6 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/logout").permitAll()
                 //放行注册
                 .antMatchers("/reg", "/register").permitAll()
+                //放行sys开头
+                .antMatchers("/sys*/**").permitAll()
                 //此页需要权限
                 .antMatchers("/main").hasAnyAuthority("ROLE_PRODUCT_LIST")
                 //除上所有拦截需要用户认证
