@@ -413,6 +413,34 @@ spring.devtools.restart.enabled=true
         > 1. 返回的结果都被统一异常处理类捕获，说明测试验证成功；<br/>
         > 2. 数据按照指定的参数要求进行验证，且正常返回提示信息；
 
+
+#### 五、整合 SSL - HTTPS协议访问
+1. 第一步：CMD执行命令；
+    ```shell script
+    keytool -genkey -alias tomcat -keyalg RSA -keysize 2048 -validety 365 -keystore.p12 -keypass 123456 -stroepass 123456 -dname "CN=xingming,OU=danwei,O=zuzhi,L=shi,ST=sheng,C=CN"
+    ```
+2. 第二步：配置属性（`application.properties`）
+    ```properties
+    server.http2.enabled=true
+    http.port=80
+    server.ssl.enabled=true
+    server.ssl.key-alias=tomcat
+    server.ssl.key-store=classpath:keystore.p12
+    server.ssl.key-store-password=123456
+    server.ssl.key-store-type=JKS
+    ```
+3. 配置 http和https都可访问的内容（见`TomcatConfig.java`）
+4. 浏览器测试。
+    ```text
+    浏览器访问 
+        https://localhost:8080/user/testHttps
+        http://localhost:8080/user/testHttps
+    ```
+
+
+
+
+
 # 延伸阅读
 1. 知识引入：[今日头条](https://blog.csdn.net/songguopeng/article/details/98961787)
 2. 邮编查询：[http://www.yb21.cn/post/](http://www.yb21.cn/post/)

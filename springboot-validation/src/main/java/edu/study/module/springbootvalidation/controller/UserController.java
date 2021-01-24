@@ -1,10 +1,7 @@
 package edu.study.module.springbootvalidation.controller;
 
 import edu.study.module.springbootvalidation.vo.UserVO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,5 +19,10 @@ public class UserController {
     public Object addUser(@RequestBody @Valid UserVO userVO){
         System.out.println("传入的参数为："  + userVO);
         return "^_^ 参数验证成功！";
+    }
+
+    @GetMapping(path = "/testHttps")
+    public Object testHttps() {
+        return "访问SSL-Https测试成功";
     }
 }
