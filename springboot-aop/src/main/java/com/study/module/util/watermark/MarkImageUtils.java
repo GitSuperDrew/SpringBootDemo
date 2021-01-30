@@ -1,4 +1,4 @@
-package com.study.module.util;
+package com.study.module.util.watermark;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -197,7 +197,7 @@ public class MarkImageUtils {
      * 给图片添加多个文字水印、可设置水印文字旋转角度
      *
      * @param source    需要添加水印的图片路径（如：F:/images/6.jpg）
-     * @param outPut    添加水印后图片输出路径（如：F:/images/）
+     * @param output    添加水印后图片输出路径（如：F:/images/）
      * @param imageName 图片名称（如：11111）
      * @param imageType 图片类型（如：jpg）
      * @param color     水印文字的颜色
@@ -259,7 +259,7 @@ public class MarkImageUtils {
      * 给图片添加单个文字水印、可设置水印文字旋转角度
      *
      * @param source    需要添加水印的图片路径（如：F:/images/6.jpg）
-     * @param outPut    添加水印后图片输出路径（如：F:/images/）
+     * @param output    添加水印后图片输出路径（如：F:/images/）
      * @param imageName 图片名称（如：11111）
      * @param imageType 图片类型（如：jpg）
      * @param color     水印文字的颜色

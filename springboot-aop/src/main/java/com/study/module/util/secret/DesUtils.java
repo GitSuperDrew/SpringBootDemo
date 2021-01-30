@@ -1,4 +1,4 @@
-package com.study.module.util;
+package com.study.module.util.secret;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;

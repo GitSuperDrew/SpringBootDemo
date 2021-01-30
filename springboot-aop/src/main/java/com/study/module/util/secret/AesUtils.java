@@ -1,4 +1,4 @@
-package com.study.module.util;
+package com.study.module.util.secret;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

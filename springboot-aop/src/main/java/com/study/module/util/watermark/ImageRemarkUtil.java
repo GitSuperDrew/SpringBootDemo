@@ -1,4 +1,4 @@
-package com.study.module.util;
+package com.study.module.util.watermark;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
