@@ -1,4 +1,4 @@
-package com.study.module.util;
+package com.study.module.util.code;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;

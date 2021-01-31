@@ -1,4 +1,4 @@
-package com.study.module.util;
+package com.study.module.util.code;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class BarCodeUtil {
 
     public static void main(String[] args) throws IOException {
-        BufferedImage image = insertWords(getBarCode("HELLOWAORD"), "你好世界");
+        BufferedImage image = insertWords(getBarCode("HELLOWORLD"), "你好世界");
         ImageIO.write(image, "jpg", new File("D:/barcode-helloworld.png"));
 
 //        A80/90R8A(8A侧通孔)
