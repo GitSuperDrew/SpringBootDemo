@@ -1,6 +1,11 @@
 package edu.study.module.springboothazelcast.config;
 
 import com.hazelcast.config.*;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
+import com.hazelcast.core.ITopic;
+import com.hazelcast.map.listener.MapListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,4 +47,22 @@ public class HazelcastConfiguration {
                         .setTimeToLiveSeconds(-1)).setGroupConfig(gc);
         return config;
     }
+//
+//    /**
+//     * 添加了一些hazelcast的监听器配置
+//     */
+//    @Bean
+//    public HazelcastInstance hazelcastInstance(Config config) {
+//        HazelcastInstance hzInstance = Hazelcast.newHazelcastInstance(config);
+//        //分布式map监听
+//        IMap<Object, Object> imap = hzInstance.getMap("hazelcastMap");
+//        imap.addLocalEntryListener(new MapListener());
+//        //拦截器（没写内容）
+//        imap.addInterceptor(new IMapInterceptor());
+//        //发布/订阅模式
+//        ITopic<String> topic = hzInstance.getTopic("hazelcastTopic");
+//        topic.addMessageListener(new TopicListener());
+//
+//        return hzInstance;
+//    }
 }

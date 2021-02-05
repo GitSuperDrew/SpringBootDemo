@@ -190,3 +190,22 @@ public class HazelcastController {
 
 # 延伸阅读
 
+1. hazelcast管理终端：[Hazelcast IMDG](https://hazelcast.org/download/archives/#management-center)
+2. 注意 hazelcast IMDG 需要跟引入的hazelcast版本保持一致。
+3. hazelcast 特性：
+   1. 无主从模式；（与许多Nosql 解决方案不同，hazelcast 节点是点对点的。没有主从关系；所以成员都存储相同数据的数据，并进行了相等的处理，避免了单点故障。）
+   2. 弹性可扩展；（hazelcast 旨在扩展成千上万的成员。新成员启动，将自动发现集群，并线性增加存储和处理能力。成员之间通过 TCP 保持连接和通讯。）
+   3. 读写快速高效：（hazelcast 所有数据都存储在内存中，提供基于内存快速高效的读写能力。）
+4. hazelcast 优势：
+   1. 提供开源版本；
+   2. 无需安装，只是个极小的 jar 包。
+   3. 提供开箱即用的分布式数据结构，如 List, Map, Queue，MultiMap,Topic ，Lock 和 Executor。
+   4. 集群非传统主从关系，避免了单点故障；集群中所有成员共同分担集群功能；
+   5. 集群提供弹性扩展，新成员在内存不足或者负载过高时能动态加入集群。
+   6. 集群中成员分担数据缓存的同时【相互冗余备份】其他成员数据，防止成员离线后数据丢失。
+   7. 提供 SPI 接口支持支持用户自定义分布式数据结构。
+5. hazelcast 使用场景
+   1. 频繁读写数据；
+   2. 需要高可用分布式缓存；
+   3. 内存行 nosql 存储；
+   4. 分部署环境中弹性扩展；
