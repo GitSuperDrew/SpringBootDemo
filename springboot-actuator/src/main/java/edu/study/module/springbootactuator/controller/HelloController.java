@@ -1,4 +1,4 @@
-package com.example.springbootactuator.controller;
+package edu.study.module.springbootactuator.controller;
 
 import org.springframework.web.bind.annotation.*;
 

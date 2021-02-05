@@ -1,4 +1,4 @@
-package com.example.springbootactuator;
+package edu.study.module.springbootactuator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

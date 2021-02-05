@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>spring-boot-actuator</artifactId>
+    <artifactId>springboot-actuator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-actuator</name>
-    <description>Demo project for Spring Boot</description>
+    <description>监听SpringBoot的案例 project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
