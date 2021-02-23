@@ -38,7 +38,7 @@ public class CsvUtil {
 
     public static void main(String[] args) throws Exception {
 
-         testReadCsv();
+        // testReadCsv();
         // testExportCsv();
         // testExportCsvPlus();
     }
@@ -51,7 +51,7 @@ public class CsvUtil {
             if ("exit".equals(in)) {
                 break;
             }
-            System.out.println("文件的数据如下：\n" + JSONObject.toJSONString(readCsv(in)));
+            System.out.println("文件的数据如下：\n" + JSONObject.toJSONString(readCsv(in, false)));
         }
     }
 
@@ -89,32 +89,47 @@ public class CsvUtil {
         System.out.println("导出成功，位置为：" + outputFilePath);
     }
 
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    static class User {
-        private String name;
-        private Integer age;
-        private Float grades;
-        private String sex;
-        private Date birthday;
-        private Boolean enabled;
+    /**
+     * 将字节流转换成文件
+     *
+     * @param filePath 文件输出后存放的地址（例如：“D:/out.xlsx”）
+     * @param data     子节数组流
+     * @throws Exception
+     */
+    public static void saveFile(String filePath, byte[] data) {
+        if (data != null) {
+            try {
+                File file = new File(filePath);
+                if (file.exists()) {
+                    file.delete();
+                }
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(data, 0, data.length);
+                fos.flush();
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
-
 
     /**
      * 读取csv文件的数据
      *
-     * @param csvFilePath csv文件所在位置(例如：“D:\评价数据.csv”)
+     * @param csvFilePath  csv文件所在位置(例如：“D:\评价数据.csv”)
+     * @param isNeedHeader true需要，false不需要
      * @return 数据集合
      */
-    public static List<List<Object>> readCsv(String csvFilePath) {
+    public static List<List<Object>> readCsv(String csvFilePath, boolean isNeedHeader) {
         List<List<Object>> result = new ArrayList<>();
         try {
-            //换成你的文件名
-            BufferedReader reader = new BufferedReader(new FileReader(csvFilePath));
-            reader.readLine();//第一行信息，为标题信息，不用,如果需要，注释掉
+            // 中文乱码问题：源文件的编码格式与程序设置的读取格式不一致所致（调整csv文件为UTF-8集合）
+            DataInputStream in = new DataInputStream(new FileInputStream(csvFilePath));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "gbk"));
+            if (!isNeedHeader) {
+                //第一行信息，为标题信息，不用,如果需要，注释掉
+                reader.readLine();
+            }
             String line = null;
             while ((line = reader.readLine()) != null) {
                 //CSV格式文件为逗号分隔符文件，这里根据逗号切分
@@ -232,6 +247,19 @@ public class CsvUtil {
             csvWriter.write(rowStr);
         }
         csvWriter.newLine();
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    static class User {
+        private String name;
+        private Integer age;
+        private Float grades;
+        private String sex;
+        private Date birthday;
+        private Boolean enabled;
     }
 
 }
