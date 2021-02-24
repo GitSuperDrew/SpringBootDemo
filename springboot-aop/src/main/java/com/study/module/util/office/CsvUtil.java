@@ -57,7 +57,7 @@ public class CsvUtil {
             System.out.println("读取csv文件的数据：（示例文件地址为：D:/csv-demo-1.csv）");
             Scanner scanner = new Scanner(System.in);
             String in = scanner.nextLine();
-            if ("exit".equals(in)) {
+            if (Arrays.asList("exit", "quit", "q").contains(in)) {
                 break;
             }
             System.out.println("文件的数据如下：\n" + JSONObject.toJSONString(readCsv(in, true)));
@@ -144,7 +144,7 @@ public class CsvUtil {
             List<List<String>> dataList = new ArrayList<>();
             while ((line = reader.readLine()) != null) {
                 String[] parts = splitCSV(line);
-                if (!ObjectUtils.isEmpty(parts)){
+                if (!ObjectUtils.isEmpty(parts)) {
                     List<String> lineData = Arrays.asList(parts);
                     dataList.add(lineData);
                 }
@@ -156,7 +156,7 @@ public class CsvUtil {
         return result;
     }
 
-    public static void test() {
+    public static void testSplitCSV() {
         String src1 = "\"fh,zg\",sdf,\"asfs,\",\",dsdf\",\"aadf\"\"\",\"\"\"hdfg\",\"fgh\"\"dgnh\",hgfg'dfh,\"asdfa\"\"\"\"\",\"\"\"\"\"fgjhg\",\"gfhg\"\"\"\"hb\"";
         try {
             String[] Ret = splitCSV(src1);
