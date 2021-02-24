@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -137,6 +138,38 @@ public class CsvUtil {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "gbk"));
             //第一行信息，为标题信息，不用,如果需要，注释掉
             // reader.readLine();
+            if (isHasHeader) {
+                result.put("header", reader.readLine());
+            }
+            String line;
+            List<List<String>> dataList = new ArrayList<>();
+            while ((line = reader.readLine()) != null) {
+                String[] parts = splitCSV(line);
+                if (!ObjectUtils.isEmpty(parts)) {
+                    List<String> lineData = Arrays.asList(parts);
+                    dataList.add(lineData);
+                }
+            }
+            result.put("data", dataList);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 解析 CSV 文件，返回CSV的数据。
+     *
+     * @param multipartFile controller 前端上传文件类型的参数值提交。
+     * @param isHasHeader   csv文件中是否包含表头数据
+     * @return {"data":[...], "header": []} 其中可有可无
+     */
+    public static Map<String, Object> readCsv(MultipartFile multipartFile, Boolean isHasHeader) {
+        Map<String, Object> result = new HashMap<>(2);
+        try {
+            // 中文乱码问题：源文件的编码格式与程序设置的读取格式不一致所致（调整csv文件为UTF-8集合）
+            DataInputStream in = new DataInputStream(multipartFile.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "gbk"));
             if (isHasHeader) {
                 result.put("header", reader.readLine());
             }

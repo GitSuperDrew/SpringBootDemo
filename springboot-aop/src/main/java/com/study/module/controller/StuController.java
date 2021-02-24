@@ -4,10 +4,13 @@ import com.study.module.annotation.Log;
 import com.study.module.entity.Stu;
 import com.study.module.enums.BusinessType;
 import com.study.module.service.StuService;
+import com.study.module.util.office.CsvUtil;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * (Stu)表控制层
@@ -23,6 +26,17 @@ public class StuController {
      */
     @Resource
     private StuService stuService;
+
+    /**
+     * 读取CSV文件
+     *
+     * @param multipartFile 文件
+     * @return JSON Data
+     */
+    @PostMapping("/readCSV")
+    public Map<String, Object> readCSV(@RequestParam(value = "multipartFile") MultipartFile multipartFile) {
+        return CsvUtil.readCsv(multipartFile, true);
+    }
 
     /**
      * 通过主键查询单条数据
