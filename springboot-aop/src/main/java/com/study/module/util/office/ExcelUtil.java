@@ -1,27 +1,26 @@
 package com.study.module.util.office;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ObjectUtils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * <pre>
@@ -35,7 +34,114 @@ public class ExcelUtil {
     private Logger logger = LoggerFactory.getLogger(ExcelUtil.class);
 
     public static void main(String[] args) throws IOException {
-        deleteBlankAndRow("D:\\file44.xlsx", "D:\\file4.xlsx");
+        // deleteBlankAndRow("D:\\file44.xlsx", "D:\\file4.xlsx");
+    }
+
+    @Data
+    @NoArgsConstructor
+    @Builder
+    @AllArgsConstructor
+    static class User {
+        private int id;
+        private String name;
+        private String sex;
+        private int age;
+    }
+
+    public static void testExportExcel(HttpServletResponse response) {
+        Collection userList = new ArrayList<>();
+        User user = new User(1, "张三", "男", 39);
+        userList.add(user);
+        user = new User(2, "如花", "女", 21);
+        userList.add(user);
+
+        String[] headers = {"序号", "姓名", "性别", "年龄"};
+        String fileName = "用户信息表";
+
+        ExcelUtil.exportExcel(headers, userList, fileName, response);
+    }
+
+    /**
+     * 导出数据到 excel中
+     *
+     * @param headers  表头
+     * @param dataset  需要输出到excel的数据
+     * @param fileName 输出excel文件所在地址（例如：D:/454e.xls）
+     * @param response 输出
+     */
+    public static void exportExcel(String[] headers, Collection<Object> dataset, String fileName, HttpServletResponse response) {
+        // 声明一个工作薄
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        // 生成一个表格
+        XSSFSheet sheet = workbook.createSheet(fileName);
+        // 设置表格默认列宽度为15个字节
+        sheet.setDefaultColumnWidth((short) 20);
+        // 产生表格标题行
+        XSSFRow row = sheet.createRow(0);
+        for (short i = 0; i < headers.length; i++) {
+            XSSFCell cell = row.createCell(i);
+            XSSFRichTextString text = new XSSFRichTextString(headers[i]);
+            cell.setCellValue(text);
+        }
+        try {
+            // 遍历集合数据，产生数据行
+            Iterator<Object> it = dataset.iterator();
+            int index = 0;
+            while (it.hasNext()) {
+                index++;
+                row = sheet.createRow(index);
+                Object t = it.next();
+                // 利用反射，根据javabean属性的先后顺序，动态调用getXxx()方法得到属性值
+                Field[] fields = t.getClass().getDeclaredFields();
+                for (short i = 0; i < headers.length; i++) {
+                    XSSFCell cell = row.createCell(i);
+                    Field field = fields[i];
+                    String fieldName = field.getName();
+                    String getMethodName = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+                    Class tCls = t.getClass();
+                    Method getMethod = tCls.getMethod(getMethodName, new Class[]{});
+                    Object value = getMethod.invoke(t, new Object[]{});
+                    // 判断值的类型后进行强制类型转换
+                    String textValue = null;
+                    // 其它数据类型都当作字符串简单处理
+                    if (value != null && value != "") {
+                        textValue = value.toString();
+                    }
+                    if (textValue != null) {
+                        XSSFRichTextString richString = new XSSFRichTextString(textValue);
+                        cell.setCellValue(richString);
+                    }
+                }
+            }
+            getExportedFile(workbook, fileName, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 产生输出
+     *
+     * @param workbook excel文件对象
+     * @param name     文件名称
+     * @param response 返回输出excel文件的二进制流
+     * @throws Exception
+     */
+    public static void getExportedFile(XSSFWorkbook workbook, String name, HttpServletResponse response) throws Exception {
+        BufferedOutputStream fos = null;
+        try {
+            String fileName = name + ".xlsx";
+            response.setContentType("application/x-msdownload");
+            response.setHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("gb2312"), "ISO8859-1"));
+            fos = new BufferedOutputStream(response.getOutputStream());
+            workbook.write(fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                fos.close();
+            }
+        }
     }
 
     /**

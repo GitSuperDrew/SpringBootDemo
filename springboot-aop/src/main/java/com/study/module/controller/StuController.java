@@ -5,11 +5,14 @@ import com.study.module.entity.Stu;
 import com.study.module.enums.BusinessType;
 import com.study.module.service.StuService;
 import com.study.module.util.office.CsvUtil;
+import com.study.module.util.office.ExcelUtil;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -37,6 +40,14 @@ public class StuController {
     public Map<String, Object> readCSV(@RequestParam(value = "multipartFile") MultipartFile multipartFile) {
         return CsvUtil.readCsv(multipartFile, true);
     }
+
+    @GetMapping("exportDbToExcel")
+    @ResponseBody
+    public ModelAndView downloadFile(HttpServletResponse response) {
+        ExcelUtil.testExportExcel(response);
+        return null;
+    }
+
 
     /**
      * 通过主键查询单条数据
