@@ -14,6 +14,16 @@ import java.util.*;
 
 /**
  * CSV 转换程 excel
+ * CSV文件规则
+ * 1 开头是不留空，以“行”为单位。
+ * 2 可含或不含列名，含列名则居文件第一行。
+ * 3 一行数据不跨行，无空行。
+ * 4 以半角逗号（即,）作分隔符，列为空也要表达其存在。
+ * 5 列内容如存在半角逗号（即,）则用半角双引号（即""）将该字段值包含起来。
+ * 6 列内容如存在半角引号（即"）则应替换成半角双引号（""）转义，并用半角引号（即""）将该字段值包含起来。
+ * 7 文件读写时引号，逗号操作规则互逆。
+ * 8 内码格式不限，可为 ASCII、Unicode 或者其他。
+ * 9 不支持特殊字符
  *
  * @author drew
  * @date 2021/2/23 10:32
@@ -37,8 +47,7 @@ public class CsvUtil {
     }
 
     public static void main(String[] args) throws Exception {
-
-        // testReadCsv();
+        testReadCsv();
         // testExportCsv();
         // testExportCsvPlus();
     }
@@ -51,7 +60,7 @@ public class CsvUtil {
             if ("exit".equals(in)) {
                 break;
             }
-            System.out.println("文件的数据如下：\n" + JSONObject.toJSONString(readCsv(in, false)));
+            System.out.println("文件的数据如下：\n" + JSONObject.toJSONString(readCsv(in, true)));
         }
     }
 
@@ -116,33 +125,111 @@ public class CsvUtil {
     /**
      * 读取csv文件的数据
      *
-     * @param csvFilePath  csv文件所在位置(例如：“D:\评价数据.csv”)
-     * @param isNeedHeader true需要，false不需要
+     * @param csvFilePath csv文件所在位置(例如：“D:\评价数据.csv”)
+     * @param isHasHeader true第一行存在数据表头，false第一行不存在数据表头
      * @return 数据集合
      */
-    public static List<List<Object>> readCsv(String csvFilePath, boolean isNeedHeader) {
-        List<List<Object>> result = new ArrayList<>();
+    public static Map<String, Object> readCsv(String csvFilePath, boolean isHasHeader) {
+        Map<String, Object> result = new HashMap<>(2);
         try {
             // 中文乱码问题：源文件的编码格式与程序设置的读取格式不一致所致（调整csv文件为UTF-8集合）
             DataInputStream in = new DataInputStream(new FileInputStream(csvFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "gbk"));
-            if (!isNeedHeader) {
-                //第一行信息，为标题信息，不用,如果需要，注释掉
-                reader.readLine();
+            //第一行信息，为标题信息，不用,如果需要，注释掉
+            // reader.readLine();
+            if (isHasHeader) {
+                result.put("header", reader.readLine());
             }
-            String line = null;
+            String line;
+            List<List<String>> dataList = new ArrayList<>();
             while ((line = reader.readLine()) != null) {
-                //CSV格式文件为逗号分隔符文件，这里根据逗号切分
-                List<Object> item = Arrays.asList(line.split(","));
-                if (!ObjectUtils.isEmpty(item)) {
-                    // TODO 针对item集合中的每一个数据，可以进行具体类型转换（例如转称 integer类型，string类型，集合set/list类型等）
-                    result.add(item);
+                String[] parts = splitCSV(line);
+                if (!ObjectUtils.isEmpty(parts)){
+                    List<String> lineData = Arrays.asList(parts);
+                    dataList.add(lineData);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            result.put("data", dataList);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
         return result;
+    }
+
+    public static void test() {
+        String src1 = "\"fh,zg\",sdf,\"asfs,\",\",dsdf\",\"aadf\"\"\",\"\"\"hdfg\",\"fgh\"\"dgnh\",hgfg'dfh,\"asdfa\"\"\"\"\",\"\"\"\"\"fgjhg\",\"gfhg\"\"\"\"hb\"";
+        try {
+            String[] Ret = splitCSV(src1);
+            for (int i = 0; i < Ret.length; i++) {
+                System.out.println(i + ": " + Ret[i]);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Split one line of csv file
+     *
+     * @return a String array results
+     */
+    public static String[] splitCSV(String src) throws Exception {
+        if (src == null || src.equals("")) {
+            return new String[0];
+        }
+        StringBuffer st = new StringBuffer();
+        Vector result = new Vector();
+        boolean beginWithQuote = false;
+        for (int i = 0; i < src.length(); i++) {
+            char ch = src.charAt(i);
+            if (ch == '\"') {
+                if (beginWithQuote) {
+                    i++;
+                    if (i >= src.length()) {
+                        result.addElement(st.toString());
+                        st = new StringBuffer();
+                        beginWithQuote = false;
+                    } else {
+                        ch = src.charAt(i);
+                        if (ch == '\"') {
+                            st.append(ch);
+                        } else if (ch == ',') {
+                            result.addElement(st.toString());
+                            st = new StringBuffer();
+                            beginWithQuote = false;
+                        } else {
+                            throw new Exception("Single double-quote char mustn't exist in filed " + (result.size() + 1) + " while it is begined with quote\nchar at:" + i);
+                        }
+                    }
+                } else if (st.length() == 0) {
+                    beginWithQuote = true;
+                } else {
+                    throw new Exception("Quote cannot exist in a filed which doesn't begin with quote!\nfield:" + (result.size() + 1));
+                }
+            } else if (ch == ',') {
+                if (beginWithQuote) {
+                    st.append(ch);
+                } else {
+                    result.addElement(st.toString());
+                    st = new StringBuffer();
+                    beginWithQuote = false;
+                }
+            } else {
+                st.append(ch);
+            }
+        }
+        if (st.length() != 0) {
+            if (beginWithQuote) {
+                throw new Exception("last field is begin with but not end with double quote");
+            } else {
+                result.addElement(st.toString());
+            }
+        }
+        String rs[] = new String[result.size()];
+        for (int i = 0; i < rs.length; i++) {
+            rs[i] = (String) result.elementAt(i);
+        }
+        return rs;
     }
 
     /**
