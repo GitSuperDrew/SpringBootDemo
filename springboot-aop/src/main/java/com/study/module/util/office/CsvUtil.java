@@ -171,7 +171,7 @@ public class CsvUtil {
             DataInputStream in = new DataInputStream(multipartFile.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "gbk"));
             if (isHasHeader) {
-                result.put("header", reader.readLine());
+                result.put("header", Arrays.asList(splitCSV(reader.readLine())));
             }
             String line;
             List<List<String>> dataList = new ArrayList<>();
