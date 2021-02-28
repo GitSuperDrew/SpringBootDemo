@@ -58,6 +58,7 @@
 # Undertow 简单应用
 1. [Undertow 作为简单的web文件服务器使用](https://www.cnblogs.com/ljgeng/p/11239345.html)
 2. [Spring Boot使用Undertow做服务器](https://blog.csdn.net/sophia63/article/details/104278710)
+3. [Undertow 实现反向代理](https://my.oschina.net/u/4419355/blog/3451999)
 
 # 延伸阅读
 1. [为什么很多 SpringBoot 开发者放弃了 Tomcat，选择了 Undertow?](https://www.rongsoft.com/article/2020/03/052231201487/)
