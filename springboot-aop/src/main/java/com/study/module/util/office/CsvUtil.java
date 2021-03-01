@@ -135,11 +135,11 @@ public class CsvUtil {
         try {
             // 中文乱码问题：源文件的编码格式与程序设置的读取格式不一致所致（调整csv文件为UTF-8集合）
             DataInputStream in = new DataInputStream(new FileInputStream(csvFilePath));
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "gbk"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, getCodeString(csvFilePath)));
             //第一行信息，为标题信息，不用,如果需要，注释掉
             // reader.readLine();
             if (isHasHeader) {
-                result.put("header", reader.readLine());
+                result.put("header", Arrays.asList(splitCSV(reader.readLine())));
             }
             String line;
             List<List<String>> dataList = new ArrayList<>();
@@ -187,6 +187,66 @@ public class CsvUtil {
             exception.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * 获得文件编码（https://www.php.cn/java/base/439367.html）
+     *
+     * @param fileName 文件名称（例如：D:/good.csv）
+     * @return 编码格式
+     * @throws Exception
+     */
+    public static String getCodeString(String fileName) throws Exception {
+        BufferedInputStream bin = new BufferedInputStream(new FileInputStream(fileName));
+        int p = (bin.read() << 8) + bin.read();
+        bin.close();
+        String code;
+        switch (p) {
+            case 0xefbb:
+                code = "UTF-8";
+                break;
+            case 0xfffe:
+                code = "Unicode";
+                break;
+            case 0xfeff:
+                code = "UTF-16BE";
+                break;
+            default:
+                System.out.println("默认值");
+                code = "GBK"; // 跟编辑器显示有关
+        }
+        return code;
+    }
+
+    /**
+     * 获取流对应的编码类型
+     *
+     * @param bis 文件缓冲流
+     * @return 编码格式
+     * @throws Exception
+     */
+    private static String getCharSet(BufferedInputStream bis) throws Exception {
+        String charSet = null;
+        byte[] buffer = new byte[3];
+        //因流读取后再读取可能会缺少内容，此处需要先读，然后再还原
+        bis.mark(bis.available() + 1);
+        bis.read(buffer);
+        bis.reset();
+        String s = Integer.toHexString(buffer[0] & 0xFF) + Integer.toHexString(buffer[1] & 0xFF) + Integer.toHexString(buffer[2] & 0xFF);
+        switch (s) {
+            //GBK,GB2312对应均为d5cbba，统一当成GB2312解析
+            case "d5cbba":
+                charSet = "GB2312";
+                break;
+            case "efbbbf":
+                charSet = "UTF-8";
+                break;
+            default:
+                charSet = "GBK";
+                break;
+        }
+        return charSet;
+
     }
 
     public static void testSplitCSV() {
