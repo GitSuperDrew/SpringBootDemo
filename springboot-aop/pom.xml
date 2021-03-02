@@ -20,6 +20,12 @@
     </properties>
 
     <dependencies>
+        <!--图片处理类 google图片处理工具（非常好的图片开源工具）-->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
         <!--barcode--><!-- pdf -->
         <dependency>
             <groupId>com.google.zxing</groupId>
