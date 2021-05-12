@@ -9,7 +9,7 @@ import java.util.List;
  * @create 2021-04-26 17:38
  */
 @Data
-public class User {
+public class UserInfo {
 
     private int userId;
     private String userName;
@@ -17,10 +17,10 @@ public class User {
     private String email;
     private List<Post> posts;
 
-    public User() {
+    public UserInfo() {
     }
 
-    public User(int userId, String userName, String realName, String email) {
+    public UserInfo(int userId, String userName, String realName, String email) {
         this.userId = userId;
         this.userName = userName;
         this.realName = realName;

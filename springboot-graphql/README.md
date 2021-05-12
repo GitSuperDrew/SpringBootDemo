@@ -206,7 +206,7 @@ graphql.servlet.mapping=/graphql
 graphql.servlet.enabled=true
 ```
 > 配置完端口和端口点我们就可以对我们编写的 graphql 接口进行测试了。<br/>
-> 启动 Spring Boot 服务，测试书写query语句的接口地址为：http://localhost:8080/graphql
+> 启动 Spring Boot 服务，测试书写query语句的接口地址为：[http://localhost:8080/graphql](http://localhost:8080/graphql)
 
 
 # 延伸阅读
