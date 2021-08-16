@@ -7,6 +7,14 @@
 > 5. `return` 消息机制
 > 6. `TTL队列` 和 `死信队列` 机制需要手动验证（未实现，见附录）
 
+## 基础环境
+> 1. JDK `1.8`;
+> 2. spring-boot-starter-amqp `2.3.7.RELEASE`;
+> 3. lombok `1.18.16`;
+> 4. RabbitMQ `3.9.3`;
+> 5. Erlang `24.0.5`;
+> 6. RabbitMQ-server 部署在 CentOS8;
+
 # 项目搭建步骤
 > 前期准备：CentOS8搭建RabbitMQ-server服务（见本文章的附录）
 ## (1) 引入核心maven依赖
