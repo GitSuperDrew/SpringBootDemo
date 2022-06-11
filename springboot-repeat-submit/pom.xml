@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <vaadin.version>14.4.4</vaadin.version>
+        <vaadin.version>14.6.8</vaadin.version>
     </properties>
 
     <dependencies>
