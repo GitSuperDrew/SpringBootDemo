@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.jiangfeixiang.mpdemo.core.util.BuildConditionWrapper;
+import com.jiangfeixiang.mpdemo.core.vo.Conditions;
 import com.jiangfeixiang.mpdemo.springbootmp.entity.Student;
 import com.jiangfeixiang.mpdemo.springbootmp.service.IStudentService;
 import com.jiangfeixiang.mpdemo.springbootmp.util.ExcelUtilPlus;
@@ -47,6 +49,38 @@ public class StudentController {
         List<Student> list = iStudentService.list();
         return list;
     }
+
+    /**
+     * 用户高级筛选（强）
+     * <pre>
+     * POST http://localhost:8889/springbootmp/student/page
+     * Accept: application/json
+     * Content-Type: application/json
+     *
+     * {
+     *   "current": 0,
+     *   "size": 10,
+     *   "conditionList": [
+     *     {
+     *       "fieldName": "stuName",
+     *       "operation": "LIKE",
+     *       "value": "Zhou"
+     *     }
+     *   ]
+     * }
+     * </pre>
+     *
+     * @param page       分页信息
+     * @param conditions 查询条件
+     * @return 学生集合
+     */
+    @PostMapping("/page")
+    public IPage<Student> page(Page page, @RequestBody Conditions conditions) {
+        QueryWrapper<Student> build = BuildConditionWrapper.build(conditions.getConditionList(), Student.class);
+        build.lambda().orderByDesc(Student::getStuId);
+        return iStudentService.page(page, build);
+    }
+
 
     /**
      * 分页查询：根据名称模糊匹配
