@@ -18,7 +18,7 @@ public class XssFilterConfig {
     @Value("${xss.excludes:}")
     private String excludes;
 
-    @Value("${xss.includes$:}")
+    @Value("${xss.includes:}")
     private String includes;
 
     @Value("${xss.urlPatterns:/*}")
